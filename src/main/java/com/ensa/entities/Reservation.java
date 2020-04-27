@@ -1,22 +1,63 @@
 package com.ensa.entities;
 
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
 public class Reservation {
-	@EmbeddedId
-	private Reservation_PK reservation_pk;
+	@Id
+	private int id;
+	
 	private String commentaire;
-	@OneToOne
-	@JoinColumn(name = "idAutorisation")
+	@OneToOne(mappedBy = "reservation")
 	private Autorisation autorisation;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "idGestionnaire")
 	private Gestionnaire gestionnaire;
 	
+	@ManyToOne
+	@JoinColumn(name = "idEquipement")
+	private Equipement equipement;
+	@OneToOne
+	@JoinColumn(name = "idDemande")
+	private Demande demande;
+	
+
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Gestionnaire getGestionnaire() {
+		return gestionnaire;
+	}
+
+	public void setGestionnaire(Gestionnaire gestionnaire) {
+		this.gestionnaire = gestionnaire;
+	}
+
+	public Equipement getEquipement() {
+		return equipement;
+	}
+
+	public void setEquipement(Equipement equipement) {
+		this.equipement = equipement;
+	}
+
+	public Demande getDemande() {
+		return demande;
+	}
+
+	public void setDemande(Demande demande) {
+		this.demande = demande;
+	}
 
 	public Autorisation getAutorisation() {
 		return autorisation;
@@ -28,25 +69,6 @@ public class Reservation {
 
 	public Reservation() {};
 	
-	public Reservation(Demande demande, Equipement equipement, String comment) {
-		this.reservation_pk.setEquipement(equipement);
-		this.reservation_pk.setDemande(demande);
-		this.commentaire = comment;
-	}
-	public Demande getDemande() {
-		return this.reservation_pk.getDemande();
-	}
-	public void setDemande(Demande demande) {
-		this.reservation_pk.setDemande(demande);
-	}
-	public Equipement getEquipement() {
-		return this.reservation_pk.getEquipement();
-	}
-	public void setEquipement(Equipement equipement) {
-		this.reservation_pk.setEquipement(equipement);
-	}
-	
-
 	public String getCommentaire() {
 		return commentaire;
 	}
@@ -55,13 +77,6 @@ public class Reservation {
 		this.commentaire = commentaire;
 	}
 
-	public Reservation_PK getReservation_pk() {
-		return reservation_pk;
-	}
-
-	public void setReservation_pk(Reservation_PK reservation_pk) {
-		this.reservation_pk = reservation_pk;
-	}
 	
 
 }

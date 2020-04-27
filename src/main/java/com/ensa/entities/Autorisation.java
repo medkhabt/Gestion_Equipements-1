@@ -19,7 +19,8 @@ public class Autorisation {
 	private String type;
 	private String objectif;
 	
-	@OneToOne(mappedBy = "autorisation")
+	@OneToOne
+	@JoinColumn(name = "idReservation")
 	private Reservation reservation;
 	@OneToOne
 	@JoinColumn(name = "idTaxe")

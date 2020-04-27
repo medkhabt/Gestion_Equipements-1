@@ -15,12 +15,12 @@ public class Equipement {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String nom;
-	private int IdResponsable;
+	private int idResponsable;
 	private double adresse;
 	private double largeur;
 	private double longueur;
-	@OneToMany(mappedBy = "reservation_pk.equipement")
-	private List<Reservation> resrvations;
+	@OneToMany(mappedBy = "equipement")
+	private List<Reservation> reservations;
 	@ManyToOne
 	private Secteur secteur;
 	
@@ -30,11 +30,11 @@ public class Equipement {
 	public void setSecteur(Secteur secteur) {
 		this.secteur = secteur;
 	}
-	public List<Reservation> getResrvations() {
-		return resrvations;
+	public List<Reservation> getReservations() {
+		return reservations;
 	}
-	public void setResrvations(List<Reservation> resrvations) {
-		this.resrvations = resrvations;
+	public void setReservations(List<Reservation> resrvations) {
+		this.reservations = resrvations;
 	}
 	public int getId() {
 		return id;
@@ -49,10 +49,10 @@ public class Equipement {
 		this.nom = nom;
 	}
 	public int getIdResponsable() {
-		return IdResponsable;
+		return idResponsable;
 	}
 	public void setIdResponsable(int idResponsable) {
-		IdResponsable = idResponsable;
+		this.idResponsable = idResponsable;
 	}
 	public double getAdresse() {
 		return adresse;

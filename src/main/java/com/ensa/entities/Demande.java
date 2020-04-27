@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Demande {
@@ -22,8 +23,8 @@ public class Demande {
 	private Date dateReservation;
 	@ManyToOne
 	private Demandeur demandeur;
-	@OneToMany(mappedBy = "reservation_pk.demande")
-	private List<Reservation> reservations;
+	@OneToOne(mappedBy = "demande")
+	private Reservation reservation;
 	
 	
 	public Demandeur getDemandeur() {
@@ -32,11 +33,11 @@ public class Demande {
 	public void setDemandeur(Demandeur demandeur) {
 		this.demandeur = demandeur;
 	}
-	public List<Reservation> getReservation() {
-		return reservations;
+	public Reservation getReservation() {
+		return reservation;
 	}
-	public void setReservation(List<Reservation> reservations) {
-		this.reservations = reservations;
+	public void setReservation(Reservation reservation) {
+		this.reservation = reservation;
 	}
 	public int getId() {
 		return id;

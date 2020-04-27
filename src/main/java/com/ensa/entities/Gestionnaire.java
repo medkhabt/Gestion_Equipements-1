@@ -1,10 +1,12 @@
 package com.ensa.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Gestionnaire {
@@ -17,8 +19,8 @@ public class Gestionnaire {
 	private String telephone;
 	private String username;
 	private String password;
-	@OneToOne(mappedBy = "gestionnaire")
-	private Reservation reservation;
+	@OneToMany(mappedBy = "gestionnaire")
+	private List<Reservation> reservations;
 	public int getId() {
 		return id;
 	}
@@ -61,12 +63,13 @@ public class Gestionnaire {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Reservation getReservation() {
-		return reservation;
+	public List<Reservation> getReservations() {
+		return reservations;
 	}
-	public void setReservation(Reservation reservation) {
-		this.reservation = reservation;
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
 	}
+	
 	
 	
 
