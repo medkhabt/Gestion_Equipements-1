@@ -18,10 +18,10 @@ public class Reservation {
 	@JoinColumn(name = "idGestionnaire")
 	private Gestionnaire gestionnaire;
 	
-	@ManyToOne
+	@ManyToOne // @OneToOne      					28/04/2020 Med Khalil
 	@JoinColumn(name = "idEquipement")
 	private Equipement equipement;
-	@OneToOne
+	@OneToOne // @ManyToOne  					28/04/2020 Med Khalil
 	@JoinColumn(name = "idDemande")
 	private Demande demande;
 	
