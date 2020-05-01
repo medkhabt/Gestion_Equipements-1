@@ -52,7 +52,7 @@ public class ReservationService {
 		List<Reservation> reservations = new ArrayList<Reservation>();
 		for(Demande demande : demandes) {
 			if(this.getReservation(demande)!= null) {
-				reservations.add(demande.getReservation());
+				reservations.addAll(demande.getReservations());
 			}
 		}
 		return reservations;

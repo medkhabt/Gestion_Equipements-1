@@ -41,8 +41,8 @@ public class DemandeurRestController {
 	public Demandeur getDemandeur(@PathVariable int id) {
 		return demandeurService.getDemandeur(id);
 	}
-	@GetMapping("/nom_et_prenom/{nom}/{prenom}")
-	public Demandeur getDemadeur(@RequestBody String nom, @RequestBody String prenom) {
+	@GetMapping("/nom_et_prenom/{nom}+{prenom}")
+	public Demandeur getDemadeur(@PathVariable String nom, @PathVariable String prenom) {
 		return demandeurService.getDemandeur(nom, prenom);
 	}
 	@GetMapping("/type_demandeur")
@@ -61,8 +61,8 @@ public class DemandeurRestController {
 	public void delete(@RequestBody String username) {
 		demandeurService.delete(username);
 	}
-	@GetMapping("/delete_id")
-	public void delete(@RequestBody int id) {
+	@GetMapping("/delete_id/{id}")
+	public void delete(@PathVariable int id) {
 		demandeurService.delete(id);
 	}
 	

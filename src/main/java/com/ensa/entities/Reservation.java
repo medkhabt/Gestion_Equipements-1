@@ -21,7 +21,7 @@ public class Reservation {
 	@ManyToOne
 	@JoinColumn(name = "idEquipement")
 	private Equipement equipement;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "idDemande")
 	private Demande demande;
 	
