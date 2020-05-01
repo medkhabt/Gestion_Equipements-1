@@ -10,7 +10,7 @@ import javax.persistence.OneToOne;
 public class Reservation {
 	@Id
 	private int id;
-	
+						// private String status 	01/05/2020 Med Khalil
 	private String commentaire;
 	@OneToOne(mappedBy = "reservation")
 	private Autorisation autorisation;
@@ -18,7 +18,7 @@ public class Reservation {
 	@JoinColumn(name = "idGestionnaire")
 	private Gestionnaire gestionnaire;
 	
-	@ManyToOne // @OneToOne      					28/04/2020 Med Khalil
+	@ManyToOne 
 	@JoinColumn(name = "idEquipement")
 	private Equipement equipement;
 	@OneToOne // @ManyToOne  					28/04/2020 Med Khalil
