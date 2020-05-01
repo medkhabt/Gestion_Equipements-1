@@ -19,12 +19,12 @@ import com.ensa.metier.DemandeService;
 
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/") // /demande   01/05. Med Kha
 public class DemandeRestController {
 	@Autowired
 	DemandeService demandeService;
 	
-	@GetMapping("demandes/d")
+	@GetMapping("demandes/d") // "" 01/05 Med Kha
 	public List<Demande> getDemandes(){
 		return demandeService.getDemandes();
 	}
