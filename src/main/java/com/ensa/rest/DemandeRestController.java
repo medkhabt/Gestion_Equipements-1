@@ -19,12 +19,12 @@ import com.ensa.metier.DemandeService;
 
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("demandes/")
 public class DemandeRestController {
 	@Autowired
 	DemandeService demandeService;
 	
-	@GetMapping("demandes/d")
+	@GetMapping("")
 	public List<Demande> getDemandes(){
 		return demandeService.getDemandes();
 	}

@@ -12,13 +12,13 @@ public interface DemandeurRepository extends JpaRepository<Demandeur, Integer> {
 	
 	public Demandeur save(Demandeur demandeur);
 	public List<Demandeur> findAll();
-	public Demandeur findById(int id);
+	public Demandeur findByUsername(String username);
 	public Demandeur findByNomAndPrenom(String nom, String prenom);
 	public Demandeur findByAdresse(String adresse);
 	public List<Demandeur> findByType(String type);
 	public Demandeur findByTelephone(String telephone);
 	public Demandeur findByUsernameAndPassword(String username, String password);
 	public void deleteByUsername(String username);
-	public void deleteById(int id);
+	public void delete(Demandeur demandeur);
 
 }

@@ -30,16 +30,16 @@ public class DemandeurRestController {
 		 demandeurService.createDemandeur(demandeur);
 	}
 	@PutMapping("/update_demandeur")
-	public void updateDemandeur(@RequestBody Demandeur demandeur, @RequestBody int id) {
-		demandeurService.updateDemandeur(demandeur, id);
+	public void updateDemandeur(@RequestBody Demandeur demandeur, @RequestBody String username) {
+		demandeurService.updateDemandeur(demandeur, username);
 	}
 	@DeleteMapping("/delete_demandeur")
 	public void deleteDemandeur(@PathVariable int id) {
 		demandeurService.delete(id);
 	}
-	@GetMapping("/{id}")
-	public Demandeur getDemandeur(@PathVariable int id) {
-		return demandeurService.getDemandeur(id);
+	@GetMapping("/{username}")
+	public Demandeur getDemandeur(@PathVariable String username) {
+		return demandeurService.getDemandeur(username);
 	}
 	@GetMapping("/nom_et_prenom/{nom}+{prenom}")
 	public Demandeur getDemadeur(@PathVariable String nom, @PathVariable String prenom) {

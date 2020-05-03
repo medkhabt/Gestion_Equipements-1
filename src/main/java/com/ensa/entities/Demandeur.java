@@ -2,29 +2,43 @@ package com.ensa.entities;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Demandeur {
+public class Demandeur extends User {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	@Column(nullable = false)
+	protected String username;
+	@Column(nullable = false)
+	protected String password;
+	protected boolean actived;
 	private String nom;
 	private String prenom;
 	private String email;
 	private String telephone;
-	private String username;
-	private String password;
 	private String type;
 	private String adresse;
 	@OneToMany(mappedBy = "demandeur")
 	private List<Demande> demandes;
 	
+	public Demandeur(String username, String password, String nom, String prenom, String email, String telephone,
+			String type, String adresse) {
+		super(username, password);
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.telephone = telephone;
+		this.type = type;
+		this.adresse = adresse;
+	}
 	
+	public Demandeur(String username, String password) {
+		super(username, password);
+	}
+
 	public List<Demande> getDemandes() {
 		return demandes;
 	}
@@ -33,12 +47,6 @@ public class Demandeur {
 	}
 	public Demandeur() {
 	
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
 	}
 	public String getNom() {
 		return nom;
@@ -64,18 +72,7 @@ public class Demandeur {
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
+
 	public String getType() {
 		return type;
 	}
@@ -89,6 +86,30 @@ public class Demandeur {
 		this.adresse = adresse;
 	}
 
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public boolean isActived() {
+		return actived;
+	}
+
+	public void setActived(boolean actived) {
+		this.actived = actived;
+	}
+	
 	
 
 }

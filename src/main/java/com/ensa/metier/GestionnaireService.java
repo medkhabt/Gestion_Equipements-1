@@ -16,16 +16,17 @@ public class GestionnaireService {
 	public Gestionnaire createGestionnaire(Gestionnaire gestionnaire) {
 		return gestionnaireRepo.save(gestionnaire);
 	}
-	public Gestionnaire updateGestionnaire(Gestionnaire gestionnaire, int id) {
-		gestionnaire.setId(id);
+	public Gestionnaire updateGestionnaire(Gestionnaire gestionnaire, String username) {
+		gestionnaire.setUsername(username);
 		return gestionnaireRepo.save(gestionnaire);
 	}
 	public List<Gestionnaire> getAll(){
 		return gestionnaireRepo.findAll();
 	}
-	public void delete(int id) {
-		gestionnaireRepo.deleteById(id);
+	public void delete(Gestionnaire gestionnaire) {
+		gestionnaireRepo.delete(gestionnaire);
 	}
+	
 
 
 }

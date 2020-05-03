@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,14 +23,17 @@ import com.ensa.metier.AutorisationService;
 
 @RestController
 @RequestMapping("/autorisations")
+@EnableWebSecurity
 public class AutorisationRestController {
 	@Autowired
 	AutorisationService autorisationService;
 	
+	@Secured({"ROLE_ADMIN","ROLE_DEMANDEUR"} )
 	@GetMapping("")
 	public List<Autorisation> getAutorisations(){
 		return autorisationService.getAll();
 	}
+	@Secured({"ROLE_ADMIN"})
 	@GetMapping("/get/{id}")
 	public Autorisation getAutorisation(@PathVariable int id) {
 		 return autorisationService.getAutosiation(id);

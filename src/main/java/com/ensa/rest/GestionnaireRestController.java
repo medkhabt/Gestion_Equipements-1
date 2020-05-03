@@ -30,12 +30,12 @@ public class GestionnaireRestController {
 		gestionnaireService.createGestionnaire(gestionnaire);
 	}
 	@PutMapping("/update_gestionnaire")
-	public void updateGestionnaire(@RequestBody Gestionnaire gestionnaire, @RequestBody int id) {
-		gestionnaireService.updateGestionnaire(gestionnaire, id);
+	public void updateGestionnaire(@RequestBody Gestionnaire gestionnaire, @PathVariable String username) {
+		gestionnaireService.updateGestionnaire(gestionnaire, username);
 	}
-	@DeleteMapping("/delete/{id}")
-	public void deleteGestionnaire(@PathVariable int id) {
-		gestionnaireService.delete(id);
+	@DeleteMapping("/delete")
+	public void deleteGestionnaire(@RequestBody Gestionnaire gestionnaire) {
+		gestionnaireService.delete(gestionnaire);
 	}
 	
 	

@@ -16,8 +16,8 @@ public class DemandeurService {
 	public List<Demandeur> getAll(){
 		return demandeurRepo.findAll();
 	}
-	public Demandeur getDemandeur(int id) {
-		return demandeurRepo.findById(id);
+	public Demandeur getDemandeur(String username) {
+		return demandeurRepo.findByUsername(username);
 	}
 	public Demandeur getDemandeur(String nom, String prenom) {
 		return demandeurRepo.findByNomAndPrenom(nom, prenom);
@@ -25,8 +25,8 @@ public class DemandeurService {
 	public Demandeur createDemandeur(Demandeur demandeur) {
 		return demandeurRepo.save(demandeur);
 	}
-	public Demandeur updateDemandeur(Demandeur demandeur, int id) {
-		demandeur.setId(id);
+	public Demandeur updateDemandeur(Demandeur demandeur, String username) {
+		demandeur.setUsername(username);
 		return demandeurRepo.save(demandeur);
 	}
 	public List<Demandeur> getDemandeurByType(String type) {
