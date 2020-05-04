@@ -46,7 +46,7 @@ public class ReservationRestController {
 	public  Reservation getReservation(@RequestBody Demande demande) {
 		return reservationService.getReservation(demande);
 	}
-	@GetMapping("/reservations_en_equipement")
+	@GetMapping("/reservations_par_equipement")
 	public  List<Reservation> getReservations(@RequestBody Equipement equipement) {
 		return reservationService.getReservations(equipement);
 	}

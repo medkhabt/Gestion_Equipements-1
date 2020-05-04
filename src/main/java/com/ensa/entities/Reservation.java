@@ -21,7 +21,7 @@ public class Reservation {
 	@ManyToOne 
 	@JoinColumn(name = "idEquipement")
 	private Equipement equipement;
-	@OneToOne // @ManyToOne  					28/04/2020 Med Khalil
+	@ManyToOne
 	@JoinColumn(name = "idDemande")
 	private Demande demande;
 	

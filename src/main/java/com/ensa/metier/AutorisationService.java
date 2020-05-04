@@ -12,7 +12,6 @@ import com.ensa.entities.Demandeur;
 import com.ensa.entities.Equipement;
 import com.ensa.entities.Gestionnaire;
 import com.ensa.entities.Reservation;
-import com.ensa.entities.Taxe;
 import com.ensa.repo.AutorisationRepository;
 
 @Service
@@ -29,6 +28,9 @@ public class AutorisationService {
 		autorisation.setId(id);
 		return autorisationRepo.save(autorisation);
 	}
+	public void deleteAutorisation(int id) {
+		autorisationRepo.deleteById(id);
+	}
 	public List<Autorisation> getAll(){
 		return autorisationRepo.findAll();
 	}
@@ -41,12 +43,7 @@ public class AutorisationService {
 	public List<Autorisation> getAutorisation(String type){
 		return autorisationRepo.findByType(type);
 	}
-	public Taxe createTaxe(Taxe taxe) {
-		return autorisationRepo.save(taxe);
-	}//à developper
-	public void delete(int id) {
-		autorisationRepo.deleteById(id);
-	}
+	
 	public List<Autorisation> getAutorisations(Equipement equipement){
 		List<Reservation> reservations= equipement.getReservations();
 		List<Autorisation> autorisations= new ArrayList<Autorisation>();

@@ -30,19 +30,19 @@ public class DemandeurRestController {
 		 demandeurService.createDemandeur(demandeur);
 	}
 	@PutMapping("/update_demandeur")
-	public void updateDemandeur(@RequestBody Demandeur demandeur, @RequestBody int id) {
+	public void updateDemandeur(@RequestBody Demandeur demandeur, @RequestBody Long id) {
 		demandeurService.updateDemandeur(demandeur, id);
 	}
 	@DeleteMapping("/delete_demandeur")
-	public void deleteDemandeur(@PathVariable int id) {
+	public void deleteDemandeur(@PathVariable Long id) {
 		demandeurService.delete(id);
 	}
-	@GetMapping("/{id}")
-	public Demandeur getDemandeur(@PathVariable int id) {
-		return demandeurService.getDemandeur(id);
+	@GetMapping("/{username}")
+	public Demandeur getDemandeur(@PathVariable String username) {
+		return demandeurService.getDemandeur(username);
 	}
-	@GetMapping("/nom_et_prenom/{nom}/{prenom}")
-	public Demandeur getDemadeur(@RequestBody String nom, @RequestBody String prenom) {
+	@GetMapping("/nom_et_prenom/{nom}+{prenom}")
+	public Demandeur getDemadeur(@PathVariable String nom, @PathVariable String prenom) {
 		return demandeurService.getDemandeur(nom, prenom);
 	}
 	@GetMapping("/type_demandeur")
@@ -61,8 +61,8 @@ public class DemandeurRestController {
 	public void delete(@RequestBody String username) {
 		demandeurService.delete(username);
 	}
-	@GetMapping("/delete_id")
-	public void delete(@RequestBody int id) {
+	@GetMapping("/delete_id/{id}")
+	public void delete(@PathVariable Long id) {
 		demandeurService.delete(id);
 	}
 	

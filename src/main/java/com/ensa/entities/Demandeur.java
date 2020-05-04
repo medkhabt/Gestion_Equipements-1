@@ -2,44 +2,75 @@ package com.ensa.entities;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Demandeur {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	@Column(nullable = false, unique = true)
+	protected String username;
+	@Column(nullable = false)
+	@JsonIgnore
+	protected String password;
+	protected boolean actived;
 	private String nom;
 	private String prenom;
 	private String email;
 	private String telephone;
-	private String username;
-	private String password;
 	private String type;
 	private String adresse;
 	@OneToMany(mappedBy = "demandeur")
 	private List<Demande> demandes;
+	@ManyToMany
+	@JoinTable
+	private List<GRole> roles ;
 	
-	
+
+	public Demandeur(Long id, String username, String password, boolean actived, String nom, String prenom,
+			String email, String telephone, String type, String adresse) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.actived = actived;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.telephone = telephone;
+		this.type = type;
+		this.adresse = adresse;
+	}
+
+	public Demandeur() {
+		super();
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+
 	public List<Demande> getDemandes() {
 		return demandes;
 	}
 	public void setDemandes(List<Demande> demandes) {
 		this.demandes = demandes;
 	}
-	public Demandeur() {
-	
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+
 	public String getNom() {
 		return nom;
 	}
@@ -64,18 +95,7 @@ public class Demandeur {
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
+
 	public String getType() {
 		return type;
 	}
@@ -89,6 +109,39 @@ public class Demandeur {
 		this.adresse = adresse;
 	}
 
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public boolean isActived() {
+		return actived;
+	}
+
+	public void setActived(boolean actived) {
+		this.actived = actived;
+	}
+
+	public List<GRole> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<GRole> roles) {
+		this.roles = roles;
+	}
+	
+	
 	
 
 }

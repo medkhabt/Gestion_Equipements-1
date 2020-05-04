@@ -16,8 +16,8 @@ public class DemandeurService {
 	public List<Demandeur> getAll(){
 		return demandeurRepo.findAll();
 	}
-	public Demandeur getDemandeur(int id) {
-		return demandeurRepo.findById(id);
+	public Demandeur getDemandeur(String username) {
+		return demandeurRepo.findByUsername(username);
 	}
 	public Demandeur getDemandeur(String nom, String prenom) {
 		return demandeurRepo.findByNomAndPrenom(nom, prenom);
@@ -25,7 +25,7 @@ public class DemandeurService {
 	public Demandeur createDemandeur(Demandeur demandeur) {
 		return demandeurRepo.save(demandeur);
 	}
-	public Demandeur updateDemandeur(Demandeur demandeur, int id) {
+	public Demandeur updateDemandeur(Demandeur demandeur, Long id) {
 		demandeur.setId(id);
 		return demandeurRepo.save(demandeur);
 	}
@@ -38,7 +38,7 @@ public class DemandeurService {
 	public Demandeur getDemandeurByUserPass(String username, String password) {
 		return demandeurRepo.findByUsernameAndPassword(username, password);
 	}
-	public void delete(int id) {
+	public void delete(Long id) {
 		demandeurRepo.deleteById(id);
 	}
 	public void delete(String username) {

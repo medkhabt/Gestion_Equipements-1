@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,19 +19,26 @@ import com.ensa.entities.Autorisation;
 import com.ensa.entities.Demandeur;
 import com.ensa.entities.Equipement;
 import com.ensa.entities.Gestionnaire;
-import com.ensa.entities.Taxe;
 import com.ensa.metier.AutorisationService;
 
 @RestController
 @RequestMapping("/autorisations")
+@EnableWebSecurity
+@CrossOrigin(origins = "*")
 public class AutorisationRestController {
 	@Autowired
 	AutorisationService autorisationService;
 	
+	@GetMapping("/test")
+	public String hello() {
+		return "authentification avec succés";
+	}
+//	@Secured({"ROLE_ADMIN","ROLE_DEMANDEUR"} )
 	@GetMapping("")
 	public List<Autorisation> getAutorisations(){
 		return autorisationService.getAll();
 	}
+//	@Secured({"ROLE_ADMIN"})
 	@GetMapping("/get/{id}")
 	public Autorisation getAutorisation(@PathVariable int id) {
 		 return autorisationService.getAutosiation(id);
@@ -41,6 +50,10 @@ public class AutorisationRestController {
 	@PutMapping("/update_autorisation/{id}")
 	public void updateAutorisation(@RequestBody Autorisation autorisation, @PathVariable int id) {
 		autorisationService.updateAutorisation(autorisation, id);
+	}
+	@DeleteMapping("/delete_autorisation/{id}")
+	public void deleteAutorisation(@PathVariable int id) {
+		autorisationService.deleteAutorisation(id);
 	}
 	@GetMapping("/date_reservation")
 	public  List<Autorisation> getAutorisation(@RequestBody Date dateReservation) {
@@ -62,14 +75,8 @@ public class AutorisationRestController {
 	public List<Autorisation> getAutorisations(@RequestBody Gestionnaire gestionnaire) {
 		return autorisationService.getAutorisations(gestionnaire);
 	}
-	@PostMapping("/create_taxe")
-	public void createTaxe(@RequestBody Taxe taxe) {
-		 autorisationService.createTaxe(taxe);
-	}
-	@DeleteMapping("/delete_taxe/{id}")
-	public void deleteTaxe(@PathVariable int id) {
-		autorisationService.delete(id);
-	}
+	
+	
 	
 
 	

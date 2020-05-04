@@ -60,9 +60,9 @@ public class EquipementRestController {
 	public  List<Equipement> getEquipements(@RequestBody Bacha bacha) {
 		return equipementService.getEquipements(bacha);
 	}
-	@GetMapping("/delete_Equipements")
-	public void delete(@RequestBody Equipement equipement) {
-		equipementService.delete(equipement);
+	@GetMapping("/delete_Equipement/{id}")
+	public void delete(@PathVariable int id) {
+		equipementService.delete(id);
 	}
 	
 	

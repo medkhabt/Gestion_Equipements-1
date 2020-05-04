@@ -6,7 +6,8 @@ import org.springframework.stereotype.Repository;
 import com.ensa.entities.Gestionnaire;
 
 @Repository
-public interface GestionnaireRepository extends JpaRepository<Gestionnaire, Integer> {
+public interface GestionnaireRepository extends JpaRepository<Gestionnaire, Long> {
+	public Gestionnaire findByUsername(String username);
 	
-
+	
 }
