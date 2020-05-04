@@ -37,9 +37,9 @@ public class Pfa00Application  implements CommandLineRunner{
 //		
 //		demandeJpaRepository.save(new Demande(1,"etat1",null,null,null,null,null));
 //		demandeJpaRepository.save(new Demande(2,"etat2",null,null,null,null,null));
-		demandeJpaRepository.findAll().forEach(p->{
-			System.out.println(p.toString());
-		});
+//		demandeJpaRepository.findAll().forEach(p->{
+//			System.out.println(p.toString());
+//		});
 	}
 
 	@Bean

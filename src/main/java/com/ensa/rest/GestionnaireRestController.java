@@ -42,7 +42,7 @@ public class GestionnaireRestController {
 		g.setPassword(gestionnaireForm.getPassword());
 		gestionnaireService.saveGestionnaire(g);
 		System.out.println(g.getUsername());
-		gestionnaireService.addRoleToGestionnaire(gestionnaireForm.getUsername(), "ADMIN");
+		gestionnaireService.addRoleToGestionnaire(gestionnaireForm.getUsername(), "INVITE");
 		return g;
 
 	}

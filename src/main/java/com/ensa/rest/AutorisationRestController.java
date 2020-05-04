@@ -24,7 +24,7 @@ import com.ensa.metier.AutorisationService;
 @RestController
 @RequestMapping("/autorisations")
 @EnableWebSecurity
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 public class AutorisationRestController {
 	@Autowired
 	AutorisationService autorisationService;
