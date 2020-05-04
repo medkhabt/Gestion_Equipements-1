@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.ensa.entities.Demandeur;
 
 @Repository
-public interface DemandeurRepository extends JpaRepository<Demandeur, Integer> {
+public interface DemandeurRepository extends JpaRepository<Demandeur, Long> {
 	
 	public Demandeur save(Demandeur demandeur);
 	public List<Demandeur> findAll();

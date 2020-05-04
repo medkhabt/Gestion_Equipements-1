@@ -64,7 +64,7 @@
     		<groupId>org.springframework.security</groupId>
     		<artifactId>spring-security-jwt</artifactId>
 		</dependency>
-			
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools -->
 	</dependencies>
 
 	<build>

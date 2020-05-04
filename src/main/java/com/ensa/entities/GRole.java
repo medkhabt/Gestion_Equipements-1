@@ -1,21 +1,24 @@
 package com.ensa.entities;
 
-import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Role implements Serializable {
+public class GRole {
 	@Id
+	@GeneratedValue
+	private Long id;
+	@Column(unique = true)
 	private String role;
 	private String description;
 	
-	
-	public Role() {
+	public GRole() {
 		super();
 	}
 
-	public Role(String role, String description) {
+	public GRole(String role, String description) {
 		this.role = role;
 		this.description = description;
 	}

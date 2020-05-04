@@ -25,8 +25,8 @@ public class DemandeurService {
 	public Demandeur createDemandeur(Demandeur demandeur) {
 		return demandeurRepo.save(demandeur);
 	}
-	public Demandeur updateDemandeur(Demandeur demandeur, String username) {
-		demandeur.setUsername(username);
+	public Demandeur updateDemandeur(Demandeur demandeur, Long id) {
+		demandeur.setId(id);
 		return demandeurRepo.save(demandeur);
 	}
 	public List<Demandeur> getDemandeurByType(String type) {
@@ -38,7 +38,7 @@ public class DemandeurService {
 	public Demandeur getDemandeurByUserPass(String username, String password) {
 		return demandeurRepo.findByUsernameAndPassword(username, password);
 	}
-	public void delete(int id) {
+	public void delete(Long id) {
 		demandeurRepo.deleteById(id);
 	}
 	public void delete(String username) {

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import com.ensa.metier.DemandeService;
 
 @RestController
 @RequestMapping("demandes/")
+@EnableWebSecurity
 public class DemandeRestController {
 	@Autowired
 	DemandeService demandeService;
@@ -36,7 +38,7 @@ public class DemandeRestController {
 	public void updateDemande(@RequestBody Demande demande,@PathVariable int id) {
 		 demandeService.updateDemande(demande, id);
 	}
-	@GetMapping("demande/{id}")
+	@GetMapping("/{id}")
 	public Demande getDemande(@PathVariable int id) {
 		return demandeService.getDemande(id);
 	}
@@ -60,7 +62,7 @@ public class DemandeRestController {
 	public List<Demande> getByDateReservation(@RequestBody Date dateReservation) {
 		return demandeService.getByDateReservation(dateReservation);
 	}
-	@GetMapping("demande/demande_etat/{etat}")
+	@GetMapping("demande_etat/{etat}")
 	public List<Demande> getByEtat(@PathVariable String etat) {
 		return demandeService.getByEtat(etat);
 	}

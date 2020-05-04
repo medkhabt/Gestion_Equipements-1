@@ -27,6 +27,18 @@ public class Demande {
 	
 	
 	
+	public Demande(int id, String reference, String etat, String typeEvent, Date dateDemande, Date dateReservation,
+			Demandeur demandeur) {
+		this.id = id;
+		this.reference = reference;
+		this.etat = etat;
+		this.typeEvent = typeEvent;
+		this.dateDemande = dateDemande;
+		this.dateReservation = dateReservation;
+		this.demandeur = demandeur;
+	}
+	public Demande() {
+	}
 	public Demandeur getDemandeur() {
 		return demandeur;
 	}

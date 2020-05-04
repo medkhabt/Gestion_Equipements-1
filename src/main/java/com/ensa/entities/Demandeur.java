@@ -4,15 +4,24 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-public class Demandeur extends User {
+public class Demandeur {
 	@Id
-	@Column(nullable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	@Column(nullable = false, unique = true)
 	protected String username;
 	@Column(nullable = false)
+	@JsonIgnore
 	protected String password;
 	protected boolean actived;
 	private String nom;
@@ -23,10 +32,18 @@ public class Demandeur extends User {
 	private String adresse;
 	@OneToMany(mappedBy = "demandeur")
 	private List<Demande> demandes;
+	@ManyToMany
+	@JoinTable
+	private List<GRole> roles ;
 	
-	public Demandeur(String username, String password, String nom, String prenom, String email, String telephone,
-			String type, String adresse) {
-		super(username, password);
+
+	public Demandeur(Long id, String username, String password, boolean actived, String nom, String prenom,
+			String email, String telephone, String type, String adresse) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.actived = actived;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
@@ -34,10 +51,18 @@ public class Demandeur extends User {
 		this.type = type;
 		this.adresse = adresse;
 	}
-	
-	public Demandeur(String username, String password) {
-		super(username, password);
+
+	public Demandeur() {
+		super();
 	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
 
 	public List<Demande> getDemandes() {
 		return demandes;
@@ -45,9 +70,7 @@ public class Demandeur extends User {
 	public void setDemandes(List<Demande> demandes) {
 		this.demandes = demandes;
 	}
-	public Demandeur() {
-	
-	}
+
 	public String getNom() {
 		return nom;
 	}
@@ -109,6 +132,15 @@ public class Demandeur extends User {
 	public void setActived(boolean actived) {
 		this.actived = actived;
 	}
+
+	public List<GRole> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<GRole> roles) {
+		this.roles = roles;
+	}
+	
 	
 	
 
