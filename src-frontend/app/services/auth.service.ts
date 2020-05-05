@@ -24,6 +24,12 @@ export class AuthService {
   return this.http.post(this.host + '/register', {username, password, repassword});
 
   }
+  getDemandeurs() {
+    if (this.jwtToken === null) {this.loadToken(); }
+    return this.http.get(this.host + '/demandeurs',
+    {headers: new HttpHeaders({authorization: this.jwtToken})});
+    }
+
 
   saveToken(jwtToken) {
 

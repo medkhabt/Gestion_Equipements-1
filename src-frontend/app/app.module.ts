@@ -3,8 +3,12 @@ import { NgModule } from '@angular/core';
 import {ButtonModule} from 'primeng/button';
 import {Component, ViewEncapsulation} from '@angular/core';
 import {trigger, state, style, transition, animate, AnimationEvent} from '@angular/animations';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule, FormGroup} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {DataViewModule} from 'primeng/dataview';
+import {DropdownModule} from 'primeng/dropdown';
+import {PanelModule} from 'primeng/panel';
+import {DialogModule} from 'primeng/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,7 +38,11 @@ import { AuthService } from './services/auth.service';
     ButtonModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    DataViewModule,
+    DropdownModule,
+    PanelModule,
+    DialogModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

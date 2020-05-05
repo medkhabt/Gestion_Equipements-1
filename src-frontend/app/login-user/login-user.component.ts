@@ -38,7 +38,7 @@ export class LoginUserComponent implements OnInit {
     resp.subscribe( resp => {
       const jwtToken = resp.headers.get('authorization');
       this.authservice.saveToken(jwtToken);
-      this.router.navigate(['/home']);
+      this.router.navigate(['/equipements']);
       console.log(resp.headers.get('authorization'));
     }, err => {
       this.errorMessage = 'uncorrect! try again';

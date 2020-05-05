@@ -9,13 +9,14 @@
 
     <!-- Icon -->
     <div class="fadeIn first">
-     <!-- <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />-->
+    <br><br>
     </div>
 
     <!-- Login Form -->
     <form [formGroup]="signInform" (ngSubmit)="onSubmit()">
       <input type="text" id="login" class="fadeIn second" name="login" placeholder="Username" formControlName="username" required>
       <input type="password" id="password" class="fadeIn third" name="login" placeholder="Password" formControlName="password" required>
+      <br><br>
       <input type="submit" class="fadeIn fourth" value="Connexion">
     </form>
     <p class="text-danger" >{{errorMessage}} </p>
