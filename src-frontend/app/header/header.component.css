@@ -1,17 +1,35 @@
-
-.navstyle {
+/* nav { */
+    /* background-color: #8FB8ED; */
+/* } */
+/* .navstyle {
     background-color: #03588C;
-}
+} */
 .nav-link:visited,
-.nav-lin:link{
+.nav-link:link{
     color:#8FBDD9;
 }
 .nav-link:hover,
-.nav-lin:active{
-    color:white;
-    border-bottom: white solid 2px;
+.nav-link:active{
+    color:#03588C;
+    border-bottom: #03588C 2px solid;
     font-style: bold;
 }
 #main-nav{
     background-color: white;
+}
+
+
+.extraStyle:link, 
+.extraStyle:visited {
+    border-radius: 1%;
+    border: #8FBDD9 1px solid; 
+    color: #8FBDD9; 
+}
+
+.extraStyle:hover, 
+.extraStyle:active {
+    border-radius: 1%;
+    border: white 1px solid; 
+    color: white; 
+    background-color: #03588C;
 }

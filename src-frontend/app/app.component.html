@@ -1,3 +1,5 @@
-<app-header></app-header>
-<app-home></app-home>
+<app-header
+    (pageChoosen)="page = $event"></app-header>
+<app-home *ngIf="page === 'home'"></app-home>
+<app-list-equipements *ngIf="page === 'equipements'"></app-list-equipements>
 <app-footer></app-footer>

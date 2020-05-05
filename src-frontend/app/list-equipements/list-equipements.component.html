@@ -1,0 +1,25 @@
+
+<section class="list-equipement">
+    <div class="container">
+        <h1>Listes des equipements</h1>
+        <div class="row">
+             
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="list-group">
+                    <app-equipement-sum
+                    *ngFor="let equipement of equipements"
+                    [name] = equipement.nom
+                    (selectEquipement) = "equipementSelected = equipement"></app-equipement-sum>
+                </div>
+            </div>
+            <div class="col-6">
+                    <app-equipement-detail
+                    *ngIf = "equipementSelected"
+                    [equipement] = equipementSelected></app-equipement-detail>
+            </div>
+        
+        </div>
+    </div>
+</section>
