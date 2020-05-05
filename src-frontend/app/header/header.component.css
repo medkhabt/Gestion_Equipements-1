@@ -1,0 +1,17 @@
+
+.navstyle {
+    background-color: #03588C;
+}
+.nav-link:visited,
+.nav-lin:link{
+    color:#8FBDD9;
+}
+.nav-link:hover,
+.nav-lin:active{
+    color:white;
+    border-bottom: white solid 2px;
+    font-style: bold;
+}
+#main-nav{
+    background-color: white;
+}
