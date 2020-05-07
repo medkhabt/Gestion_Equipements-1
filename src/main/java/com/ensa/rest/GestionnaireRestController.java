@@ -32,18 +32,14 @@ public class GestionnaireRestController {
 		return gestionnaireService.getAll();
 	}
 	@PostMapping("/register")
-	public Gestionnaire createGestionnaire(@RequestBody RegisterForm gestionnaireForm) {
-		if(!gestionnaireForm.getPassword().equals(gestionnaireForm.getRepassword())) throw
-		new RuntimeCryptoException("You must confirm your password");
-		Gestionnaire gestionnaire = gestionnaireService.findByUsername(gestionnaireForm.getUsername());
-		if(gestionnaire!=null) throw new RuntimeCryptoException("this user alreeady exists !");
-		Gestionnaire g = new Gestionnaire();
-		g.setUsername(gestionnaireForm.getUsername());
-		g.setPassword(gestionnaireForm.getPassword());
-		gestionnaireService.saveGestionnaire(g);
-		System.out.println(g.getUsername());
-		gestionnaireService.addRoleToGestionnaire(gestionnaireForm.getUsername(), "INVITE");
-		return g;
+	public Gestionnaire createGestionnaire(@RequestBody Gestionnaire gestionnaire) {
+//		if(!gestionnaireForm.getPassword().equals(gestionnaireForm.getRepassword())) throw
+//		new RuntimeCryptoException("You must confirm your password");
+		Gestionnaire gestTest = gestionnaireService.findByUsername(gestionnaire.getUsername());
+		if(gestTest!=null) throw new RuntimeCryptoException("this user alreeady exists !");
+		gestionnaireService.saveGestionnaire(gestionnaire);
+		gestionnaireService.addRoleToGestionnaire(gestionnaire.getUsername(), "INVITE");
+		return gestionnaire;
 
 	}
 	@PutMapping("/update_gestionnaire")

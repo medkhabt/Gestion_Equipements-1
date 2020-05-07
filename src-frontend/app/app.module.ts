@@ -15,11 +15,13 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ActualiteComponent } from './actualite/actualite.component';
 import { HomeComponent } from './home/home.component';
-import { ListEquipementComponent } from './list-equipement/list-equipement.component';
-import { EquipementComponent } from './list-equipement/equipement/equipement.component';
 import { LoginUserComponent } from './login-user/login-user.component';
 import { SignupUserComponent } from './signup-user/signup-user.component';
 import { AuthService } from './services/auth.service';
+import { ListEquipementsComponent } from './list-equipements/list-equipements.component';
+import { EquipementsService } from './services/equipements.service';
+import { EquipementSumComponent } from './list-equipements/equipement-sum/equipement-sum.component';
+import { EquipementDetailComponent } from './list-equipements/equipement-detail/equipement-detail.component';
 
 @NgModule({
   declarations: [
@@ -27,10 +29,11 @@ import { AuthService } from './services/auth.service';
     HeaderComponent,
     ActualiteComponent,
     HomeComponent,
-    ListEquipementComponent,
-    EquipementComponent,
     LoginUserComponent,
-    SignupUserComponent
+    SignupUserComponent,
+    ListEquipementsComponent,
+    EquipementSumComponent,
+    EquipementDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,7 @@ import { AuthService } from './services/auth.service';
     PanelModule,
     DialogModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, EquipementsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

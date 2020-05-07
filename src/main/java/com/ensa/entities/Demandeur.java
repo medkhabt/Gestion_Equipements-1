@@ -12,6 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 @Entity
 public class Demandeur {
@@ -21,7 +22,6 @@ public class Demandeur {
 	@Column(nullable = false, unique = true)
 	protected String username;
 	@Column(nullable = false)
-	@JsonIgnore
 	protected String password;
 	protected boolean actived;
 	private String nom;
@@ -116,11 +116,11 @@ public class Demandeur {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
+	@JsonIgnore
 	public String getPassword() {
 		return password;
 	}
-
+	@JsonSetter
 	public void setPassword(String password) {
 		this.password = password;
 	}

@@ -1,17 +1,27 @@
 package com.ensa.metier;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.ensa.entities.Demandeur;
+import com.ensa.entities.GRole;
+import com.ensa.entities.Gestionnaire;
 import com.ensa.repo.DemandeurRepository;
+import com.ensa.repo.GestionnaireService;
+import com.ensa.repo.RoleRepositpory;
 
 @Service
-public class DemandeurService {
+public class DemandeurService implements com.ensa.repo.DemandeurService {
 	@Autowired
 	DemandeurRepository demandeurRepo;
+	@Autowired
+	RoleRepositpory roleRepositpory;
+	@Autowired
+	BCryptPasswordEncoder brBCryptPasswordEncoder;
 	
 	public List<Demandeur> getAll(){
 		return demandeurRepo.findAll();
@@ -23,6 +33,8 @@ public class DemandeurService {
 		return demandeurRepo.findByNomAndPrenom(nom, prenom);
 	}
 	public Demandeur createDemandeur(Demandeur demandeur) {
+		String hashPW = brBCryptPasswordEncoder.encode(demandeur.getPassword());
+		demandeur.setPassword(hashPW);
 		return demandeurRepo.save(demandeur);
 	}
 	public Demandeur updateDemandeur(Demandeur demandeur, Long id) {
@@ -43,6 +55,34 @@ public class DemandeurService {
 	}
 	public void delete(String username) {
 		demandeurRepo.deleteByUsername(username);
+	}
+	@Override
+	public GRole saveRole(GRole role) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void addRoleToDemandeur(String username, String rolename) {
+		List<GRole> role = roleRepositpory.findByRole(rolename);
+		role.forEach(r->{
+			System.out.println(r.getRole());
+		});
+		Demandeur demandeur = demandeurRepo.findByUsername(username);
+		
+		Iterator<GRole> iter = role.iterator();
+		System.out.println(iter.next().getRole());
+		demandeur.setRoles(role);
+		
+	}
+	@Override
+	public Demandeur saveGestionnaire(Demandeur demandeur) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public Demandeur findByUsername(String username) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

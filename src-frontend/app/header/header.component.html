@@ -1,53 +1,25 @@
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <!--  <a>
-        <svg class="bi bi-layers-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="..\assets\commune.jpg">
-            <title>Home</title>
-            </svg>&nbsp;
-    </a>-->
-    <a class="navbar-brand" routerLink='home'>Home</a>
+<nav class="navbar pb-0 pt-0 navbar-dark fixed-top bg-white" id="mainNav">
+  <div class="col-xs-4 mb-0">
+      <a href="#" class="navbar-brand">
+          <img src="..\assets\images\logoAgadir.jpg" alt="" width="50" height="50">
+      </a>
+  </div>
+  <div class="col-xs-4 mb-0">
+      <nav class="navbar navbar-left navstyle mb-0">
+          <a routerLink="/home" class="nav-link">Home</a>
+          <a routerLink="/actualite" class="nav-link">Actualite</a>
+          <a routerLink="/equipements" class="nav-link">Listes des equipements</a>
+          <a routerLink="/" class="nav-link">Contacts</a>
+      </nav>
+  </div>
   
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item " routerLinkActive="active">
-          <a class="nav-link" routerLink='actualités'>Actualités</a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="equipements">Liste des équipements</a>
-        </li>
-        <!-- <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="editappareil">Edit appareil</a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="users">Users </a>
-        </li>
-         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="new-user">New User </a>
-        </li>-->
-      </ul>
-      <ul class="nav navbar-nav navbar-right" >
-        <li class="nav-item " routerLinkActive="active" >
-         <a class="nav-link" routerLink='auth/signin'>
-          <button pButton type="button" label="Connexion" class="ui-button-rounded"></button></a>
-        </li>
-        <li class="nav-item " routerLinkActive="active" >
-         <a class="nav-link" routerLink='auth/signup'>
-          <button pButton type="button" label="Créer un compte" class="ui-button-rounded "></button></a>
-        </li>
-       <!-- <li class="nav-item "  >
-         <a class="nav-link" (click)="onSignOut()" style="cursor: pointer;" *ngIf="isAuth">Déconnexion</a>
-        </li>-->
-     </ul>
-     <!-- <div class="navbar-right">
-        <p>Vous êtes connecté depuis {{ secondes }} secondes !</p>
-        </div>
-       <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>-->
-    </div>
+  
+  <div class="col-xs">
+      <div class="navbar navbar-right navstyle">
+          <a routerLink="auth/signup" class="nav-link">Sign up</a>
+          <a routerLink="auth/signin" class="nav-link">Log in</a>
+
+      </div>
+  </div>
+
 </nav>
-  
-
-  
-  

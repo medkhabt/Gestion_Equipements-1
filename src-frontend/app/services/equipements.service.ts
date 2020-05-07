@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {Equipement} from '../models/Equipement';
 import { HttpClient } from '@angular/common/http';
+import { Equipement } from '../models/equipement.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,6 @@ export class EquipementsService {
     private host = 'http://localhost:8080' ;
 
     getEquipements() {
-      return this.http.get(this.host + '/equipements', { responseType: 'json' });
+      return this.http.get<Equipement>(this.host + '/equipements');
     }
 }

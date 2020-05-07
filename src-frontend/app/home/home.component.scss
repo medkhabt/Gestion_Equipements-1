@@ -1,0 +1,98 @@
+/*THEME COLORS 
+    #0477BF
+    #03588C
+    #8FBDD9
+    #D98E04
+*/
+
+
+/* GENERAL */
+.img {
+    height:300px;
+}
+section{
+    padding:   6em 0;
+    display: block;
+}
+
+h1,h2,h3,h4{
+    font-weight:    400;
+    word-spacing:   2px;
+    text-align:     center;
+    margin-bottom:  1em;
+    text-transform: uppercase;
+    color: #0477BF;
+}
+.img-fluid {
+    max-height: 100%;
+}
+.featured-text-right {
+    padding: 0 0 0 2rem;
+    border-left: .5rem solid #D98E04;
+    line-height:    140%;
+    width:          70%;
+    margin-left:    15%;
+    margin-bottom:  30px;
+    /* text-indent:    30px; */
+    /* background-color: gray; */
+    padding: 1em;
+}
+.featured-text-left {
+    padding: 0 0 0 2rem ;
+    border-right: .5rem solid #D98E04;
+    line-height:    140%;
+    width:          70%;
+    margin-left:    15%;
+    margin-bottom:  30px;
+    /* text-indent:    30px; */
+    /* background-color: gray; */
+    padding: 1em;
+}
+
+/* ENTRY SECTION */
+
+.entry{
+    height:90vh; 
+    /* background-color: blue;  */
+    background-repeat:  no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Agadir_-_2013.jpg/1200px-Agadir_-_2013.jpg");
+}
+.entryContent{
+    padding-top:6em;
+    color: white;    
+    margin-bottom: 2rem;
+    text-align: center;
+}
+.entryHeader{
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 4.5rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+.entrySubHeader{
+    font-size: 2.25rem;
+    line-height: 2.25rem;
+}
+
+/* SECTION ONE */
+.section-element{
+    /* background-color: blue; */
+    height:10vh;
+}
+.longText{
+    line-height:    140%;
+    width:          70%;
+    margin-left:    15%;
+    margin-bottom:  30px;
+    text-indent:    30px;
+}
+
+/* SECTION-TWO */
+
+.section-two{
+    background-color: #F2F2F2 ;
+}

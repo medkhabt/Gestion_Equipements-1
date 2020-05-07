@@ -25,9 +25,14 @@ public class DemandeurRestController {
 	public List<Demandeur> getDemandeurs() {
 		return demandeurService.getAll();
 	}
-	@PostMapping("/create_demandeur")
-	public void createDemandeur(@RequestBody Demandeur demandeur) {
-		 demandeurService.createDemandeur(demandeur);
+	@PostMapping("/register")
+	public Demandeur createDemandeur(@RequestBody Demandeur demandeur) {
+//		Demandeur demandeurTest = demandeurService.getDemandeur(demandeur.getUsername());
+//		if(demandeurTest!=null) throw new RuntimeCryptoException("this user alreeady exists !");
+		demandeurService.createDemandeur(demandeur);
+		System.out.println("demandeur crée");
+		demandeurService.addRoleToDemandeur(demandeur.getUsername(), "INVITE");
+		return demandeur;
 	}
 	@PutMapping("/update_demandeur")
 	public void updateDemandeur(@RequestBody Demandeur demandeur, @RequestBody Long id) {

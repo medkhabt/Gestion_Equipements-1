@@ -19,9 +19,9 @@ export class AuthService {
            { observe: 'response' }
             );
   }
-  register(username: string, password: string, repassword: string ) {
+  register(demandeur: any) {
 
-  return this.http.post(this.host + '/register', {username, password, repassword});
+  return this.http.post(this.host + '/demandeurs/register', demandeur);
 
   }
   getDemandeurs() {
