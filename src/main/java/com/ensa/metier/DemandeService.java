@@ -37,9 +37,6 @@ public class DemandeService {
 	public List<Demande> getByTypeEvent(String type){
 		return demandeRepo.findByTypeEvent(type);
 	}
-	public List<Demande> getByEtat(String etat){
-		return demandeRepo.findByEtat(etat);
-	}
 	public List<Demande> getByDateReservation(Date dateReservation){
 		return demandeRepo.findByDateReservation(dateReservation);
 	}
@@ -52,8 +49,6 @@ public class DemandeService {
 	public void deleteDemandeByType(String typeEvent) {
 		demandeRepo.deleteByTypeEvent(typeEvent);
 	}
-	public void deleteDemandeByEtat(String etat) {
-		demandeRepo.deleteByEtat(etat);
-	}
+
 
 }

@@ -16,10 +16,12 @@ public class Demande {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String reference;
-	private String etat;
 	private String typeEvent;
 	private Date dateDemande;
 	private Date dateReservation;
+	private String objet;
+	private String description;
+	private String nombrePresent;
 	@ManyToOne
 	private Demandeur demandeur;
 	@OneToMany(mappedBy = "demande")
@@ -27,11 +29,10 @@ public class Demande {
 	
 	
 	
-	public Demande(int id, String reference, String etat, String typeEvent, Date dateDemande, Date dateReservation,
+	public Demande(int id, String reference, String typeEvent, Date dateDemande, Date dateReservation,
 			Demandeur demandeur) {
 		this.id = id;
 		this.reference = reference;
-		this.etat = etat;
 		this.typeEvent = typeEvent;
 		this.dateDemande = dateDemande;
 		this.dateReservation = dateReservation;
@@ -63,12 +64,6 @@ public class Demande {
 	public void setReference(String reference) {
 		this.reference = reference;
 	}
-	public String getEtat() {
-		return etat;
-	}
-	public void setEtat(String etat) {
-		this.etat = etat;
-	}
 	public String getTypeEvent() {
 		return typeEvent;
 	}
@@ -86,6 +81,24 @@ public class Demande {
 	}
 	public void setDateReservation(Date dateReservation) {
 		this.dateReservation = dateReservation;
+	}
+	public String getObjet() {
+		return objet;
+	}
+	public void setObjet(String objet) {
+		this.objet = objet;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getNombrePresent() {
+		return nombrePresent;
+	}
+	public void setNombrePresent(String nombrePresent) {
+		this.nombrePresent = nombrePresent;
 	}
 	
 	

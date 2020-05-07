@@ -26,8 +26,8 @@ export class SignupUserComponent implements OnInit {
     this.signUpform = this.formbuilder.group(
       {
         username: [ '' , [ Validators.required]],
-        password: [ '' , [Validators.required] ],
-        repassword: [ '' , [Validators.required] ],
+        password: [ '' , [Validators.required], ],
+        repassword: [ '' , [Validators.required], ],
         nom: [ '' , [Validators.required] ],
         prenom: [ ''  ],
         telephone: [ '' , [Validators.required] ],
@@ -62,6 +62,12 @@ export class SignupUserComponent implements OnInit {
       this.errorMessage = 'uncorrect! try again';
        }
     );
+}
+checkPasswords(signUpform: FormGroup) { // here we have the 'passwords' group
+  const pass = signUpform.get('password').value;
+  const confirmPass = signUpform.get('confirmPass').value;
+
+  return pass === confirmPass ? null : { notSame: true } ;
 }
 
 }

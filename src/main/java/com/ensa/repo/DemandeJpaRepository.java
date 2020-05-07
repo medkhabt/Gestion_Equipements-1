@@ -18,12 +18,10 @@ public interface DemandeJpaRepository extends JpaRepository<Demande, Integer> {
 	public Demande findById(int id);
 	public List<Demande> findByDateDemande(Date dateDemande);
 	public List<Demande> findByTypeEvent(String typeEvant);
-	public List<Demande> findByEtat(String etat);
 	public List<Demande> findByDateReservation(Date dateReservation);
 	public List<Demande> findByDateReservationAfterAndDateReservationBefore(Date dateDebut, Date dateFin);
 	public void deleteById(int id);
 	public void deleteByTypeEvent(String typeEvent);
-	public void deleteByEtat(String etat);
 	public void deleteAll();
 	
 

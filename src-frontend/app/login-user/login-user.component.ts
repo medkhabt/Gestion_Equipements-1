@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./login-user.component.scss']
 })
 export class LoginUserComponent implements OnInit {
-
   signInform: FormGroup;
   errorMessage: string;
   message: any;
@@ -17,6 +16,7 @@ export class LoginUserComponent implements OnInit {
   constructor(private formbuilder: FormBuilder,
               private authservice: AuthService,
               private router: Router) { }
+
 
   ngOnInit(): void {
     this.initForm();
@@ -29,7 +29,6 @@ export class LoginUserComponent implements OnInit {
       }
     );
   }
-
   onSubmit() {
     const username = this.signInform.get('username').value;
     const password = this.signInform.get('password').value;

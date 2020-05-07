@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 //		http.formLogin();
 		http.authorizeRequests().antMatchers("/login/**","/demandeurs/register/**"
-				,"/equipements/**").permitAll();
+				,"/equipements/**","/demandes/**").permitAll();
 		http.authorizeRequests().antMatchers(HttpMethod.GET,"/gestionnaires/**").hasAuthority("ADMIN");
 		http.authorizeRequests().anyRequest().authenticated();
 		http.addFilter(new JwtAuthentificationFilter(authenticationManager()));

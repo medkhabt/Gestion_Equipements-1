@@ -1,13 +1,15 @@
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {JwtHelper} from 'angular2-jwt';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient ) { }
+  constructor(private http: HttpClient) { }
 
   private host = 'http://localhost:8080' ;
   private jwtToken: string;
@@ -46,6 +48,9 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
     }
+//  isAuthenticated(): boolean {
+//    return !this.jwtHelper.isTokenExpired(this.jwtToken);
+//  }
 /*
   isAdmin() {
     for (const role: any of this.roles ) {

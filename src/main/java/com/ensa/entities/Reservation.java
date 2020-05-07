@@ -10,7 +10,7 @@ import javax.persistence.OneToOne;
 public class Reservation {
 	@Id
 	private int id;
-						// private String status 	01/05/2020 Med Khalil
+	private String etat;					// private String status 	01/05/2020 Med Khalil
 	private String commentaire;
 	@OneToOne(mappedBy = "reservation")
 	private Autorisation autorisation;
@@ -26,7 +26,26 @@ public class Reservation {
 	private Demande demande;
 	
 
-	
+	public Reservation() {
+		super();
+	}
+	public Reservation(int id, String etat, String commentaire, Autorisation autorisation, Gestionnaire gestionnaire,
+			Equipement equipement, Demande demande) {
+		super();
+		this.id = id;
+		this.etat = etat;
+		this.commentaire = commentaire;
+		this.autorisation = autorisation;
+		this.gestionnaire = gestionnaire;
+		this.equipement = equipement;
+		this.demande = demande;
+	}
+	public String getEtat() {
+		return etat;
+	}
+	public void setEtat(String etat) {
+		this.etat = etat;
+	}
 	public int getId() {
 		return id;
 	}
@@ -65,10 +84,7 @@ public class Reservation {
 
 	public void setAutorisation(Autorisation autorisation) {
 		this.autorisation = autorisation;
-	}
-
-	public Reservation() {};
-	
+	}	
 	public String getCommentaire() {
 		return commentaire;
 	}

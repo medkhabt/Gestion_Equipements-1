@@ -9,6 +9,7 @@ import {DataViewModule} from 'primeng/dataview';
 import {DropdownModule} from 'primeng/dropdown';
 import {PanelModule} from 'primeng/panel';
 import {DialogModule} from 'primeng/dialog';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +23,8 @@ import { ListEquipementsComponent } from './list-equipements/list-equipements.co
 import { EquipementsService } from './services/equipements.service';
 import { EquipementSumComponent } from './list-equipements/equipement-sum/equipement-sum.component';
 import { EquipementDetailComponent } from './list-equipements/equipement-detail/equipement-detail.component';
+import { DemandeComponent } from './demande/demande.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,8 @@ import { EquipementDetailComponent } from './list-equipements/equipement-detail/
     SignupUserComponent,
     ListEquipementsComponent,
     EquipementSumComponent,
-    EquipementDetailComponent
+    EquipementDetailComponent,
+    DemandeComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +51,7 @@ import { EquipementDetailComponent } from './list-equipements/equipement-detail/
     PanelModule,
     DialogModule
   ],
-  providers: [AuthService, EquipementsService],
+  providers: [AuthService, EquipementsService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
