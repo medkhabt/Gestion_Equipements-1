@@ -21,7 +21,7 @@ public class UserDetailsServiceImp implements org.springframework.security.core.
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Gestionnaire gestionnaire = userRepository.findByUsername(username);
+		Gestionnaire gestionnaire = userRepository.findByUsername(username).get();
 		if( gestionnaire ==null ) throw new UsernameNotFoundException(username);
 		Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		gestionnaire.getRoles().forEach(r->{

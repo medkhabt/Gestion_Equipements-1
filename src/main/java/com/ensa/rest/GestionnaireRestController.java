@@ -2,9 +2,11 @@ package com.ensa.rest;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.bouncycastle.crypto.RuntimeCryptoException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +23,8 @@ import com.ensa.metier.GestionnaireService;;
 
 
 @RestController
-@RequestMapping("")
+@RequestMapping("gestionnaires/")
+
 public class GestionnaireRestController {
 	@Autowired
 	GestionnaireService gestionnaireService;
@@ -42,6 +45,14 @@ public class GestionnaireRestController {
 		return gestionnaire;
 
 	}
+	@GetMapping("{username}")
+	public Gestionnaire getByUsername(@PathVariable String username) {
+		return gestionnaireService.findByUsername(username);
+	}
+//	@GetMapping("{id}")
+//	public Gestionnaire getById(@PathVariable long id) {
+//		return gestionnaireService.findById(id);
+//	}
 	@PutMapping("/update_gestionnaire")
 	public void updateGestionnaire(@RequestBody Gestionnaire gestionnaire, @PathVariable Long id) {
 		gestionnaireService.updateGestionnaire(gestionnaire, id);

@@ -2,6 +2,7 @@ package com.ensa.metier;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -49,7 +50,7 @@ public class GestionnaireService implements com.ensa.repo.GestionnaireService {
 		role.forEach(r->{
 			System.out.println(r.getRole());
 		});
-		Gestionnaire gestionnaire = gestionnaireRepo.findByUsername(username);
+		Gestionnaire gestionnaire = gestionnaireRepo.findByUsername(username).get();
 		
 		Iterator<GRole> iter = role.iterator();
 		System.out.println(iter.next().getRole());
@@ -57,9 +58,12 @@ public class GestionnaireService implements com.ensa.repo.GestionnaireService {
 		
 		
 	}
-	@Override
+	
 	public Gestionnaire findByUsername(String username) {
-		return gestionnaireRepo.findByUsername(username);
+		return gestionnaireRepo.findByUsername(username).get();
+	}
+	public Gestionnaire findById(Long id) {
+		return gestionnaireRepo.findById(id).get();
 	}
 
 

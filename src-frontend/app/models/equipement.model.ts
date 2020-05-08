@@ -1,10 +1,10 @@
 export class Equipement {
     constructor(
-        public id: Number,
+        public id: number,
         public nom: string,
-        public  idResponsable: Number,
+        public  idResponsable: number,
         public  adresse: string,
-        public largeur: Number,
-        public longueur: Number
+        public largeur: number,
+        public longueur: number
         ) {}
 }

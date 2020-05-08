@@ -2,6 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DemandeService } from '../services/demande.service';
+import { AuthService } from '../services/auth.service';
+import { Subscription } from 'rxjs';
+import { Gestionnaire } from '../models/gestionnaire.model';
 
 @Component({
   selector: 'app-demande',
@@ -11,20 +14,29 @@ import { DemandeService } from '../services/demande.service';
 export class DemandeComponent implements OnInit {
 
   demandeForm: FormGroup;
-  @Input() demandeurNom;
-  @Input() demandeurId;
   errorMessage: string;
   message: any;
+  user: {};
+  userSubjection: Subscription;
   constructor(private formbuilder: FormBuilder,
               private router: Router,
-              private demandeSrevice: DemandeService) { }
+              private demandeSrevice: DemandeService,
+              private authService: AuthService) { }
 
   ngOnInit(): void {
     this.initForm();
+    this.userSubjection = this.authService.currentUserSubject.subscribe(
+      user => {
+        this.user = user;
+        console.log(user);
+      }
+    );
   }
 
   initForm() {
     this.demandeForm = this.formbuilder.group({
+      demandeurId: [''],
+      username: [''],
       typeEvent: [ '' , [Validators.required] ],
       dateReservation: ['', [Validators.required]],
       objet: ['', [Validators.required]],

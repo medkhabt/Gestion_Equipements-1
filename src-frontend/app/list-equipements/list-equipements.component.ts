@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Equipement } from 'src/app/models/equipement.model';
 import { EquipementsService } from '../services/equipements.service';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-equipements',
@@ -10,7 +12,9 @@ import { EquipementsService } from '../services/equipements.service';
 export class ListEquipementsComponent implements OnInit {
   equipements: Equipement ;
   equipementSelected: Equipement;
-  constructor(private equipementService: EquipementsService) { }
+  constructor(private equipementService: EquipementsService,
+              private authservice: AuthService,
+              private router: Router) { }
 
   // public id: Number,
   // public nom: string,
@@ -25,6 +29,8 @@ export class ListEquipementsComponent implements OnInit {
       console.log(resp);
     }, err => {
       console.log(err);
+  //    this.authservice.logout();
+  //    this.router.navigate(['']);
     }
   );
   }
