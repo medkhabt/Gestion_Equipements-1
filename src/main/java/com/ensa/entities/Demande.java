@@ -4,11 +4,14 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Demande {
@@ -22,7 +25,7 @@ public class Demande {
 	private String objet;
 	private String description;
 	private String nombrePresent;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Demandeur demandeur;
 	@OneToMany(mappedBy = "demande")
 	private List<Reservation> reservations;
@@ -40,6 +43,7 @@ public class Demande {
 	}
 	public Demande() {
 	}
+	@JsonIgnore
 	public Demandeur getDemandeur() {
 		return demandeur;
 	}

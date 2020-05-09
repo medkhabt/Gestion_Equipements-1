@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ensa.entities.Demande;
 import com.ensa.entities.Demandeur;
 import com.ensa.metier.DemandeurService;
 
@@ -29,7 +30,7 @@ public class DemandeurRestController {
 	public Demandeur createDemandeur(@RequestBody Demandeur demandeur) {
 //		Demandeur demandeurTest = demandeurService.getDemandeur(demandeur.getUsername());
 //		if(demandeurTest!=null) throw new RuntimeCryptoException("this user alreeady exists !");
-		demandeurService.createDemandeur(demandeur);
+		demandeurService.saveDemandeur(demandeur);
 		System.out.println("demandeur crée");
 		demandeurService.addRoleToDemandeur(demandeur.getUsername(), "INVITE");
 		return demandeur;
@@ -44,16 +45,16 @@ public class DemandeurRestController {
 	}
 	@GetMapping("/{username}")
 	public Demandeur getDemandeur(@PathVariable String username) {
-		return demandeurService.getDemandeur(username);
+		return demandeurService.findByUsername(username);
 	}
 	@GetMapping("/nom_et_prenom/{nom}+{prenom}")
 	public Demandeur getDemadeur(@PathVariable String nom, @PathVariable String prenom) {
 		return demandeurService.getDemandeur(nom, prenom);
 	}
-	@GetMapping("/type_demandeur")
-	public List<Demandeur> getDemandeurByType(@RequestBody String type) {
-		return demandeurService.getDemandeurByType(type);
-	}
+//	@GetMapping("/type_demandeur")
+//	public List<Demandeur> getDemandeurByType(@RequestBody String type) {
+//		return demandeurService.getDemandeurByType(type);
+//	}
 	@GetMapping("/tel_demandeur")
 	public Demandeur getDemandeurByTel(@RequestBody String tel) {
 		return demandeurService.getDemandeurByTel(tel);
@@ -61,6 +62,10 @@ public class DemandeurRestController {
 	@GetMapping("/username")
 	public Demandeur getDemandeurByUserAndPass(@RequestBody String username, @RequestBody String password){
 		return demandeurService.getDemandeurByUserPass(username, password);
+	}
+	@GetMapping("/demandes/{id}")
+	public List<Demande> getDemandes(@PathVariable Long id){
+		return demandeurService.getDemandes(id);
 	}
 	@GetMapping("/delete_username")
 	public void delete(@RequestBody String username) {

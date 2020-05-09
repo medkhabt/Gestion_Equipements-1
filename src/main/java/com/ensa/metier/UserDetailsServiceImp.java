@@ -11,24 +11,40 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.ensa.entities.Demande;
+import com.ensa.entities.Demandeur;
 import com.ensa.entities.Gestionnaire;
+import com.ensa.repo.DemandeurRepository;
 import com.ensa.repo.GestionnaireRepository;
 
 @Service
 public class UserDetailsServiceImp implements org.springframework.security.core.userdetails.UserDetailsService  {
+//	@Autowired
+//	GestionnaireRepository userRepository;
 	@Autowired
-	GestionnaireRepository userRepository;
+	DemandeurRepository userRepository;
 
+//	@Override
+//	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//		Gestionnaire gestionnaire = userRepository.findByUsername(username).get();
+//		if( gestionnaire ==null ) throw new UsernameNotFoundException(username);
+//		Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+//		gestionnaire.getRoles().forEach(r->{
+//			authorities.add(new SimpleGrantedAuthority(r.getRole()));
+//		});
+//		
+//		return new User(gestionnaire.getUsername(), gestionnaire.getPassword(), authorities);
+//	}
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Gestionnaire gestionnaire = userRepository.findByUsername(username).get();
-		if( gestionnaire ==null ) throw new UsernameNotFoundException(username);
+		Demandeur demandeur = userRepository.findByUsername(username).get();
+		if( demandeur ==null ) throw new UsernameNotFoundException(username);
 		Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		gestionnaire.getRoles().forEach(r->{
+		demandeur.getRoles().forEach(r->{
 			authorities.add(new SimpleGrantedAuthority(r.getRole()));
 		});
 		
-		return new User(gestionnaire.getUsername(), gestionnaire.getPassword(), authorities);
+		return new User(demandeur.getUsername(), demandeur.getPassword(), authorities);
 	}
 	
 

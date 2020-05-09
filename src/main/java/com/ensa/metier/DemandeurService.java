@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.ensa.entities.Demande;
 import com.ensa.entities.Demandeur;
 import com.ensa.entities.GRole;
 import com.ensa.entities.Gestionnaire;
@@ -26,13 +27,11 @@ public class DemandeurService implements com.ensa.repo.DemandeurService {
 	public List<Demandeur> getAll(){
 		return demandeurRepo.findAll();
 	}
-	public Demandeur getDemandeur(String username) {
-		return demandeurRepo.findByUsername(username);
-	}
 	public Demandeur getDemandeur(String nom, String prenom) {
-		return demandeurRepo.findByNomAndPrenom(nom, prenom);
+		return demandeurRepo.findByNomAndPrenom(nom, prenom).get();
 	}
-	public Demandeur createDemandeur(Demandeur demandeur) {
+	@Override
+	public Demandeur saveDemandeur(Demandeur demandeur) {
 		String hashPW = brBCryptPasswordEncoder.encode(demandeur.getPassword());
 		demandeur.setPassword(hashPW);
 		return demandeurRepo.save(demandeur);
@@ -41,14 +40,14 @@ public class DemandeurService implements com.ensa.repo.DemandeurService {
 		demandeur.setId(id);
 		return demandeurRepo.save(demandeur);
 	}
-	public List<Demandeur> getDemandeurByType(String type) {
-		return demandeurRepo.findByType(type);
-	}
+//	public List<Demandeur> getDemandeurByType(String type) {
+//		return demandeurRepo.findByType(type);
+//	}
 	public Demandeur getDemandeurByTel(String telephone) {
-		return demandeurRepo.findByTelephone(telephone);
+		return demandeurRepo.findByTelephone(telephone).get();
 	}
 	public Demandeur getDemandeurByUserPass(String username, String password) {
-		return demandeurRepo.findByUsernameAndPassword(username, password);
+		return demandeurRepo.findByUsernameAndPassword(username, password).get();
 	}
 	public void delete(Long id) {
 		demandeurRepo.deleteById(id);
@@ -67,7 +66,7 @@ public class DemandeurService implements com.ensa.repo.DemandeurService {
 		role.forEach(r->{
 			System.out.println(r.getRole());
 		});
-		Demandeur demandeur = demandeurRepo.findByUsername(username);
+		Demandeur demandeur = demandeurRepo.findByUsername(username).get();
 		
 		Iterator<GRole> iter = role.iterator();
 		System.out.println(iter.next().getRole());
@@ -75,14 +74,12 @@ public class DemandeurService implements com.ensa.repo.DemandeurService {
 		
 	}
 	@Override
-	public Demandeur saveGestionnaire(Demandeur demandeur) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
 	public Demandeur findByUsername(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.demandeurRepo.findByUsername(username).get();
 	}
+	public List<Demande> getDemandes(Long id) {
+		return this.demandeurRepo.getDemandes(id);
+	}
+
 
 }
