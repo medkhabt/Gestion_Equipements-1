@@ -7,7 +7,7 @@ import { Equipement } from 'src/app/models/equipement.model';
   styleUrls: ['./equipement-detail.component.css']
 })
 export class EquipementDetailComponent implements OnInit {
-  @Input()  equipement: Equipement;
+  @Input()  equipement: any;
   constructor() { }
 
   ngOnInit(): void {

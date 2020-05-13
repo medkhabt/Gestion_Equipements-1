@@ -25,6 +25,9 @@ import { EquipementSumComponent } from './list-equipements/equipement-sum/equipe
 import { EquipementDetailComponent } from './list-equipements/equipement-detail/equipement-detail.component';
 import { DemandeComponent } from './demande/demande.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { DemandeUnitComponent } from './demande/demande-unit/demande-unit.component';
+import { DemandeFormulaireComponent } from './demande/demande-formulaire/demande-formulaire.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,9 @@ import { AuthGuardService } from './services/auth-guard.service';
     ListEquipementsComponent,
     EquipementSumComponent,
     EquipementDetailComponent,
-    DemandeComponent
+    DemandeComponent,
+    DemandeUnitComponent,
+    DemandeFormulaireComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +54,8 @@ import { AuthGuardService } from './services/auth-guard.service';
     DataViewModule,
     DropdownModule,
     PanelModule,
-    DialogModule
+    DialogModule,
+    BrowserAnimationsModule 
   ],
   providers: [AuthService, EquipementsService, AuthGuardService],
   bootstrap: [AppComponent]

@@ -18,7 +18,7 @@ export class AuthService {
   private jwtToken: string;
   roles: Array<any> = [];
   public currentUserSubject = new Subject<any>();
-  public currentUser: Observable<any>;
+  public currentUser: Observable<any>; 
   g: any;
 
   constructor(private http: HttpClient,

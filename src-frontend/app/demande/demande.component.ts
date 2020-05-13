@@ -1,70 +1,56 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { DemandeService } from '../services/demande.service';
+import { Component, OnInit, } from '@angular/core';
+import { DemandeService } from 'src/app/services/demande.service'; 
 import { AuthService } from '../services/auth.service';
-import { Subscription } from 'rxjs';
-import { Gestionnaire } from '../models/gestionnaire.model';
-
+import { Router } from '@angular/router';
+import { Demande } from '../models/demande.model';
+import {DataViewModule} from 'primeng/dataview';
+import {SelectItem} from 'primeng/api';
+ 
 @Component({
   selector: 'app-demande',
   templateUrl: './demande.component.html',
   styleUrls: ['./demande.component.scss']
 })
 export class DemandeComponent implements OnInit {
+  demandes: any ; 
+  sortField: string; 
+  sortOrder: number; 
+  sortKey: string;
+  sortOptions: SelectItem[];
 
-  demandeForm: FormGroup;
-  errorMessage: string;
-  message: any;
-  user: {};
-  userSubjection: Subscription;
-  constructor(private formbuilder: FormBuilder,
-              private router: Router,
-              private demandeSrevice: DemandeService,
-              private authService: AuthService) { }
+  constructor(private demandeService: DemandeService,
+    private authservice: AuthService,
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.initForm();
-    this.userSubjection = this.authService.currentUserSubject.subscribe(
-      user => {
-        this.user = user;
-        console.log(user);
-      }
-    );
-  }
-
-  initForm() {
-    this.demandeForm = this.formbuilder.group({
-      demandeurId: [''],
-      username: [''],
-      typeEvent: [ '' , [Validators.required] ],
-      dateReservation: ['', [Validators.required]],
-      objet: ['', [Validators.required]],
-      equipement: ['', [Validators.required]],
-      nombreInvite: ['', Validators.required],
-      comment: ['', Validators.required]
-    });
-  }
-  onSubmit() {
-    const typeEvent = this.demandeForm.get('typeEvent').value;
-    const dateReservation = this.demandeForm.get('dateReservation').value;
-    const objet = this.demandeForm.get('objet').value;
-    const equipement = this.demandeForm.get('equipement').value;
-    const nombrePresent = this.demandeForm.get('nombreInvite').value;
-    const dateDemande = new Date();
-    const description = this.demandeForm.get('comment').value;
-    const demande = {
-      typeEvent, dateReservation, objet, equipement, nombrePresent, dateDemande, description
-    };
-    this.demandeSrevice.addDemande(demande).subscribe(
+    this.demandeService.getDemandes().subscribe(
       resp => {
-        console.log(resp);
-      }, err => {
+        this.demandes = resp ;
+        console.log(resp); 
+      }, err => { 
         console.log(err);
+    //    this.authservice.logout();
+    //    this.router.navigate(['']);
       }
+      
     );
-
-
+    this.sortOptions = [
+      {label: 'id inc', value: "id"},
+      {label: 'id dec', value: "!id"},
+      {label: 'date Demande inc', value: "dateDemande"}
+    ];
   }
 
+  onSortChange(event) {
+    let value = event.value;
+
+    if (value.indexOf('!') === 0) {
+        this.sortOrder = -1;
+        this.sortField = value.substring(1, value.length);
+    }
+    else {
+        this.sortOrder = 1;
+        this.sortField = value;
+    }
+  }
 }

@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./list-equipements.component.css']
 })
 export class ListEquipementsComponent implements OnInit {
-  equipements: Equipement ;
+  equipements: any ;
   equipementSelected: Equipement;
   constructor(private equipementService: EquipementsService,
               private authservice: AuthService,
@@ -27,7 +27,7 @@ export class ListEquipementsComponent implements OnInit {
     resp => {
       this.equipements = resp ;
       console.log(resp);
-    }, err => {
+    }, err => {  
       console.log(err);
   //    this.authservice.logout();
   //    this.router.navigate(['']);
