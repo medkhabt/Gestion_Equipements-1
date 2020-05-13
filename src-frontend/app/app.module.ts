@@ -25,6 +25,11 @@ import { EquipementSumComponent } from './list-equipements/equipement-sum/equipe
 import { EquipementDetailComponent } from './list-equipements/equipement-detail/equipement-detail.component';
 import { DemandeComponent } from './demande/demande.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { ListDemandeComponent } from './list-demande/list-demande.component';
+import { ViewDemandeComponent } from './list-demande/view-demande/view-demande.component';
+import { DemandesComponent } from './gestionnaires/demandes/demandes.component';
+import { ReservationsComponent } from './gestionnaires/reservations/reservations.component';
+import { AutorisationsComponent } from './gestionnaires/autorisations/autorisations.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +42,12 @@ import { AuthGuardService } from './services/auth-guard.service';
     ListEquipementsComponent,
     EquipementSumComponent,
     EquipementDetailComponent,
-    DemandeComponent
+    DemandeComponent,
+    ListDemandeComponent,
+    ViewDemandeComponent,
+    DemandesComponent,
+    ReservationsComponent,
+    AutorisationsComponent
   ],
   imports: [
     BrowserModule,

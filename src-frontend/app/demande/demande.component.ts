@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { DemandeService } from '../services/demande.service';
 import { AuthService } from '../services/auth.service';
 import { Subscription } from 'rxjs';
-import { Gestionnaire } from '../models/gestionnaire.model';
+import { Gestionnaire, Demandeur } from '../models/utilisateur.model';
+import { User } from 'firebase';
 
 @Component({
   selector: 'app-demande',
@@ -16,47 +17,38 @@ export class DemandeComponent implements OnInit {
   demandeForm: FormGroup;
   errorMessage: string;
   message: any;
-  user: {};
+  user: Demandeur;
   userSubjection: Subscription;
+  username: string;
+  id: number;
   constructor(private formbuilder: FormBuilder,
               private router: Router,
               private demandeSrevice: DemandeService,
               private authService: AuthService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.user = this.authService.getUser();
+    console.log(this.user);
     this.initForm();
-    this.userSubjection = this.authService.currentUserSubject.subscribe(
-      user => {
-        this.user = user;
-        console.log(user);
-      }
-    );
   }
 
   initForm() {
     this.demandeForm = this.formbuilder.group({
-      demandeurId: [''],
-      username: [''],
       typeEvent: [ '' , [Validators.required] ],
       dateReservation: ['', [Validators.required]],
       objet: ['', [Validators.required]],
       equipement: ['', [Validators.required]],
-      nombreInvite: ['', Validators.required],
-      comment: ['', Validators.required]
+      nombrePresent: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      demandeur: [this.user],
+      dateDemande: [new Date()]
     });
   }
   onSubmit() {
-    const typeEvent = this.demandeForm.get('typeEvent').value;
-    const dateReservation = this.demandeForm.get('dateReservation').value;
-    const objet = this.demandeForm.get('objet').value;
-    const equipement = this.demandeForm.get('equipement').value;
-    const nombrePresent = this.demandeForm.get('nombreInvite').value;
-    const dateDemande = new Date();
-    const description = this.demandeForm.get('comment').value;
-    const demande = {
-      typeEvent, dateReservation, objet, equipement, nombrePresent, dateDemande, description
-    };
-    this.demandeSrevice.addDemande(demande).subscribe(
+    const demandeur = this.user;
+//  const form = this.demandeForm.value;
+    console.log(this.demandeForm.get('demandeur'));
+    this.demandeSrevice.addDemande(this.demandeForm.value).subscribe(
       resp => {
         console.log(resp);
       }, err => {

@@ -6,19 +6,24 @@
   </div>
   <div class="col-xs-4 mb-0">
       <nav class="navbar navbar-left navstyle mb-0">
-          <a routerLink="/home" class="nav-link">Home</a>
-          <a routerLink="/actualite" class="nav-link">Actualite</a>
-          <a routerLink="/equipements" class="nav-link">Listes des equipements</a>
-          <a routerLink="/demande" class="nav-link">Contacts</a>
+          <a routerLink="/home" class="nav-link" *ngIf="!authservice.isloggedIn()">Home</a>
+          <a routerLink="/actualite" class="nav-link" *ngIf="!authservice.isloggedIn()">Actualite</a>
+          <a routerLink="/equipements" class="nav-link" *ngIf="!authservice.isloggedIn()">Listes des equipements</a>
+          <a routerLink="/mesDemandes" class="nav-link" *ngIf="authservice.isDemandeur()">Mes demandes</a>
+          <a routerLink="/AddDemande" class="nav-link" *ngIf="authservice.isDemandeur()">Créer une demande</a>
+          <a routerLink="/AllDemandes" class="nav-link" *ngIf="authservice.isGestionnaire()">Demandes</a>
+          <a routerLink="/AllReservations" class="nav-link" *ngIf="authservice.isGestionnaire()">Réservations</a>
+          <a routerLink="/AllAutorisations" class="nav-link" *ngIf="authservice.isGestionnaire()">Autorisations</a>
+          <a routerLink="/" class="nav-link" >Contacts</a>
       </nav>
   </div>
   
   
   <div class="col-xs">
       <div class="navbar navbar-right navstyle">
-          <a routerLink="auth/signup" class="nav-link" *ngIf="!auhtservice.isloggedIn()">Sign up</a>
-          <a routerLink="auth/signin" class="nav-link" *ngIf="!auhtservice.isloggedIn()">Log in</a>
-          <a routerLink="" (click)="onLogout()" class="nav-link" *ngIf="auhtservice.isloggedIn()">Log Out</a>
+          <a routerLink="auth/signup" class="nav-link" *ngIf="!authservice.isloggedIn()">Sign up</a>
+          <a routerLink="auth/signin" class="nav-link" *ngIf="!authservice.isloggedIn()">Log in</a>
+          <a routerLink="" (click)="onLogout()" class="nav-link" *ngIf="authservice.isloggedIn()">Log Out</a>
 
       </div>
   </div>

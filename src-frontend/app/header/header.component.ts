@@ -11,17 +11,25 @@ import { Observable } from 'rxjs';
 })
 export class HeaderComponent implements OnInit {
 
-
-  constructor(public auhtservice: AuthService,
+  etat: boolean;
+  constructor(public authservice: AuthService,
               private router: Router) { }
 
   ngOnInit(): void {
+    this.authservice.role = localStorage.getItem('etat');
   }
 
   onLogout() {
-    this.auhtservice.logout();
+    this.authservice.logout();
     this.router.navigate(['home']);
+   // this.isDemandeur();
   }
 
+ /* isDemandeur() {
+    this.authservice.isDemandeur().subscribe(
+      res => {this.etat = res; },
+      err => console.log(err)
+    );
+    }*/
+  }
 
-}

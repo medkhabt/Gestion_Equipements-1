@@ -5,7 +5,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { map, catchError } from 'rxjs/operators';
 import { Equipement } from '../models/equipement.model';
 import { BehaviorSubject, Observable, throwError, Subject } from 'rxjs';
-import { Gestionnaire } from '../models/gestionnaire.model';
+import { Gestionnaire, Demandeur } from '../models/utilisateur.model';
 import { Router } from '@angular/router';
 
 
@@ -16,10 +16,11 @@ export class AuthService {
 
   private host = 'http://localhost:8080' ;
   private jwtToken: string;
-  roles: Array<any> = [];
-  public currentUserSubject = new Subject<any>();
-  public currentUser: Observable<any>;
+  public role = localStorage.getItem('etat');
+  public currentUserSubject = new Subject<Demandeur>();
+  public currentUser: Observable<Demandeur>;
   g: any;
+  private user: Demandeur = JSON.parse(localStorage.getItem('demandeur'));
 
   constructor(private http: HttpClient,
               private router: Router) {
@@ -30,38 +31,26 @@ export class AuthService {
            {username, password},
            { observe: 'response' });
   }
+
   register(demandeur: any) {
-
   return this.http.post(this.host + '/demandeurs/register', demandeur);
+  }
 
+  logout() {
+    localStorage.clear();
   }
-  emitUser(g: Gestionnaire) {
-    this.currentUserSubject.next(g);
-    console.log(g);
+
+  getUser() {
+    return this.user;
   }
-  // User profile
-  getUserProfile(id): Observable<any> {
-    const api = this.host + '/gestionnaires/' + id ;
-    return this.http.get(this.host + '/gestionnaires/' + id,
-                         {headers: new HttpHeaders({authorization: this.jwtToken})})
-    .pipe(
-      map((res: Response) => {
-        return res || {};
-      }),
-      catchError(this.handleError)
-    );
+  isDemandeur() {
+    if (this.role === 'Demandeur' && this.isloggedIn() === true) {
+      return true; }
   }
-  // Error
-  handleError(error: HttpErrorResponse) {
-    let msg = '';
-    if (error.error instanceof ErrorEvent) {
-      // client-side error
-      msg = error.error.message;
-    } else {
-      // server-side error
-      msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
+  isGestionnaire() {
+    if (this.role === 'Admin' && this.isloggedIn() === true) {
+    return true;
     }
-    return throwError(msg);
   }
 
   getDemandeurs() {
@@ -72,38 +61,34 @@ export class AuthService {
 
 
   saveToken(jwtToken) {
-
   this.jwtToken = jwtToken;
   localStorage.setItem('token', jwtToken);
   const jwtHelper = new JwtHelper();
-  this.roles = jwtHelper.decodeToken(this.jwtToken).roles;
-  this.g = jwtHelper.decodeToken(this.jwtToken).id ;
+//  this.role = jwtHelper.decodeToken(this.jwtToken).roles[0];
+// this.g = jwtHelper.decodeToken(this.jwtToken).sub ;
+  console.log(this.role);
   }
+
   loadToken() {
     this.jwtToken = localStorage.getItem('token');
     return this.jwtToken;
     }
 
-  logout() {
-    localStorage.removeItem('token');
-    }
   getEquipements() {
       return this.http.get<Equipement>(this.host + '/equipements',
       {headers: new HttpHeaders({authorization: this.jwtToken})});
     }
-  getGestionnaire(username: any) {
-    return this.http.get<Gestionnaire>(this.host + '/gestionnaires/' + username,
+
+  getDemandeur(username: any) {
+    return this.http.get<Demandeur>(this.host + '/gestionnaires/' + username,
     {headers: new HttpHeaders({authorization: this.jwtToken})});
   }
 
-  get isLoggedIn(): boolean {
+  isloggedIn(): boolean {
     const authToken = localStorage.getItem('token');
     const islogged = (authToken !== null) ? true : false;
    // this.loggedIn.next(islogged);
     return islogged;
-  }
-  isloggedIn(): boolean {
-    return this.isLoggedIn;
   }
 
 //  isAuthenticated(): boolean {
