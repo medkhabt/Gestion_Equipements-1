@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { first, map } from 'rxjs/operators';
-import { Gestionnaire } from '../models/gestionnaire.model';
+import { Gestionnaire, Demandeur } from '../models/utilisateur.model';
 
 @Component({
   selector: 'app-login-user',
@@ -14,8 +14,9 @@ export class LoginUserComponent implements OnInit {
   signInform: FormGroup;
   errorMessage: string;
   message: any;
-  gestionnaire: Gestionnaire;
+  demandeur: Demandeur;
   currentUser: any;
+  role: void;
 
   constructor(private formbuilder: FormBuilder,
               private authservice: AuthService,
@@ -43,10 +44,11 @@ export class LoginUserComponent implements OnInit {
       const jwtToken = resp.headers.get('authorization');
       this.authservice.saveToken(jwtToken);
       this.router.navigate(['/equipements']);
-      this.authservice.getGestionnaire(username).subscribe(res => {
-         this.gestionnaire = res;
-         console.log(this.gestionnaire);
-         this.emitUserService(this.gestionnaire);
+      this.authservice.getDemandeur(username).subscribe(res => {
+         this.demandeur = res;
+         localStorage.setItem('demandeur', JSON.stringify(res));
+         localStorage.setItem('etat', res.roles[0].role);
+         console.log(this.demandeur);
         }, err => {
           console.log(err);
         }
@@ -55,17 +57,9 @@ export class LoginUserComponent implements OnInit {
       this.errorMessage = 'uncorrect! try again';
        }
     );
-    resp.pipe( map (
-      result => {
-        localStorage.setItem('body', result.url);
-        console.log(localStorage.getItem('body'));
-      }
-    ));
 
   }
-  emitUserService(g: Gestionnaire) {
-    this.authservice.emitUser(g);
-  }
+
  /* onSubmit() {
     const username = this.signInform.get('username').value;
     const password = this.signInform.get('password').value;

@@ -8,16 +8,27 @@ import { SignupUserComponent } from './signup-user/signup-user.component';
 import { ListEquipementsComponent } from './list-equipements/list-equipements.component';
 import { DemandeComponent } from './demande/demande.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { DemandesComponent } from './gestionnaires/demandes/demandes.component';
+import { ReservationsComponent } from './gestionnaires/reservations/reservations.component';
+import { AutorisationsComponent } from './gestionnaires/autorisations/autorisations.component';
+import { DemandeUnitComponent } from './demande/demande-unit/demande-unit.component';
+import { DemandeFormulaireComponent } from './demande/demande-formulaire/demande-formulaire.component';
 
 
 const routes: Routes = [
+  {path: 'view', component: DemandeUnitComponent},
+  {path: 'mesDemandes', component: DemandeComponent},
   {path: 'header', component: HeaderComponent },
   {path: 'actualite', component: ActualiteComponent},
   {path: 'equipements', component: ListEquipementsComponent},
   {path: 'home', component: HomeComponent},
   {path: 'auth/signin', component: LoginUserComponent},
   {path: 'auth/signup', component: SignupUserComponent},
-  {path: 'demande' , canActivate: [AuthGuardService], component: DemandeComponent}
+  {path: 'AddDemande' , canActivate: [AuthGuardService], component: DemandeFormulaireComponent},
+  {path: 'demandes', canActivate: [AuthGuardService], component: DemandesComponent},
+  {path: 'AllDemandes', canActivate: [AuthGuardService], component: DemandesComponent},
+  {path: 'AllReservations', canActivate: [AuthGuardService], component: ReservationsComponent},
+  {path: 'AllAutorisations', canActivate: [AuthGuardService], component: AutorisationsComponent}
 ];
 
 @NgModule({
