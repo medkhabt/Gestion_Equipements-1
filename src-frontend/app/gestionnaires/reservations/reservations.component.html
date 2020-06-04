@@ -18,10 +18,14 @@
                 <th scope="row">{{reservation.id}} </th>
                 <td>{{formatDate(reservation.demande.dateDemande)}}</td>
                 <td>{{reservation.equipement.nom}} </td>
-                <td>{{reservation.etat}} </td>
+                <td>
+                  <button type="button" class="btn btn-sm btn-success" *ngIf="reservation.etat==='validée'" disabled>{{reservation.etat}} </button>
+                  <button type="button" class="btn btn-sm btn-danger" *ngIf="reservation.etat==='rejetée'" disabled>{{reservation.etat}} </button>
+                  <span *ngIf="reservation.etat==='initial'">{{reservation.etat}}</span>
+                </td>
                 {{setData(reservation.id)}}
                 <td>
-                <button class="btn btn-primary btn-sm" type="button" [routerLink]="['/AllReservations', reservation.id]" style="margin-top: 5px;">
+                <button class="btn btn-primary btn-sm" *ngIf="reservation.etat==='initial'" type="button" [routerLink]="['/AllReservations', reservation.id]" style="margin-top: 5px;">
                     Traiter la demande
                 </button>
                 </td>
