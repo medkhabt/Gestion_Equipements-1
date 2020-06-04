@@ -12,6 +12,7 @@ export class DemandeUnitComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.demande);
   }
 
 

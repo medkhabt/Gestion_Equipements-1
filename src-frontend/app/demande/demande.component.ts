@@ -25,6 +25,7 @@ export class DemandeComponent implements OnInit {
 
   ngOnInit(): void {
     this.demandes = this.authservice.getUser().demandes;
+    console.log(this.demandes);
     this.sortOptions = [
       {label: 'id inc', value: 'id'},
       {label: 'id dec', value: '!id'},
@@ -32,6 +33,21 @@ export class DemandeComponent implements OnInit {
     ];
   }
 
+  formatDate(date) {
+        const d = new Date(date);
+        let month = '' + (d.getMonth() + 1);
+        let day = '' + d.getDate();
+        const year = d.getFullYear();
+
+        if (month.length < 2) {
+        month = '0' + month;
+        }
+        if (day.length < 2) {
+        day = '0' + day;
+        }
+
+        return [year, month, day].join('-');
+  }
   onSortChange(event) {
     const value = event.value;
 
@@ -43,5 +59,8 @@ export class DemandeComponent implements OnInit {
         this.sortField = value;
     }
   }
+
+
+
 
 }

@@ -47,8 +47,7 @@ export class DemandeFormulaireComponent implements OnInit {
     });
   }
   onSubmit() {
-    const demandeur = this.user;
-//  const form = this.demandeForm.value;
+    //  const form = this.demandeForm.value;
     console.log(this.demandeForm.get('demandeur'));
     this.demandeSrevice.addDemande(this.demandeForm.value).subscribe(
       resp => {

@@ -13,6 +13,8 @@ import { ReservationsComponent } from './gestionnaires/reservations/reservations
 import { AutorisationsComponent } from './gestionnaires/autorisations/autorisations.component';
 import { DemandeUnitComponent } from './demande/demande-unit/demande-unit.component';
 import { DemandeFormulaireComponent } from './demande/demande-formulaire/demande-formulaire.component';
+import { ReservationUnitComponent } from './gestionnaires/reservations/reservation-unit/reservation-unit.component';
+import { AutorisationUnitComponent } from './autorisations/autorisation-unit/autorisation-unit.component';
 
 
 const routes: Routes = [
@@ -28,7 +30,9 @@ const routes: Routes = [
   {path: 'demandes', canActivate: [AuthGuardService], component: DemandesComponent},
   {path: 'AllDemandes', canActivate: [AuthGuardService], component: DemandesComponent},
   {path: 'AllReservations', canActivate: [AuthGuardService], component: ReservationsComponent},
-  {path: 'AllAutorisations', canActivate: [AuthGuardService], component: AutorisationsComponent}
+  {path: 'AllAutorisations', canActivate: [AuthGuardService], component: AutorisationsComponent},
+  {path: 'AllReservations/:id', canActivate: [AuthGuardService], component: ReservationUnitComponent},
+  {path: 'AllAutorisations/:id', canActivate: [AuthGuardService], component: AutorisationUnitComponent}
 ];
 
 @NgModule({

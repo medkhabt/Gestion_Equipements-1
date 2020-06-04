@@ -30,6 +30,11 @@ import { ReservationsComponent } from './gestionnaires/reservations/reservations
 import { AutorisationsComponent } from './gestionnaires/autorisations/autorisations.component';
 import { DemandeFormulaireComponent } from './demande/demande-formulaire/demande-formulaire.component';
 import { DemandeUnitComponent } from './demande/demande-unit/demande-unit.component';
+import { ReservationViewComponent } from './gestionnaires/reservations/reservation-view/reservation-view.component';
+import { DemandeSummaryComponent } from './demande/demande-summary/demande-summary.component';
+import { ReservationUnitComponent } from './gestionnaires/reservations/reservation-unit/reservation-unit.component';
+import { AutorisationUnitComponent } from './autorisations/autorisation-unit/autorisation-unit.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +52,12 @@ import { DemandeUnitComponent } from './demande/demande-unit/demande-unit.compon
     ReservationsComponent,
     AutorisationsComponent,
     DemandeFormulaireComponent,
-    DemandeUnitComponent
+    DemandeUnitComponent,
+    ReservationViewComponent,
+    DemandeSummaryComponent,
+    ReservationUnitComponent,
+    AutorisationUnitComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

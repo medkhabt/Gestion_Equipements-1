@@ -1,1 +1,36 @@
-<p>reservations works!</p>
+<br><br><br>  
+<html>
+    <head>
+    </head>
+    <body>
+        <table class="table">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Identifiant</th>
+                <th scope="col">date de demande</th>
+                <th scope="col">equipement</th>
+                <th scope="col">status</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let reservation of reservations ">
+                <th scope="row">{{reservation.id}} </th>
+                <td>{{formatDate(reservation.demande.dateDemande)}}</td>
+                <td>{{reservation.equipement.nom}} </td>
+                <td>{{reservation.etat}} </td>
+                {{setData(reservation.id)}}
+                <td>
+                <button class="btn btn-primary btn-sm" type="button" [routerLink]="['/AllReservations', reservation.id]" style="margin-top: 5px;">
+                    Traiter la demande
+                </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+
+    </body>
+</html>
+  
+

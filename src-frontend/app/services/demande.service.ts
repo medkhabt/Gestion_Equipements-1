@@ -17,7 +17,8 @@ export class DemandeService {
   }
 
   getDemandeBydemandeur(id: any) {
-    return this.http.get(this.host + '/demandeurs/demandes/' + id);
+    return this.http.get(this.host + '/demandeurs/demandes/' + id,
+    {headers: new HttpHeaders({authorization: this.jwtToken})});
   }
   getAllDemandes() {
     return this.http.get(this.host + '/demandes').subscribe(

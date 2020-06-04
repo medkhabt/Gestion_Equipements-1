@@ -11,7 +11,7 @@
           <a routerLink="/equipements" class="nav-link" *ngIf="!authservice.isloggedIn()">Listes des equipements</a>
           <a routerLink="/mesDemandes" class="nav-link" *ngIf="authservice.isDemandeur()">Mes demandes</a>
           <a routerLink="/AddDemande" class="nav-link" *ngIf="authservice.isDemandeur()">Créer une demande</a>
-          <a routerLink="/AllDemandes" class="nav-link" *ngIf="authservice.isGestionnaire()">Demandes</a>
+          <a routerLink="/AllDemandes" class="nav-link" *ngIf="false">Demandes</a>
           <a routerLink="/AllReservations" class="nav-link" *ngIf="authservice.isGestionnaire()">Réservations</a>
           <a routerLink="/AllAutorisations" class="nav-link" *ngIf="authservice.isGestionnaire()">Autorisations</a>
           <a routerLink="/" class="nav-link" >Contacts</a>

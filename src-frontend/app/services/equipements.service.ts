@@ -14,8 +14,8 @@ export class EquipementsService {
 
 
   getEquipements() {
-    return this.http.get<Equipement>(this.host + '/equipements',
-    {headers: new HttpHeaders({authorization: this.jwtToken})});
+    return this.http.get<Equipement>(this.host + '/equipements');
+   // {headers: new HttpHeaders({authorization: this.jwtToken})});
   }
   getEquipement(id: number) {
     return this.http.get<Equipement>(this.host + '/equipements/get_id/' + id);

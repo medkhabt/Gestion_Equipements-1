@@ -1,1 +1,55 @@
-<p>reservation-unit works!</p>
+<br><br><br>
+<form [formGroup]="reservationForm" (ngSubmit)="valider()">
+    <table class="table">
+        <tbody>
+          <tr>
+            <th scope="row">Identifiant de la réservation :</th>
+            <td>{{reservation.id}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Le demandeur :</th>
+            <td>{{demandeur.nom}} {{demandeur.prenom}}</td>
+          </tr>
+          <tr>
+            <th scope="row">la date de demande :</th>
+            <td>{{formatDate(reservation.demande.dateDemande)}}</td>
+          </tr>
+          <tr>
+            <th scope="row">la date de réservation :</th>
+            <td>{{formatDate(reservation.demande.dateReservation)}}</td>
+          </tr>
+          <tr>
+            <th scope="row">L'équipement désiré :</th>
+            <td>{{reservation.equipement.nom}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Type d'évenement :</th>
+            <td>{{reservation.demande.typeEvent}}</td>
+          </tr>
+          <tr>
+            <th scope="row">L'objet :</th>
+            <td>{{reservation.demande.objet}}</td>
+          </tr>
+          <tr>
+            <th scope="row">le nombre de présence estimé :</th>
+            <td>{{reservation.demande.nombrePresent}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Description :</th>
+            <td>{{reservation.demande.description}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Commentaire :</th>
+            <td>
+                <textarea name="comment" cols="30" rows="5" id="comment" class="form-control" formControlName="comment" required></textarea>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+   <br><br>
+<div style="text-align: center;">
+    <button type="submit" class="btn btn-success"  data-toggle="tooltip" data-placement="top" title="valider la réservation">Valider</button>&nbsp;
+    <button type="submit" class="btn btn-danger" (click)="rejeter()"  data-toggle="tooltip" data-placement="top" title="rejeter la réservation">rejeter</button>
+</div>
+</form>

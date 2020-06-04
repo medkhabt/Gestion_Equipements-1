@@ -1,0 +1,21 @@
+<div class="container">
+    
+    <!-- <h1>{{demande.description}}</h1> -->
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link" data-toggle="collapse" [attr.data-target] = "'#collapse'+ demande.id" aria-expanded="true" aria-controls="collapseOne">
+            <h4>{{demande.id}}</h4>
+          </button>
+        </h5>
+      </div>
+  
+      <div [attr.id] = "'collapse' + demande.id" class="collapse" aria-labelledby="headingOne" >
+        <div class="card-body">
+            <app-demande-unit 
+            [demandeUnit] = demande ></app-demande-unit>
+        </div>
+      </div>
+    </div>
+
+</div>

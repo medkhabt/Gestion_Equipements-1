@@ -24,4 +24,13 @@ export class ReservationsService {
   addReservation(reservation: any) {
     return this.http.post(this.host + '/reservations/add', reservation);
   }
+  getReservation(id: number) {
+    return this.http.get(this.host + '/reservations/get/' + id);
+  }
+  getDemandeurByDemande(id: any) {
+    return this.http.get(this.host + '/demandeurs/demande/' + id);
+  }
+  updateReservation(reservation: any, id: number) {
+    return this.http.put(this.host + '/reservations/update/' + id , reservation);
+  }
 }
