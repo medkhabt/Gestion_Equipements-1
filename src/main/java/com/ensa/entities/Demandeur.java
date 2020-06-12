@@ -56,6 +56,7 @@ public class Demandeur extends Utilisateur {
 		this.imageProfile = imageProfile;
 		this.demandes = demandes;
 	}
+	@JsonIgnore
 	public List<Demande> getDemandes() {
 		return demandes;
 	}

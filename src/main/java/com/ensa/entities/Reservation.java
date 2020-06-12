@@ -1,14 +1,20 @@
 package com.ensa.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Reservation {
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String etat;					// private String status 	01/05/2020 Med Khalil
 	private String commentaire;
@@ -53,7 +59,7 @@ public class Reservation {
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	@JsonIgnore
 	public Gestionnaire getGestionnaire() {
 		return gestionnaire;
 	}
@@ -69,7 +75,7 @@ public class Reservation {
 	public void setEquipement(Equipement equipement) {
 		this.equipement = equipement;
 	}
-
+	@JsonGetter
 	public Demande getDemande() {
 		return demande;
 	}
@@ -77,7 +83,7 @@ public class Reservation {
 	public void setDemande(Demande demande) {
 		this.demande = demande;
 	}
-
+	@JsonIgnore
 	public Autorisation getAutorisation() {
 		return autorisation;
 	}

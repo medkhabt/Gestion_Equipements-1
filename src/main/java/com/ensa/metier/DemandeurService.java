@@ -104,9 +104,9 @@ public class DemandeurService implements com.ensa.repo.DemandeurService {
 	public List<Demande> getDemandes(Long id) {
 		return this.demandeurRepo.getDemandes(id);
 	}
-//	public Demandeur findByDemande(int id) {
-//		return this.demandeurRepo.getDemandeurByDemande(id);
-//	}
+	public Demandeur findByDemande(int id) {
+		return this.demandeurRepo.getDemandeurByDemande(id);
+	}
 	
 	public static byte[] decompressBytes(byte[] data) {
 		Inflater inflater = new Inflater();

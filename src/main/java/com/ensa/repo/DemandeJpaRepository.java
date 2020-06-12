@@ -12,7 +12,6 @@ import com.ensa.entities.Demandeur;
 @Repository
 public interface DemandeJpaRepository extends JpaRepository<Demande, Integer> {
 	
-	public Demande save(Demande demande);
 	public List<Demande> findAll();
 	public List<Demande> findByDemandeur(Demandeur demandeur);
 	public Demande findById(int id);

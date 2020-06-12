@@ -41,7 +41,7 @@ public class GestionnaireRestController {
 		Gestionnaire gestTest = gestionnaireService.findByUsername(gestionnaire.getUsername());
 		if(gestTest!=null) throw new RuntimeCryptoException("this user alreeady exists !");
 		gestionnaireService.saveGestionnaire(gestionnaire);
-		gestionnaireService.addRoleToGestionnaire(gestionnaire.getUsername(), "INVITE");
+		gestionnaireService.addRoleToGestionnaire(gestionnaire.getUsername(), "Admin");
 		return gestionnaire;
 
 	}

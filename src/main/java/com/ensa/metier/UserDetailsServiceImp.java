@@ -14,15 +14,17 @@ import org.springframework.stereotype.Service;
 import com.ensa.entities.Demande;
 import com.ensa.entities.Demandeur;
 import com.ensa.entities.Gestionnaire;
+import com.ensa.entities.Utilisateur;
 import com.ensa.repo.DemandeurRepository;
 import com.ensa.repo.GestionnaireRepository;
+import com.ensa.repo.UserRepository;
 
 @Service
 public class UserDetailsServiceImp implements org.springframework.security.core.userdetails.UserDetailsService  {
 //	@Autowired
 //	GestionnaireRepository userRepository;
 	@Autowired
-	DemandeurRepository userRepository;
+	UserRepository userRepository;
 
 //	@Override
 //	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -37,14 +39,14 @@ public class UserDetailsServiceImp implements org.springframework.security.core.
 //	}
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Demandeur demandeur = userRepository.findByUsername(username).get();
-		if( demandeur ==null ) throw new UsernameNotFoundException(username);
+		Utilisateur utilisateur = userRepository.findByUsername(username).get();
+		if( utilisateur ==null ) throw new UsernameNotFoundException(username);
 		Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		demandeur.getRoles().forEach(r->{
+		utilisateur.getRoles().forEach(r->{
 			authorities.add(new SimpleGrantedAuthority(r.getRole()));
 		});
 		
-		return new User(demandeur.getUsername(), demandeur.getPassword(), authorities);
+		return new User(utilisateur.getUsername(), utilisateur.getPassword(), authorities);
 	}
 	
 

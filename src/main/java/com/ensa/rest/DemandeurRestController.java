@@ -10,6 +10,7 @@ import java.util.zip.DataFormatException;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
 
+import org.bouncycastle.crypto.RuntimeCryptoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -86,7 +87,8 @@ public class DemandeurRestController {
 			d.setRecepisse(decompressBytes(demandeur.getRecepisse()));
 			d.setImageProfile(decompressBytes(demandeur.getImageProfile()));
 			d.setStatut(decompressBytes(demandeur.getStatut()));
-		}
+		} 
+		
 		return d;
 	}
 	@GetMapping("/{username}")
@@ -94,10 +96,11 @@ public class DemandeurRestController {
 		Demandeur demandeur = demandeurService.findByUsername(username);
 		Demandeur d = new Demandeur(demandeur);
 //		d = demandeur;
-		d.setRecepisse(decompressBytes(demandeur.getRecepisse()));
-		d.setImageProfile(decompressBytes(demandeur.getImageProfile()));
-		d.setStatut(decompressBytes(demandeur.getStatut()));
-		
+		if(demandeur.getRecepisse()!=null && demandeur.getStatut()!=null) {
+			d.setRecepisse(decompressBytes(demandeur.getRecepisse()));
+			d.setImageProfile(decompressBytes(demandeur.getImageProfile()));
+			d.setStatut(decompressBytes(demandeur.getStatut()));
+			} 
 		return d;
 	}
 //	@GetMapping("/files/recepisse/{id}")

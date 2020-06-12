@@ -26,6 +26,7 @@ public class Equipement {
 	@ManyToOne
 	private Secteur secteur;
 	
+	@JsonIgnore
 	public Secteur getSecteur() {
 		return secteur;
 	}

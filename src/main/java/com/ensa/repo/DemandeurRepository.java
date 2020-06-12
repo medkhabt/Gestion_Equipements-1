@@ -26,6 +26,6 @@ public interface DemandeurRepository extends JpaRepository<Demandeur, Long> {
 	public void delete(Demandeur demandeur);
 	@Query(value = "FROM Demande as d where d.demandeur.id=:i")
 	public List<Demande> getDemandes(@Param("i") Long id);
-//	@Query(value = "SELECT Demande.Demandeur FROM Demande WHERE id=:id")
-//	public Demandeur getDemandeurByDemande(@Param("id") int id);
+	@Query(value = "select d.demandeur FROM Demande as d where d.id=:idDemande")
+	public Demandeur getDemandeurByDemande(@Param("idDemande") int id);
 }

@@ -43,7 +43,7 @@ public class AutorisationRestController {
 	public Autorisation getAutorisation(@PathVariable int id) {
 		 return autorisationService.getAutosiation(id);
 	}
-	@PostMapping("/create_autorisation")
+	@PostMapping("/add")
 	public void creatAutorisation(@RequestBody Autorisation autorisation) {
 		 autorisationService.createAutorisation(autorisation);
 	}

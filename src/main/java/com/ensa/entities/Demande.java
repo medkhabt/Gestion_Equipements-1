@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -50,6 +51,7 @@ public class Demande {
 	public void setDemandeur(Demandeur demandeur) {
 		this.demandeur = demandeur;
 	}
+	@JsonIgnore
 	public List<Reservation> getReservations() {
 		return reservations;
 	}
