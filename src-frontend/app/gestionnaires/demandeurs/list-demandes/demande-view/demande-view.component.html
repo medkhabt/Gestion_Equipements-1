@@ -1,0 +1,43 @@
+<br><br><br>
+    <table class="table">
+        <tbody>
+          <tr>
+            <th scope="row">Identifiant de la réservation :</th>
+            <td>{{reservation.id}}</td>
+          </tr>
+          <tr>
+            <th scope="row">la date de demande :</th>
+            <td>{{formatDate(reservation.demande.dateDemande)}}</td>
+          </tr>
+          <tr>
+            <th scope="row">la date de réservation :</th>
+            <td>{{formatDate(reservation.demande.dateReservation)}}</td>
+          </tr>
+          <tr>
+            <th scope="row">L'équipement désiré :</th>
+            <td>{{reservation.equipement.nom}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Type d'évenement :</th>
+            <td>{{reservation.demande.typeEvent}}</td>
+          </tr>
+          <tr>
+            <th scope="row">L'objet :</th>
+            <td>{{reservation.demande.objet}}</td>
+          </tr>
+          <tr>
+            <th scope="row">le nombre de présence estimé :</th>
+            <td>{{reservation.demande.nombrePresent}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Description :</th>
+            <td>{{reservation.demande.description}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Commentaire :</th>
+            <td>{{reservation.commentaire}} </td>
+          </tr>
+        </tbody>
+      </table>
+
+   <br><br>

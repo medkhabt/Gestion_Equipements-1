@@ -1,0 +1,49 @@
+<br><br><br>
+<table class="table">
+    <tbody>
+      <tr>
+        <th scope="row">Identifiant de la réservation :</th>
+        <td>{{demandeur.id}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Le prénom du demandeur :</th>
+        <td>{{demandeur.prenom}}</td>
+      </tr>
+      <tr>
+        <th scope="row">le nom du demandeur:</th>
+        <td>{{demandeur.nom}}</td>
+      </tr>
+      <tr>
+        <th scope="row">L'email :</th>
+        <td>{{demandeur.email}}</td>
+      </tr>
+      <tr>
+        <th scope="row">L'adresse :</th>
+        <td>{{demandeur.adresse}}</td>
+      </tr>
+      <tr>
+        <th scope="row" >Le type :</th>
+        <td>{{demandeur.type}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Historique des demandes :</th>
+        <td><a [routerLink]="['/demandeur/list-demandes', demandeur.id]">Liste des demandes</a> </td>
+      </tr>
+      <tr>
+        <th scope="row">Télephone :</th>
+        <td>{{demandeur.telephone}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Le récepissé :</th>
+        <td>
+          <pdf-viewer [src]="recepisse" [render-text]="true" style="display: block;" ></pdf-viewer>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Le statut :</th>
+        <td>       
+          <pdf-viewer [src]="statut" [render-text]="true" style="display: block;" ></pdf-viewer>
+        </td>
+      </tr>
+    </tbody>
+  </table>

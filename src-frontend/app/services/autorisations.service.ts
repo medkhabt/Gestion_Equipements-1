@@ -12,12 +12,13 @@ export class AutorisationsService {
   constructor(private http: HttpClient, private authservice: AuthService) {}
 
   getAutorisations() {
-    return this.http.get(this.host + '/autorisations').subscribe(
-      res => localStorage.setItem('autorisations', JSON.stringify(res)),
-      err => console.log(err)
-    );
+    return this.http.get(this.host + '/autorisations');
   }
   addAutorisation(autorisation: any) {
       return this.http.post(this.host + '/autorisations/add', autorisation);
+  }
+
+  getAutorisationById(id: any) {
+    return this.http.get(this.host + '/autorisations/get/' + id);
   }
 }

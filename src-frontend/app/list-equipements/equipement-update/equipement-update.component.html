@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <!-- {{equipement.nom}} -->
+        </div>
+
+        <div class="row profil-image">
+            <div class="col"></div>
+            <div class="col-6">
+                <img class="img-fluid border" src="..\assets\images\logoAgadir.jpg" alt="">
+            </div>
+            <div class="col"></div>
+
+            <!-- <div class="col-7 card-media-description"> 
+                    <p class="card-media-title">
+                        {{equipement.nom}}
+                    </p>
+            </div> -->
+        </div>
+        <div class="card-block">
+            <h4 class="card-title">{{equipement.nom}}</h4>
+            <!-- <p class="card-text">
+                description.. 
+            </p> -->
+        </div>
+    <div *ngIf="authservice.isGestionnaire()">
+        <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+        
+        <ul class="list-group">
+            <li class="list-group-item">
+                <span class="label"> id:</span> 
+                <span class="form-control">{{equipement.id}}</span>
+            </li>
+            <li class="list-group-item">
+                <span class="label"> Nom:</span> 
+                <input type="text" class="form-control" name="nom" id="nom"  formControlName="nom">
+            </li>
+            <li class="list-group-item">
+                <span class="label">id du Responsable:</span> 
+                <input type="text" class="form-control" name="idResponsable" id="idResponsable"  formControlName="idResponsable">
+            </li>
+            <li class="list-group-item">
+                <span class="label">adresse:</span> 
+                <input type="text" class="form-control" name="adresse" id="adresse"  formControlName="adresse">
+            </li>
+            <li class="list-group-item">
+                <span class="label">secteur:</span> 
+                <input type="text" class="form-control" name="secteur" id="secteur"  formControlName="secteur">
+            </li>
+        </ul>    
+        <div  style="margin: 6px; float: right;">
+            <button type="submit" class="btn btn-success">Save</button>
+            <button type="button" class="btn btn-primary" [routerLink]="['equipements']">Annuler</button>
+        </div>
+        </form>
+    </div>
+        <div>
+            <!-- google maps.  -->
+        </div>
+        <div class="card-footer">
+        </div>
+    </div>       
+</div>
+<!-- public id: Number,
+public nom: string,
+public  idResponsable: Number,
+public  adresse: string,
+public largeur: Number,
+public longueur: Number -->

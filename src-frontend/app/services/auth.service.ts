@@ -55,8 +55,9 @@ export class AuthService {
 
   getDemandeurs() {
     if (this.jwtToken === null) {this.loadToken(); }
-    return this.http.get(this.host + '/demandeurs',
-    {headers: new HttpHeaders({authorization: this.jwtToken})});
+    return this.http.get(this.host + '/demandeurs'
+  //  ,{headers: new HttpHeaders({authorization: this.jwtToken})}
+  );
     }
 
 
@@ -80,6 +81,27 @@ export class AuthService {
     }
 
   getDemandeur(username: any) {
+    return this.http.get<Demandeur>(this.host + '/demandeurs/' + username,
+    {headers: new HttpHeaders({authorization: this.jwtToken})});
+  }
+  getDemandeurById(id: any) {
+    return this.http.get(this.host + '/demandeurs/get_id/' + id
+  //  , {headers: new HttpHeaders({authorization: this.jwtToken})}
+  );
+  }
+  updateDemandeur(demandeur: any, id: any) {
+    return this.http.put(this.host + '/demandeurs/update/' + id, demandeur);
+  }
+  sendFile(file: any, id: any) {
+    return this.http.put(this.host + '/demandeurs/update_files/' + id, file);
+  }
+  getFiles(id: any) {
+    return this.http.get(this.host + '/demandeurs/files/' + id);
+  }
+  getRecepisse(id: any) {
+    return this.http.get(this.host + '/demandeurs/files/recepisse/' + id);
+  }
+  getGestionnaire(username: any) {
     return this.http.get<Demandeur>(this.host + '/gestionnaires/' + username,
     {headers: new HttpHeaders({authorization: this.jwtToken})});
   }

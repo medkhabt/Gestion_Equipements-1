@@ -12,20 +12,34 @@
 .navbar-expand-lg .navbar-nav > li > a  {
     color: #ffffff;
 }*/ 
-
-.navstyle {
-    background-color: #03588C;
+.navbar-left .nav-link:visited,
+.navbar-left .nav-link:link{
+    color:#03588C;
 }
-.nav-link:visited,
-.nav-lin:link{
+.navbar-left .nav-link:hover,
+.navbar-left .nav-link  :active{
     color:#8FBDD9;
-}
-.nav-link:hover,
-.nav-lin:active{
-    color:white;
-    border-bottom: white solid 2px;
+    border-bottom: #8FBDD9 solid 2px;
     font-style: bold;
+    transition: 0.1s;
+
 }
-#main-nav{
-    background-color: white;
+
+.navbar-right .nav-link:visited,
+.navbar-right .nav-link:link{
+    border: 1px solid #03588C;
+    margin-left: 0.5em;
+}
+
+.navbar-right .nav-link:hover,
+.navbar-right .nav-link:active{
+    margin-left: 0.5em;
+    color: white;
+    background-color: #03588C ;
+    transition: 0.7s;
+}
+
+
+#mainNav{
+    border-bottom: 1px solid #03588C; 
 }

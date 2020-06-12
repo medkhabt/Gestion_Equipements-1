@@ -14,7 +14,7 @@ export class LoginUserComponent implements OnInit {
   signInform: FormGroup;
   errorMessage: string;
   message: any;
-  demandeur: Demandeur;
+  demandeur: any;
   currentUser: any;
   role: void;
 
@@ -43,16 +43,17 @@ export class LoginUserComponent implements OnInit {
     resp.subscribe( resp => {
       const jwtToken = resp.headers.get('authorization');
       this.authservice.saveToken(jwtToken);
-      this.router.navigate(['/equipements']);
       this.authservice.getDemandeur(username).subscribe(res => {
          this.demandeur = res;
+         console.log(this.demandeur);
          localStorage.setItem('demandeur', JSON.stringify(res));
          localStorage.setItem('etat', res.roles[0].role);
-         console.log(this.demandeur);
+
         }, err => {
           console.log(err);
         }
         );
+      this.router.navigate(['/equipements']);
     }, err => {
       this.errorMessage = 'uncorrect! try again';
        }

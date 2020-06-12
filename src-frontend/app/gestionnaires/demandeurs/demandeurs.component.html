@@ -1,0 +1,38 @@
+<br><br><br>  
+<html>
+    <head>
+    </head>
+    <body>
+        <table class="table table-striped">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Identifiant</th>
+                <th scope="col">Username</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">Email</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let demandeur of demandeurs ">
+                <th scope="row">{{demandeur.id}} </th>
+                <td>{{demandeur.username}}</td>
+                <td>{{demandeur.nom}}</td>
+                <td>{{demandeur.prenom}} </td>
+                <td>{{demandeur.email}} </td>
+                
+                <td>
+                <button class="btn btn-primary btn-sm" type="button" [routerLink]="['/demandeurs/', demandeur.id]" style="margin-top: 5px;">
+                    Détail
+                </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+
+    </body>
+</html>
+  
+

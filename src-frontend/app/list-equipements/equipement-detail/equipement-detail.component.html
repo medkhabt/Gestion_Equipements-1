@@ -1,10 +1,57 @@
 <div class="container">
-    <ul class="list-grp">
-        <li class="list-group-item">id: {{equipement.id}}</li>
-        <li class="list-group-item">id du Responsable: {{equipement.idResponsable}}</li>
-        <li class="list-group-item">adresse: {{equipement.adresse}}</li>
-        <li class="list-group-item">coordonnees: ({{equipement.largeur}},{{equipement.longueur}})</li>
-    </ul>
+    <div class="card">
+        <div class="card-header">
+            <!-- {{equipement.nom}} -->
+        </div>
+
+        <div class="row profil-image">
+            <div class="col"></div>
+            <div class="col-6">
+                <img class="img-fluid border" src="..\assets\images\logoAgadir.jpg" alt="">
+            </div>
+            <div class="col"></div>
+
+            <!-- <div class="col-7 card-media-description"> 
+                    <p class="card-media-title">
+                        {{equipement.nom}}
+                    </p>
+            </div> -->
+        </div>
+        <div class="card-block">
+            <h4 class="card-title">{{equipement.nom}}</h4>
+            <!-- <p class="card-text">
+                description.. 
+            </p> -->
+        </div>
+    <div>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <span class="label"> id:</span> 
+                <span class="col-6">{{equipement.id}}</span>
+            </li>
+            <li class="list-group-item">
+                <span class="label">id du Responsable:</span> 
+                <span class="col-6">{{equipement.idResponsable}}</span>
+            </li>
+            <li class="list-group-item">
+                <span class="label">adresse:</span> 
+                <span class="col-6">{{equipement.adresse}}</span>
+            </li>
+            <li class="list-group-item">
+                <span class="label">coordonnees:</span> 
+                <span class="col-6">({{equipement.largeur}},{{equipement.longueur}})</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-primary btn-sm" style="float: right;" *ngIf="authService.isGestionnaire()" [routerLink]="['update/', equipement.id]">Modifier</button>
+            </li>
+        </ul>
+    </div>
+        <div>
+            <!-- google maps.  -->
+        </div>
+        <div class="card-footer">
+        </div>
+    </div>       
 </div>
 <!-- public id: Number,
 public nom: string,

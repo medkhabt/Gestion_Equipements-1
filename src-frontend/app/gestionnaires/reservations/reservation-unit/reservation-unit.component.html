@@ -41,7 +41,7 @@
           <tr>
             <th scope="row">Commentaire :</th>
             <td>
-                <textarea name="comment" cols="30" rows="5" id="comment" class="form-control" formControlName="comment" required></textarea>
+                <textarea name="comment" cols="30" rows="5" id="comment" [(ngModel)]="comment" class="form-control" formControlName="comment" required></textarea>
             </td>
           </tr>
         </tbody>
@@ -50,6 +50,6 @@
    <br><br>
 <div style="text-align: center;">
     <button type="submit" class="btn btn-success"  data-toggle="tooltip" data-placement="top" title="valider la réservation">Valider</button>&nbsp;
-    <button type="button" class="btn btn-danger" (click)="rejeter()"  data-toggle="tooltip" data-placement="top" title="rejeter la réservation">rejeter</button>
+    <button type="button" class="btn btn-danger" (click)="rejeter(comment)"  data-toggle="tooltip" data-placement="top" title="rejeter la réservation">rejeter</button>
 </div>
 </form>

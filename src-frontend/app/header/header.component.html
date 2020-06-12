@@ -1,4 +1,4 @@
-<nav class="navbar pb-0 pt-0 navbar-dark fixed-top bg-white" id="mainNav">
+<nav class="navbar pb-0 pt-0 fixed-top bg-white" id="mainNav">
   <div class="col-xs-4 mb-0">
       <a href="#" class="navbar-brand">
           <img src="..\assets\images\logoAgadir.jpg" alt="" width="50" height="50">
@@ -9,21 +9,23 @@
           <a routerLink="/home" class="nav-link" *ngIf="!authservice.isloggedIn()">Home</a>
           <a routerLink="/actualite" class="nav-link" *ngIf="!authservice.isloggedIn()">Actualite</a>
           <a routerLink="/equipements" class="nav-link" *ngIf="!authservice.isloggedIn()">Listes des equipements</a>
+          <a routerLink="/demandeurProfile" class="nav-link" *ngIf="authservice.isDemandeur()">Mon Profile</a>
           <a routerLink="/mesDemandes" class="nav-link" *ngIf="authservice.isDemandeur()">Mes demandes</a>
           <a routerLink="/AddDemande" class="nav-link" *ngIf="authservice.isDemandeur()">Créer une demande</a>
-          <a routerLink="/AllDemandes" class="nav-link" *ngIf="false">Demandes</a>
+          <a routerLink="/gestionnaireProfile" class="nav-link" *ngIf="authservice.isGestionnaire()">Mon profile</a>
           <a routerLink="/AllReservations" class="nav-link" *ngIf="authservice.isGestionnaire()">Réservations</a>
           <a routerLink="/AllAutorisations" class="nav-link" *ngIf="authservice.isGestionnaire()">Autorisations</a>
-          <a routerLink="/" class="nav-link" >Contacts</a>
+          <a routerLink="/demandeurs" class="nav-link" *ngIf="authservice.isGestionnaire()">Les Demandeurs</a>
+          <a routerLink="/equipements" class="nav-link" >Equipements</a>
       </nav>
   </div>
   
   
   <div class="col-xs">
       <div class="navbar navbar-right navstyle">
-          <a routerLink="auth/signup" class="nav-link" *ngIf="!authservice.isloggedIn()">Sign up</a>
-          <a routerLink="auth/signin" class="nav-link" *ngIf="!authservice.isloggedIn()">Log in</a>
-          <a routerLink="" (click)="onLogout()" class="nav-link" *ngIf="authservice.isloggedIn()">Log Out</a>
+          <a routerLink="auth/signup" class="rounded nav-link" *ngIf="!authservice.isloggedIn()">Sign up</a>
+          <a routerLink="auth/signin" class="rounded nav-link" *ngIf="!authservice.isloggedIn()">Log in</a>
+          <a routerLink="" (click)="onLogout()" class="rounded nav-link" *ngIf="authservice.isloggedIn()">Log Out</a>
 
       </div>
   </div>

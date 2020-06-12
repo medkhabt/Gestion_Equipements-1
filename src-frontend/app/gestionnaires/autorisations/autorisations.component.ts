@@ -15,8 +15,11 @@ export class AutorisationsComponent implements OnInit {
               private reservationService: ReservationsService) { }
 
   ngOnInit(): void {
-    this.autorisationservice.getAutorisations();
-    this.autorisations = JSON.parse(localStorage.getItem('autorisations'));
+    this.autorisationservice.getAutorisations().subscribe(
+      res => this.autorisations = res,
+      err => console.log(err)
+    );
+  //  this.autorisations = JSON.parse(localStorage.getItem('autorisations'));
     console.log(this.autorisations);
   }
 

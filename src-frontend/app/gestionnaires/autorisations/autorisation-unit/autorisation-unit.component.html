@@ -1,0 +1,49 @@
+<br><br><br>
+<table class="table">
+    <tbody>
+      <tr>
+        <th scope="row">Identifiant de la réservation :</th>
+        <td>{{autorisation.id}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Le demandeur :</th>
+        <td>{{demandeur.nom}} {{demandeur.prenom}}</td>
+      </tr>
+      <tr>
+        <th scope="row">la date de demande :</th>
+        <td>{{formatDate(autorisation.reservation.demande.dateDemande)}}</td>
+      </tr>
+      <tr>
+        <th scope="row">la date de réservation :</th>
+        <td>{{formatDate(autorisation.reservation.demande.dateReservation)}}</td>
+      </tr>
+      <tr>
+        <th scope="row">L'équipement désiré :</th>
+        <td>{{autorisation.reservation.equipement.nom}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Type d'évenement :</th>
+        <td>{{autorisation.reservation.demande.typeEvent}}</td>
+      </tr>
+      <tr>
+        <th scope="row">L'objet :</th>
+        <td>{{autorisation.reservation.demande.objet}}</td>
+      </tr>
+      <tr>
+        <th scope="row">le nombre de présence estimé :</th>
+        <td>{{autorisation.reservation.demande.nombrePresent}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Description :</th>
+        <td>{{autorisation.reservation.demande.description}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Commentaire :</th>
+        <td>{{autorisation.reservation.commentaire}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Taxe :</th>
+        <td>{{autorisation.taxe.libelle}}</td>
+      </tr>
+    </tbody>
+  </table>

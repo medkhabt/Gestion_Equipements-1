@@ -20,4 +20,7 @@ export class EquipementsService {
   getEquipement(id: number) {
     return this.http.get<Equipement>(this.host + '/equipements/get_id/' + id);
   }
+  updateEquipement(id: number, equipement: any) {
+    return this.http.put(this.host + '/equipements/update/' + id, equipement);
+  }
 }

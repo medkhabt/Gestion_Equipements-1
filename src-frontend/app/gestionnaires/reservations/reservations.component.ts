@@ -16,8 +16,11 @@ export class ReservationsComponent implements OnInit {
               private authservice: AuthService) { }
 
   ngOnInit(): void {
-    this.reservationsService.getAllReservations();
-    this.reservations = this.reservationsService.getReservations();
+    this.reservationsService.getAllReservations().subscribe(
+      resp => this.reservations = resp,
+      err => console.log(err)
+    );
+  //  this.reservations = JSON.parse(localStorage.getItem('reservations'));
     console.log(this.reservations);
     this.demandes = this.authservice.getUser().demandes;
   }

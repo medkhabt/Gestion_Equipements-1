@@ -1,5 +1,5 @@
-<br><br>
-<p-dataView [value]= "demandes" [paginator]="true" [rows]="6" [sortField]="sortField" [sortOrder]="sortOrder">
+<br><br><br><br>
+<p-dataView [value]= "demandes" [paginator]="true" [rows]="10" [sortField]="sortField" [sortOrder]="sortOrder">
     <p-header>List Des demandes
         <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By"
             (onChange)="onSortChange($event)" [style]="{'color':'black'}"></p-dropdown>

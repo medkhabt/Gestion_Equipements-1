@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DemandeService } from '../services/demande.service';
-import { AuthService } from '../services/auth.service';
+import { DemandeService } from '../../services/demande.service';
+import { AuthService } from '../../services/auth.service';
 import { Subscription } from 'rxjs';
-import { Gestionnaire, Demandeur } from '../models/utilisateur.model';
+import { Gestionnaire, Demandeur } from '../../models/utilisateur.model';
 import { User } from 'firebase';
 import { SelectItem } from 'primeng/api/selectitem';
 

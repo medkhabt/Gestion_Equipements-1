@@ -1,0 +1,28 @@
+<div class="container">
+    <table class="table">
+        <tbody>
+          <tr>
+            <th scope="row">Identifiant de la réservation</th>
+            <td>{{reservation.id}}</td>
+          </tr>
+          <tr>
+            <th scope="row">La date de demande :</th>
+            <td>{{formatDate(demande.dateDemande)}}</td>
+          </tr>
+          <tr>
+            <th scope="row">La date de réservation :</th>
+            <td>{{formatDate(demande.dateReservation)}}</td>
+          </tr>
+          <tr>
+            <th scope="row">L'état de demande :</th>
+            <td>
+                <button type="button" class="btn btn-sm btn-success" *ngIf="reservation.etat==='validée'" >{{reservation.etat}} </button>
+                <button type="button" class="btn btn-sm btn-danger" *ngIf="reservation.etat==='rejetée'" >{{reservation.etat}} </button>
+                <button type="button" class="btn btn-info-outline btn-sm" *ngIf="reservation.etat==='initial'" >{{reservation.etat}} </button>
+               
+            </td>
+          </tr>
+        </tbody>
+    </table>
+    <button type="button" class="btn btn-primary btn-md" style="float: right;" [routerLink]="['demande_detail/', reservation.id]">Détail</button>
+</div>

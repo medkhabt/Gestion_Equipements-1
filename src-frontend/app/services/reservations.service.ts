@@ -12,10 +12,7 @@ export class ReservationsService {
   constructor(private http: HttpClient) { }
 
   getAllReservations() {
-    return this.http.get(this.host + '/reservations').subscribe(
-      res => localStorage.setItem('reservations', JSON.stringify(res)),
-      err => console.log(err)
-    );
+    return this.http.get(this.host + '/reservations');
   }
 
   getReservations() {
@@ -32,5 +29,11 @@ export class ReservationsService {
   }
   updateReservation(reservation: any, id: number) {
     return this.http.put(this.host + '/reservations/update/' + id , reservation);
+  }
+  getReservationsByDemandeur(id: any) {
+    return this.http.get(this.host + '/reservations/by_demandeur/' + id);
+  }
+  getReservationByDemande(Iddemande: any) {
+    return this.http.get(this.host + '/reservations/by_demande/' + Iddemande);
   }
 }

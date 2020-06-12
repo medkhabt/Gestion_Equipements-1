@@ -19,9 +19,9 @@
                 <td>{{formatDate(reservation.demande.dateDemande)}}</td>
                 <td>{{reservation.equipement.nom}} </td>
                 <td>
-                  <button type="button" class="btn btn-sm btn-success" *ngIf="reservation.etat==='validée'" disabled>{{reservation.etat}} </button>
-                  <button type="button" class="btn btn-sm btn-danger" *ngIf="reservation.etat==='rejetée'" disabled>{{reservation.etat}} </button>
-                  <span *ngIf="reservation.etat==='initial'">{{reservation.etat}}</span>
+                  <button type="button" class="btn btn-sm btn-success" *ngIf="reservation.etat==='validée'" >{{reservation.etat}} </button>
+                  <button type="button" class="btn btn-sm btn-danger" *ngIf="reservation.etat==='rejetée'" >{{reservation.etat}} </button>
+                  <button type="button" class="btn btn-info-outline btn-sm" *ngIf="reservation.etat==='initial'" >{{reservation.etat}} </button>
                 </td>
                 {{setData(reservation.id)}}
                 <td>

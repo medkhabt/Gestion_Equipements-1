@@ -17,6 +17,7 @@ export class ReservationUnitComponent implements OnInit {
   autorisationForm: FormGroup;
   demandeur: any;
   reservationForm: FormGroup;
+  comment: string;
   constructor(private route: Router,
               private reservationServce: ReservationsService,
               private router: ActivatedRoute,
@@ -41,7 +42,7 @@ export class ReservationUnitComponent implements OnInit {
     );
 
     // this.reservation = JSON.parse(localStorage.getItem('reservation'));
-    this.gestionnaire = JSON.parse(localStorage.getItem('demandeur'));
+    this.gestionnaire = JSON.parse(localStorage.getItem('gestionnaire'));
     this.initForm();
   }
   initForm() {
@@ -49,7 +50,7 @@ export class ReservationUnitComponent implements OnInit {
       type: [ '' , [Validators.required] ],
       dateReservation: ['', [Validators.required]],
       dateFin: ['', [Validators.required]],
-      objectif: ['first autorisation!!', [Validators.required]]
+      objectif: ['', [Validators.required]]
     });
     this.reservationForm = this.formbuilder.group({
       comment: ['', [Validators.required]]
@@ -92,9 +93,10 @@ export class ReservationUnitComponent implements OnInit {
     return [year, month, day].join('-');
   }
 
-  rejeter() {
+  rejeter(comment: any) {
     this.reservation.etat = 'rejetée';
     this.reservation.gestionnaire = this.gestionnaire;
+    this.reservation.commentaire = comment;
     this.reservationServce.updateReservation(this.reservation, this.reservation.id).subscribe(
       res => console.log(res),
       err => console.log(err)
