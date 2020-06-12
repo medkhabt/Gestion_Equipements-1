@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Autorisation {
 	@Id
@@ -62,5 +64,13 @@ public class Autorisation {
 	public void setObjectif(String objectif) {
 		this.objectif = objectif;
 	}
+	@JsonIgnore
+	public Taxe getTaxe() {
+		return taxe;
+	}
+	public void setTaxe(Taxe taxe) {
+		this.taxe = taxe;
+	}
+	
 	
 }

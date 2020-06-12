@@ -2,14 +2,13 @@ package com.ensa.metier;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ensa.entities.Gestionnaire;
+import com.ensa.entities.Utilisateur;
 import com.ensa.entities.GRole;
 import com.ensa.repo.GestionnaireRepository;
 import com.ensa.repo.RoleRepositpory;
@@ -31,7 +30,12 @@ public class GestionnaireService implements com.ensa.repo.GestionnaireService {
 		return gestionnaireRepo.save(gestionnaire);
 	}
 	public Gestionnaire updateGestionnaire(Gestionnaire gestionnaire, Long id) {
-		gestionnaire.setId(id);
+		Gestionnaire g = gestionnaireRepo.findById(id).get();
+		g.setNom(gestionnaire.getNom());
+		g.setPrenom(gestionnaire.getPrenom());
+		g.setEmail(gestionnaire.getEmail());
+		g.setTelephone(gestionnaire.getTelephone());
+		g.setActived(gestionnaire.isActived());
 		return gestionnaireRepo.save(gestionnaire);
 	}
 	public List<Gestionnaire> getAll(){
@@ -50,12 +54,11 @@ public class GestionnaireService implements com.ensa.repo.GestionnaireService {
 		role.forEach(r->{
 			System.out.println(r.getRole());
 		});
-		Gestionnaire gestionnaire = gestionnaireRepo.findByUsername(username).get();
+		Utilisateur utilisateur = gestionnaireRepo.findByUsername(username).get();
 		
 		Iterator<GRole> iter = role.iterator();
 		System.out.println(iter.next().getRole());
-		gestionnaire.setRoles(role);
-		
+		utilisateur.setRoles(role);
 		
 	}
 	

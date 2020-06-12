@@ -17,6 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.ensa.entities.Demandeur;
 import com.ensa.entities.Gestionnaire;
+import com.ensa.entities.Utilisateur;
 import com.ensa.security.consants.SecurityConstants;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -33,18 +34,18 @@ public class JwtAuthentificationFilter extends UsernamePasswordAuthenticationFil
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request,HttpServletResponse response) throws AuthenticationException {
 		//Gestionnaire gestionnaire = null;
-		Demandeur demandeur = null;
+		Utilisateur user = null;
 		try {
 		//	gestionnaire = new ObjectMapper().readValue(request.getInputStream(), Gestionnaire.class);
-			demandeur = new ObjectMapper().readValue(request.getInputStream(), Demandeur.class);
+			user = new ObjectMapper().readValue(request.getInputStream(), Utilisateur.class);
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 		System.out.println("********");
-		System.out.println("username : "+demandeur.getUsername());
-		System.out.println("password : "+demandeur.getPassword());
-		return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(demandeur.getUsername(),demandeur.getPassword()) );
+		System.out.println("username : "+user.getUsername());
+		System.out.println("password : "+user.getPassword());
+		return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPassword()) );
 	}
 	@Override
 	public void successfulAuthentication(HttpServletRequest request, HttpServletResponse

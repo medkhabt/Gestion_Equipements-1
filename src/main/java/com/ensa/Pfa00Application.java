@@ -7,9 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.ensa.entities.Demande;
-import com.ensa.entities.Gestionnaire;
-import com.ensa.entities.GRole;
 import com.ensa.metier.GestionnaireService;
 import com.ensa.repo.DemandeJpaRepository;
 
@@ -23,6 +20,7 @@ public class Pfa00Application  implements CommandLineRunner{
 
 	public static void main(String[] args) {
 		SpringApplication.run(Pfa00Application.class, args);
+		System.out.println(System.getProperty("user.dir"));
 	}
 	
 	public void run(String...args) throws Exception {

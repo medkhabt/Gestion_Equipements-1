@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Equipement {
 	@Id
@@ -16,7 +18,7 @@ public class Equipement {
 	private int id;
 	private String nom;
 	private int idResponsable;
-	private double adresse;
+	private String adresse;
 	private double largeur;
 	private double longueur;
 	@OneToMany(mappedBy = "equipement")
@@ -30,6 +32,7 @@ public class Equipement {
 	public void setSecteur(Secteur secteur) {
 		this.secteur = secteur;
 	}
+	@JsonIgnore
 	public List<Reservation> getReservations() {
 		return reservations;
 	}
@@ -54,10 +57,10 @@ public class Equipement {
 	public void setIdResponsable(int idResponsable) {
 		this.idResponsable = idResponsable;
 	}
-	public double getAdresse() {
+	public String getAdresse() {
 		return adresse;
 	}
-	public void setAdresse(double adresse) {
+	public void setAdresse(String adresse) {
 		this.adresse = adresse;
 	}
 	public double getLargeur() {

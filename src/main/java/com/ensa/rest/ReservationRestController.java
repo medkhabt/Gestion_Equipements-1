@@ -3,6 +3,7 @@ package com.ensa.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,12 +20,19 @@ import com.ensa.entities.Gestionnaire;
 import com.ensa.entities.Reservation;
 import com.ensa.entities.Secteur;
 import com.ensa.metier.ReservationService;
+import com.ensa.metier.DemandeService;
+import com.ensa.metier.DemandeurService;;
 
 @RestController
 @RequestMapping("reservations")
+@EnableWebSecurity
 public class ReservationRestController {
 	@Autowired
 	ReservationService reservationService;
+	@Autowired
+	private DemandeurService demandeurService;
+	@Autowired
+	DemandeService demandeService;
 	
 	@GetMapping("")
 	public List<Reservation> getReservations() {
@@ -34,16 +42,17 @@ public class ReservationRestController {
 	public Reservation getReservation(@PathVariable int id) {
 		 return reservationService.getReservation(id);
 	}
-	@PostMapping("/create_reservation")
-	public void createReservation(@RequestBody Reservation Reservation) {
-		 reservationService.createReservation(Reservation);
+	@PostMapping("/add")
+	public Reservation createReservation(@RequestBody Reservation Reservation) {
+		 return reservationService.createReservation(Reservation);
 	}
-	@PutMapping("/update_reservation/{id}")
+	@PutMapping("/update/{id}")
 	public void updateReservation(@RequestBody Reservation reservation, @PathVariable int id) {
 		reservationService.updateReservation(reservation, id);
 	}
-	@GetMapping("/reservation_par_demande")
-	public  Reservation getReservation(@RequestBody Demande demande) {
+	@GetMapping("/by_demande/{id}")
+	public  Reservation getReservationByDemande(@PathVariable int id) {
+		Demande demande = demandeService.getDemande(id);
 		return reservationService.getReservation(demande);
 	}
 	@GetMapping("/reservations_par_equipement")
@@ -54,8 +63,11 @@ public class ReservationRestController {
 	public  Reservation getReservation(@RequestBody Gestionnaire gestionnaire) {
 		return reservationService.getReservation(gestionnaire);
 	}
-	@GetMapping("/reservations_par_demandeur")
-	public  List<Reservation> getReservations(@RequestBody Demandeur demandeur) {
+	@GetMapping("/by_demandeur/{id}")
+	public  List<Reservation> getReservations(@PathVariable Long id) {
+		System.out.println(id);
+		Demandeur demandeur = demandeurService.getDemandeur(id);
+		System.out.println(demandeur.getNom());
 		return reservationService.getReservations(demandeur);
 	}
 	@GetMapping("/reservations_par_secteur")

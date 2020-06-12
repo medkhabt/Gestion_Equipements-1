@@ -32,7 +32,7 @@ public class EquipementRestController {
 	public void createEquipement(@RequestBody Equipement equipement) {
 		 equipementService.createEquipement(equipement);
 	}
-	@PutMapping("/update_Equipement")
+	@PutMapping("/update")
 	public void updateEquipement(@RequestBody Equipement equipement, @RequestBody int id) {
 		 equipementService.updateEquipement(equipement, id);
 	}

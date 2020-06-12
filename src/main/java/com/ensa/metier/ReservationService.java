@@ -22,7 +22,7 @@ public class ReservationService {
 		return reservationRepo.findAll();
 	}
 	public Reservation getReservation(int id) {
-		return reservationRepo.findById(id);
+		return reservationRepo.findById(id).get();
 	}
 	public Reservation createReservation(Reservation reservation) {
 		return reservationRepo.save(reservation);
@@ -35,10 +35,10 @@ public class ReservationService {
 		return reservationRepo.findByEquipement(equipement);
 	}
 	public Reservation getReservation(Demande demande){
-		return reservationRepo.findByDemande(demande);
+		return reservationRepo.findByDemande(demande).get();
 	}
 	public Reservation getReservation(Gestionnaire gestionnaire) {
-		return reservationRepo.findByGestionnaire(gestionnaire);
+		return reservationRepo.findByGestionnaire(gestionnaire).get();
 	}
 	public void delete(int id) {
 		reservationRepo.deleteById(id);
@@ -52,7 +52,9 @@ public class ReservationService {
 		List<Reservation> reservations = new ArrayList<Reservation>();
 		for(Demande demande : demandes) {
 			if(this.getReservation(demande)!= null) {
+				System.out.println(demande.getId());
 				reservations.addAll(demande.getReservations());
+				
 			}
 		}
 		return reservations;

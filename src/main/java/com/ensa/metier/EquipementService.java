@@ -27,7 +27,13 @@ public class EquipementService {
 		return equipementRepo.save(equipement);
 	}
 	public Equipement updateEquipement(Equipement equipement, int id) {
-		equipement.setId(id);
+		Equipement eq = equipementRepo.findById(id);
+		eq.setAdresse(equipement.getAdresse());
+		eq.setIdResponsable(equipement.getIdResponsable());
+		eq.setLargeur(equipement.getLargeur());
+		eq.setLongueur(equipement.getLongueur());
+		eq.setNom(equipement.getNom());
+		eq.setSecteur(equipement.getSecteur());
 		return equipementRepo.save(equipement);
 	}
 	public Equipement getEquipementByRespo(int idrespo) {
