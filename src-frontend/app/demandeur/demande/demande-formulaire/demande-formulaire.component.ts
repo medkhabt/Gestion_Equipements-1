@@ -48,7 +48,7 @@ export class DemandeFormulaireComponent implements OnInit {
   }
   onSubmit() {
     //  const form = this.demandeForm.value;
-    console.log(this.demandeForm.get('demandeur'));
+    console.log(this.demandeForm.get('demandeur').value);
     this.demandeSrevice.addDemande(this.demandeForm.value).subscribe(
       resp => {
         localStorage.setItem('demande', JSON.stringify(resp));
