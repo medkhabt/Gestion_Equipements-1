@@ -22,6 +22,7 @@ export class DemandeFormulaireComponent implements OnInit {
   userSubjection: Subscription;
   username: string;
   id: number;
+  obligationScanne: any;
   constructor(private formbuilder: FormBuilder,
               private demandeSrevice: DemandeService,
               private authService: AuthService,
@@ -46,39 +47,53 @@ export class DemandeFormulaireComponent implements OnInit {
       dateDemande: [new Date()]
     });
   }
+  saveObligation(event) {
+    this.obligationScanne = event.target.files[0];
+    console.log(this.obligationScanne);
+  }
   onSubmit() {
     //  const form = this.demandeForm.value;
+    const uploadData = new FormData();
+    uploadData.append('obligationScanne', this.obligationScanne, this.obligationScanne.name);
+    console.log(this.obligationScanne);
     console.log(this.demandeForm.get('demandeur').value);
+    let demande: any;
     this.demandeSrevice.addDemande(this.demandeForm.value).subscribe(
       resp => {
-        localStorage.setItem('demande', JSON.stringify(resp));
+        demande = resp;
+        this.addReservation(resp);
         console.log(resp);
-      }, err => {
-        console.log(err);
+        this.demandeSrevice.addfileToDemande(uploadData, demande.id).subscribe(
+          res => {
+            localStorage.setItem('demande', JSON.stringify(res));
+          }, err => console.log(err)
+        );
+      }, err2 => {
+        console.log(err2);
       }
     );
-    this.addReservation();
+
+
   }
-  addReservation() {
+  addReservation(demand: any) {
     const id = this.demandeForm.get('equipement').value;
+  //  let equipement: any;
     this.equipementService.getEquipement(id).subscribe(
       res => {
         localStorage.setItem('equipement', JSON.stringify(res));
-        console.log(res);
+  //      equipement = res;
+        console.log(equipement);
       }
     );
-
-    // tslint:disable-next-line: prefer-const
-
-    console.log(JSON.parse(localStorage.getItem('equipement')));
-    const demande = JSON.parse(localStorage.getItem('demande'));
     const equipement = JSON.parse(localStorage.getItem('equipement'));
+    const demande = demand;
     const etat = 'initial';
     const reservation = {
       demande,
       equipement,
       etat
     };
+    console.log(equipement);
     this.reservationService.addReservation(reservation).subscribe(
       resp => {
         console.log(resp);

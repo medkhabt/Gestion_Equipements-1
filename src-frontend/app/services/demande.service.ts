@@ -15,10 +15,15 @@ export class DemandeService {
   addDemande(demande: any) {
    return this.http.post(this.host + '/demandes/add', demande);
   }
+  addfileToDemande(file, id) {
+    console.log(file);
+    return this.http.post(this.host + '/demandes/addFile/' + id, file);
+  }
 
   getDemandeBydemandeur(id: any) {
-    return this.http.get(this.host + '/demandeurs/demandes/' + id,
-    {headers: new HttpHeaders({authorization: this.jwtToken})});
+    return this.http.get(this.host + '/demandeurs/demandes/' + id
+  //  {headers: new HttpHeaders({authorization: this.jwtToken})}
+    );
   }
   getAllDemandes() {
     return this.http.get(this.host + '/demandes').subscribe(

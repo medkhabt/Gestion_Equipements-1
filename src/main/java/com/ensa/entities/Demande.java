@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 @Entity
 public class Demande {
@@ -26,6 +27,7 @@ public class Demande {
 	private String objet;
 	private String description;
 	private String nombrePresent;
+	private byte[] obligationScanne;
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Demandeur demandeur;
 	@OneToMany(mappedBy = "demande")
@@ -33,21 +35,34 @@ public class Demande {
 	
 	
 	
-	public Demande(int id, String reference, String typeEvent, Date dateDemande, Date dateReservation,
-			Demandeur demandeur) {
+	public Demande(int id, String reference, String typeEvent, Date dateDemande, Date dateReservation, String objet,
+			String description, String nombrePresent, byte[] obligationScanne,
+			Demandeur demandeur, List<Reservation> reservations) {
 		this.id = id;
 		this.reference = reference;
 		this.typeEvent = typeEvent;
 		this.dateDemande = dateDemande;
 		this.dateReservation = dateReservation;
+		this.obligationScanne = obligationScanne;
 		this.demandeur = demandeur;
 	}
+
 	public Demande() {
+	}
+	public Demande(Demande demande) {
+		this.id = demande.getId();
+		this.reference = demande.getReference();
+		this.typeEvent = demande.getTypeEvent();
+		this.dateDemande = demande.getDateDemande();
+		this.dateReservation = demande.getDateReservation();
+		this.obligationScanne = demande.getObligationScanne();
+		this.demandeur = demande.getDemandeur();
 	}
 	@JsonIgnore
 	public Demandeur getDemandeur() {
 		return demandeur;
 	}
+	@JsonSetter
 	public void setDemandeur(Demandeur demandeur) {
 		this.demandeur = demandeur;
 	}
@@ -106,6 +121,15 @@ public class Demande {
 	public void setNombrePresent(String nombrePresent) {
 		this.nombrePresent = nombrePresent;
 	}
+
+	public byte[] getObligationScanne() {
+		return obligationScanne;
+	}
+
+	public void setObligationScanne(byte[] obligationScanne) {
+		this.obligationScanne = obligationScanne;
+	}
+	
 	
 	
 	

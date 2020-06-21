@@ -12,6 +12,7 @@ export class DemandeDetailComponent implements OnInit {
 
   id: any; // id reservation
   reservation: any;
+  obligation: any;
   constructor(private router: ActivatedRoute,
               private reservationService: ReservationsService,
               private authservice: AuthService) { }
@@ -22,6 +23,7 @@ export class DemandeDetailComponent implements OnInit {
       resp => {
         this.reservation = resp;
         console.log(resp);
+        this.obligation = 'data:application/pdf;base64,' + this.reservation.demande.obligationScanne;
       }, err => console.log(err)
     );
   }

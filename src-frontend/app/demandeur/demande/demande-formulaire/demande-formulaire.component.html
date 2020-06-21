@@ -21,18 +21,41 @@
                 <form [formGroup]="demandeForm" (ngSubmit)="onSubmit()">
                     <input name="demandeur" formControlName="demandeur" type="hidden" id="demandeur">
                     <div class="form-row">
+                        <div class="form-group col-md-6" style="padding-top: 1%;padding-left: 2%;">
+                            <b> saisir l'objet de la demande :</b>
+                         </div>
                         <div class="form-group col-md-6">
                           <input id="objet" name="objet" placeholder="objet de la demande" class="form-control" type="text" formControlName="objet" required>
                         </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="form-group col-md-6" style="padding-top: 1%;padding-left: 2%;">
+                            <b> Préciser le type de l'évenement :</b>
+                         </div>
                         <div class="form-group col-md-6">
-                          <input type="text" class="form-control" id="typeEvent" placeholder="le type de votre evenement" formControlName="typeEvent" required>
+                            <input type="text" class="form-control" id="typeEvent" placeholder="le type de votre evenement" formControlName="typeEvent" required>
+                          </div>
+                      </div>                      
+                      <div class="form-row">
+                        <div class="form-group col-md-6" style="padding-top: 1%;padding-left: 2%;">
+                            <b> Importer l'obligation légalisée :</b>
+                         </div>
+                        <div class="form-group col-md-6">
+                          <input type="file" class="form-control" id="obligationScanne" placeholder="obligationScanne" formControlName="obligationScanne" (change)="saveObligation($event)" required>
                         </div>
                       </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
+                      <div class="form-row">
+                        <div class="form-group col-md-6" style="padding-left: 2%;">
+                            <b> estimer un nombre de personnes qui se présenteront :</b>
+                         </div>
+                        <div class="form-group col-md-6" style="padding-top: 1%;">
                             <input type="text" class="form-control" id="nombreInvite" placeholder="le nombre estimé des invités" formControlName="nombrePresent" >
                         </div>
-
+                      </div>                    
+                    <div class="form-row">
+                        <div class="form-group col-md-6" style="padding-top: 1%;padding-left: 2%;">
+                            <b> choisir l'équipement désiré :</b>
+                        </div>
                         <div class="form-group col-md-6">
                                   <select id="equipement" class="form-control" placeholder="select l'equipement" formControlName="equipement" required>
                                     <option selected></option>
@@ -48,7 +71,9 @@
                             <div class="form-group col-md-7">
                                 <input type="date" name="dateReservation" max="2025-12-31" min="1000-01-01" class="form-control" formControlName="dateReservation" required>
                             </div>
-                        
+                            <div class="form-group col-md-5" style="padding-top: 1%;padding-left: 2%;">
+                                <b> Description :</b>
+                             </div>
                         <div class="form-group col-md-12">
                                   <textarea id="description" name="description" cols="40" rows="10" class="form-control" formControlName="description" required></textarea>
                         </div>

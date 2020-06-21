@@ -45,5 +45,11 @@
         <th scope="row">Commentaire :</th>
         <td> {{reservation.commentaire}} </td>
       </tr>
+      <tr>
+        <th>l'obligation légalisée :</th>
+        <td>       
+          <pdf-viewer [src]="obligation" [render-text]="true" style="display: block;" ></pdf-viewer>
+        </td>
+      </tr>
     </tbody>
   </table>

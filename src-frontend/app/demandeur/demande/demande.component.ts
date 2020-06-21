@@ -20,11 +20,17 @@ export class DemandeComponent implements OnInit {
   sortOrder: number;
   sortKey: string;
   sortOptions: SelectItem[];
+  id: number;
 
-  constructor(private authservice: AuthService) { }
+  constructor(private authservice: AuthService,
+              private demandeService: DemandeService) { }
 
   ngOnInit(): void {
-    this.demandes = this.authservice.getUser().demandes;
+    this.id = this.authservice.getUser().id;
+    this.demandeService.getDemandeBydemandeur(this.id).subscribe(
+      rep => this.demandes = rep,
+      err => console.log(err)
+    );
     console.log(this.demandes);
     this.sortOptions = [
       {label: 'id inc', value: 'id'},
