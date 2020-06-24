@@ -13,6 +13,7 @@ export class DemandeDetailComponent implements OnInit {
   id: any; // id reservation
   reservation: any;
   obligation: any;
+  recepisse: any;
   constructor(private router: ActivatedRoute,
               private reservationService: ReservationsService,
               private authservice: AuthService) { }
@@ -22,8 +23,10 @@ export class DemandeDetailComponent implements OnInit {
     this.reservationService.getReservation(this.id).subscribe(
       resp => {
         this.reservation = resp;
-        console.log(resp);
         this.obligation = 'data:application/pdf;base64,' + this.reservation.demande.obligationScanne;
+      //  localStorage.setItem('obligation', this.obligation);
+      //  const d = JSON.parse(localStorage.getItem('demandeur'));
+      //  this.recepisse = 'data:application/pdf;base64,' + d.recepisse;
       }, err => console.log(err)
     );
   }

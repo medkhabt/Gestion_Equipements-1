@@ -46,6 +46,15 @@ public class Reservation {
 		this.equipement = equipement;
 		this.demande = demande;
 	}
+	public Reservation(Reservation r) {
+		this.id = r.getId();
+		this.etat = r.getEtat();
+		this.commentaire = r.getCommentaire();
+		this.autorisation = r.getAutorisation();
+		this.gestionnaire = r.getGestionnaire();
+		this.equipement = r.getEquipement();
+		this.demande = r.getDemande();
+	}
 	public String getEtat() {
 		return etat;
 	}

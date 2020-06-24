@@ -11,6 +11,7 @@ import com.ensa.entities.District;
 import com.ensa.entities.Equipement;
 import com.ensa.entities.Secteur;
 import com.ensa.repo.EquipementRepository;
+import com.ensa.repo.SecteurRepository;
 
 @Service
 public class EquipementService {
@@ -34,7 +35,9 @@ public class EquipementService {
 		eq.setLongueur(equipement.getLongueur());
 		eq.setNom(equipement.getNom());
 		eq.setSecteur(equipement.getSecteur());
-		return equipementRepo.save(equipement);
+		eq.setEtat(equipement.getEtat());
+//		System.out.println(equipement.getSecteur());
+		return equipementRepo.save(eq);
 	}
 	public Equipement getEquipementByRespo(int idrespo) {
 		return equipementRepo.findByIdResponsable(idrespo);

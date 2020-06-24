@@ -82,24 +82,24 @@ export class DemandeFormulaireComponent implements OnInit {
       res => {
         localStorage.setItem('equipement', JSON.stringify(res));
   //      equipement = res;
+  //      console.log(equipement);
+        const equipement = res;
+        const demande = demand;
+        const etat = 'initial';
+        const reservation = {
+          demande,
+          equipement,
+          etat
+        };
         console.log(equipement);
+        this.reservationService.addReservation(reservation).subscribe(
+          resp => {
+            console.log(resp);
+          }, err => {
+            console.log(err);
+          }
+        );
       }
     );
-    const equipement = JSON.parse(localStorage.getItem('equipement'));
-    const demande = demand;
-    const etat = 'initial';
-    const reservation = {
-      demande,
-      equipement,
-      etat
-    };
-    console.log(equipement);
-    this.reservationService.addReservation(reservation).subscribe(
-      resp => {
-        console.log(resp);
-      }, err => {
-        console.log(err);
-      }
-    );
-  }
+}
 }

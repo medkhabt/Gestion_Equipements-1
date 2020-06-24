@@ -1,6 +1,10 @@
 package com.ensa.rest;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.List;
+import java.util.zip.DataFormatException;
+import java.util.zip.Inflater;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -42,7 +46,14 @@ public class ReservationRestController {
 	}
 	@GetMapping("/get/{id}")
 	public Reservation getReservation(@PathVariable int id) {
-		 return reservationService.getReservation(id);
+		Reservation reservation = reservationService.getReservation(id);
+		Reservation r = new Reservation(reservation);
+		Demande d = new Demande(reservation.getDemande());
+		if(reservation.getDemande().getObligationScanne()!=null) {
+			d.setObligationScanne(decompressBytes(reservation.getDemande().getObligationScanne()));
+			r.setDemande(d);
+		}
+		return r;
 	}
 	@PostMapping("/add")
 	public Reservation createReservation(@RequestBody Reservation Reservation) {
@@ -81,6 +92,22 @@ public class ReservationRestController {
 		reservationService.delete(id);
 	}
 	
+	public static byte[] decompressBytes(byte[] data) {
+		Inflater inflater = new Inflater();
+		inflater.setInput(data);
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream(data.length);
+		byte[] buffer = new byte[1024];
+		try {
+			while (!inflater.finished()) {
+				int count = inflater.inflate(buffer);
+				outputStream.write(buffer, 0, count);
+			}
+			outputStream.close();
+		} catch (IOException ioe) {
+		} catch (DataFormatException e) {
+		}
+		return outputStream.toByteArray();
+	}
 	
 	
 	

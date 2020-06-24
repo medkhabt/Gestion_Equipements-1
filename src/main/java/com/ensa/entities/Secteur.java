@@ -11,6 +11,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Secteur {
 
@@ -29,6 +32,22 @@ public class Secteur {
 	private District district;
 	
 	
+	public Secteur(int id, String libelle, double surface, String responsable, List<Equipement> equipements, Qaid qaid,
+			District district) {
+		super();
+		this.id = id;
+		this.libelle = libelle;
+		this.surface = surface;
+		this.responsable = responsable;
+		this.equipements = equipements;
+		this.qaid = qaid;
+		this.district = district;
+	}
+	
+	public Secteur() {
+		super();
+	}
+
 	public District getDistrict() {
 		return district;
 	}
@@ -41,7 +60,7 @@ public class Secteur {
 	public void setQaid(Qaid qaid) {
 		this.qaid = qaid;
 	}
-	
+	@JsonIgnore
 	public List<Equipement> getEquipements() {
 		return equipements;
 	}

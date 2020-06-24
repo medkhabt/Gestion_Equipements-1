@@ -14,6 +14,7 @@ export class EquipementUpdateComponent implements OnInit {
   equipement: any;
   id: number;
   updateForm: FormGroup;
+  secteur: any;
   constructor(private equipementService: EquipementsService,
               public authservice: AuthService,
               private router: ActivatedRoute,
@@ -24,7 +25,11 @@ export class EquipementUpdateComponent implements OnInit {
     this.equipementService.getEquipement(this.id).subscribe(
       res => {
         this.equipement = res;
-        this.initForm();
+        this.equipementService.getSecteurByEquipement(this.id).subscribe(
+          resp => {this.secteur = resp;
+                   this.initForm();
+                }
+        );
       },
       err => console.log(err)
     );
@@ -39,7 +44,8 @@ export class EquipementUpdateComponent implements OnInit {
         adresse: [this.equipement.adresse, [Validators.required]],
         largeur: [ this.equipement.largeur , [Validators.required] ],
         longueur: [ this.equipement.longueur , [Validators.required] ],
-        secteur: [ null , [Validators.required] ]
+        secteur: [ this.secteur.id , [Validators.required] ],
+        etat: [this.equipement.etat, [Validators.required]]
       }
     );
   }

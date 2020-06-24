@@ -8,7 +8,7 @@
       <nav class="navbar navbar-left navstyle mb-0">
           <a routerLink="/home" class="nav-link" *ngIf="!authservice.isloggedIn()">Home</a>
           <a routerLink="/actualite" class="nav-link" *ngIf="!authservice.isloggedIn()">Actualite</a>
-          <a routerLink="/equipements" class="nav-link" *ngIf="!authservice.isloggedIn()">Listes des equipements</a>
+          <a routerLink="/equipements" class="nav-link" >Listes des equipements</a>
           <a routerLink="/demandeurProfile" class="nav-link" *ngIf="authservice.isDemandeur()">Mon Profile</a>
           <a routerLink="/mesDemandes" class="nav-link" *ngIf="authservice.isDemandeur()">Mes demandes</a>
           <a routerLink="/AddDemande" class="nav-link" *ngIf="authservice.isDemandeur()">Créer une demande</a>
@@ -16,7 +16,6 @@
           <a routerLink="/AllReservations" class="nav-link" *ngIf="authservice.isGestionnaire()">Réservations</a>
           <a routerLink="/AllAutorisations" class="nav-link" *ngIf="authservice.isGestionnaire()">Autorisations</a>
           <a routerLink="/demandeurs" class="nav-link" *ngIf="authservice.isGestionnaire()">Les Demandeurs</a>
-          <a routerLink="/equipements" class="nav-link" >Equipements</a>
       </nav>
   </div>
   

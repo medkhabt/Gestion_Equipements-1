@@ -3,6 +3,7 @@ package com.ensa.entities;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -27,25 +28,13 @@ public class Demande {
 	private String objet;
 	private String description;
 	private String nombrePresent;
+	@Column(name ="obligationScanne", length = 900000 )
 	private byte[] obligationScanne;
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Demandeur demandeur;
 	@OneToMany(mappedBy = "demande")
 	private List<Reservation> reservations;
 	
-	
-	
-	public Demande(int id, String reference, String typeEvent, Date dateDemande, Date dateReservation, String objet,
-			String description, String nombrePresent, byte[] obligationScanne,
-			Demandeur demandeur, List<Reservation> reservations) {
-		this.id = id;
-		this.reference = reference;
-		this.typeEvent = typeEvent;
-		this.dateDemande = dateDemande;
-		this.dateReservation = dateReservation;
-		this.obligationScanne = obligationScanne;
-		this.demandeur = demandeur;
-	}
 
 	public Demande() {
 	}
@@ -57,7 +46,28 @@ public class Demande {
 		this.dateReservation = demande.getDateReservation();
 		this.obligationScanne = demande.getObligationScanne();
 		this.demandeur = demande.getDemandeur();
+		this.objet = demande.getObjet();
+		this.description = demande.getDescription();
+		this.nombrePresent = demande.getNombrePresent();
 	}
+	
+	public Demande(int id, String reference, String typeEvent, Date dateDemande, Date dateReservation, String objet,
+			String description, String nombrePresent, byte[] obligationScanne, Demandeur demandeur,
+			List<Reservation> reservations) {
+		super();
+		this.id = id;
+		this.reference = reference;
+		this.typeEvent = typeEvent;
+		this.dateDemande = dateDemande;
+		this.dateReservation = dateReservation;
+		this.objet = objet;
+		this.description = description;
+		this.nombrePresent = nombrePresent;
+		this.obligationScanne = obligationScanne;
+		this.demandeur = demandeur;
+		this.reservations = reservations;
+	}
+
 	@JsonIgnore
 	public Demandeur getDemandeur() {
 		return demandeur;

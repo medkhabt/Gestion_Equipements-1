@@ -23,4 +23,7 @@ export class EquipementsService {
   updateEquipement(id: number, equipement: any) {
     return this.http.put(this.host + '/equipements/update/' + id, equipement);
   }
+  getSecteurByEquipement(id) {
+    return this.http.get(this.host + '/secteurs/get_equipement/' + id);
+  }
 }

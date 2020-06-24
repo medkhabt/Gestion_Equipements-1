@@ -3,6 +3,7 @@ package com.ensa.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,12 +18,15 @@ import com.ensa.entities.District;
 import com.ensa.entities.Equipement;
 import com.ensa.entities.Secteur;
 import com.ensa.metier.EquipementService;
+import com.ensa.metier.SecteurService;
 
 @RestController
 @RequestMapping("equipements")
+@Transactional
 public class EquipementRestController {
 	@Autowired
 	EquipementService equipementService;
+
 	
 	@GetMapping("")
 	public List<Equipement> getEquipements() {
@@ -32,9 +36,9 @@ public class EquipementRestController {
 	public void createEquipement(@RequestBody Equipement equipement) {
 		 equipementService.createEquipement(equipement);
 	}
-	@PutMapping("/update")
-	public void updateEquipement(@RequestBody Equipement equipement, @RequestBody int id) {
-		 equipementService.updateEquipement(equipement, id);
+	@PutMapping("/update/{id}")
+	public Equipement updateEquipement(@RequestBody Equipement equipement, @PathVariable int id) {
+		return equipementService.updateEquipement(equipement, id);
 	}
 	@DeleteMapping("/delete_Equipement")
 	public void deleteEquipement(@RequestBody int id) {

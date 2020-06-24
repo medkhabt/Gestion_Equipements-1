@@ -27,4 +27,7 @@ public class SecteurService {
 	public void delete(int id) {
 		secteurRepo.deleteById(id);
 	}
+	public Secteur getSecteur(int id) {
+		return secteurRepo.findById(id);
+	}
 }
