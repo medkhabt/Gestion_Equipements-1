@@ -1,8 +1,10 @@
 package com.ensa.rest;
 
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 
+import org.docx4j.openpackaging.exceptions.Docx4JException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ensa.entities.Autorisation;
+import com.ensa.entities.Demande;
 import com.ensa.entities.Demandeur;
 import com.ensa.entities.Equipement;
 import com.ensa.entities.Gestionnaire;
 import com.ensa.metier.AutorisationService;
+import com.ensa.metier.DemandeService;
 
 @RestController
 @RequestMapping("/autorisations")
@@ -28,6 +32,8 @@ import com.ensa.metier.AutorisationService;
 public class AutorisationRestController {
 	@Autowired
 	AutorisationService autorisationService;
+	@Autowired
+	DemandeService demandeService;
 	
 	@GetMapping("/test")
 	public String hello() {
@@ -75,7 +81,17 @@ public class AutorisationRestController {
 	public List<Autorisation> getAutorisations(@RequestBody Gestionnaire gestionnaire) {
 		return autorisationService.getAutorisations(gestionnaire);
 	}
-	
+	// create autorisation ==> word
+	@GetMapping("/create_doc/{id}")
+	public File getDoc(@PathVariable int id) throws Docx4JException {
+		return autorisationService.getDoc(id);
+	}
+	@GetMapping("/get_doc/{id}")
+	public byte[] getDocblob(@PathVariable int id) {
+		Demande demande = demandeService.getDemande(id);
+		System.out.println("fichier word : "+demande.getObligationScanne().length);
+		return demande.getObligationScanne();
+	}
 	
 	
 

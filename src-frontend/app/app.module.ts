@@ -48,6 +48,9 @@ import { ClarityModule } from '@clr/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemandeDetailComponent } from './demandeur/demande/demande-detail/demande-detail.component';
 import { EquipementUpdateComponent } from './list-equipements/equipement-update/equipement-update.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { EquipementCreateComponent } from './list-equipements/equipement-create/equipement-create.component';
+
 
 @NgModule({
   declarations: [
@@ -80,7 +83,8 @@ import { EquipementUpdateComponent } from './list-equipements/equipement-update/
     DemandeViewComponent,
     ViewFileComponent,
     DemandeDetailComponent,
-    EquipementUpdateComponent
+    EquipementUpdateComponent,
+    EquipementCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -95,7 +99,8 @@ import { EquipementUpdateComponent } from './list-equipements/equipement-update/
     DialogModule,
     PdfViewerModule,
     ClarityModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    GoogleMapsModule
   ],
   providers: [AuthService, EquipementsService, AuthGuardService],
   bootstrap: [AppComponent]

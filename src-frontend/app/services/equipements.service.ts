@@ -26,4 +26,13 @@ export class EquipementsService {
   getSecteurByEquipement(id) {
     return this.http.get(this.host + '/secteurs/get_equipement/' + id);
   }
+  getSecteurs() {
+    return this.http.get(this.host + '/secteurs');
+  }
+  getSecteur(id) {
+    return this.http.get(this.host + '/secteurs/get/' + id);
+  }
+  addEquipement(equipement ) {
+    return this.http.post(this.host + '/equipements/add', equipement);
+  }
 }

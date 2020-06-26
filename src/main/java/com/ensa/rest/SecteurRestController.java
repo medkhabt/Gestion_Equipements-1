@@ -38,6 +38,10 @@ public class SecteurRestController {
 		secteurService.delete(id);
 	}
 	@GetMapping("/get_equipement/{id}")
+	public Secteur getSecteurByEquipement(@PathVariable int id) {
+		return secteurService.getByEquipement(id);
+	}
+	@GetMapping("/get/{id}")
 	public Secteur getSecteur(@PathVariable int id) {
 		return secteurService.getSecteur(id);
 	}

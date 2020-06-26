@@ -49,7 +49,6 @@ public class Equipement {
 	public Equipement() {
 		
 	}
-	@JsonIgnore
 	public Secteur getSecteur() {
 		return secteur;
 	}

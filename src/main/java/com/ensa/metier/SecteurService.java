@@ -30,4 +30,7 @@ public class SecteurService {
 	public Secteur getSecteur(int id) {
 		return secteurRepo.findById(id);
 	}
+	public Secteur getByEquipement(int id) {
+		return secteurRepo.findByequipement(id);
+	}
 }

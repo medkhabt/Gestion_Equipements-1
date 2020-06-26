@@ -36,7 +36,7 @@ public class GestionnaireService implements com.ensa.repo.GestionnaireService {
 		g.setEmail(gestionnaire.getEmail());
 		g.setTelephone(gestionnaire.getTelephone());
 		g.setActived(gestionnaire.isActived());
-		return gestionnaireRepo.save(gestionnaire);
+		return gestionnaireRepo.save(g);
 	}
 	public List<Gestionnaire> getAll(){
 		return gestionnaireRepo.findAll();

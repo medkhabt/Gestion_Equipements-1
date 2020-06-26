@@ -36,7 +36,7 @@ public class EquipementService {
 		eq.setNom(equipement.getNom());
 		eq.setSecteur(equipement.getSecteur());
 		eq.setEtat(equipement.getEtat());
-//		System.out.println(equipement.getSecteur());
+		System.out.println(equipement.getSecteur());
 		return equipementRepo.save(eq);
 	}
 	public Equipement getEquipementByRespo(int idrespo) {

@@ -1,5 +1,6 @@
 package com.ensa.entities;
 
+import java.io.File;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -20,6 +21,7 @@ public class Autorisation {
 	private Date dateFin;
 	private String type;
 	private String objectif;
+	private File fichierWord;
 	
 	@OneToOne
 	@JoinColumn(name = "idReservation")
@@ -28,6 +30,23 @@ public class Autorisation {
 	@JoinColumn(name = "idTaxe")
 	private Taxe taxe;
 	
+	public Autorisation(int id, Date dateReservation, Date dateFin, String type, String objectif, File fichierWord,
+			Reservation reservation, Taxe taxe) {
+		super();
+		this.id = id;
+		this.dateReservation = dateReservation;
+		this.dateFin = dateFin;
+		this.type = type;
+		this.objectif = objectif;
+		this.fichierWord = fichierWord;
+		this.reservation = reservation;
+		this.taxe = taxe;
+	}
+	
+	public Autorisation() {
+		super();
+	}
+
 	public Reservation getReservation() {
 		return reservation;
 	}
@@ -71,6 +90,13 @@ public class Autorisation {
 	public void setTaxe(Taxe taxe) {
 		this.taxe = taxe;
 	}
+	public File getFichierWord() {
+		return fichierWord;
+	}
+	public void setFichierWord(File fichierWord) {
+		this.fichierWord = fichierWord;
+	}
+	
 	
 	
 }

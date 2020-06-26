@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ReservationsService } from 'src/app/services/reservations.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { AutorisationsService } from 'src/app/services/autorisations.service';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-demande-detail',
@@ -14,9 +16,11 @@ export class DemandeDetailComponent implements OnInit {
   reservation: any;
   obligation: any;
   recepisse: any;
+  fileName = 'autorisation';
   constructor(private router: ActivatedRoute,
               private reservationService: ReservationsService,
-              private authservice: AuthService) { }
+              private authservice: AuthService,
+              private autorisationService: AutorisationsService) { }
 
   ngOnInit(): void {
     this.id = this.router.snapshot.params.id;
@@ -45,6 +49,24 @@ export class DemandeDetailComponent implements OnInit {
     }
 
     return [year, month, day].join('-');
+  }
+
+  downloadFile() {
+    console.log('inside function!!!');
+    // download file
+    this.autorisationService.getAutorisationWord(94).subscribe(
+        res => {
+          //  const blob = new Blob([res.blob()], { type : 'application/msword' });
+          //  const file = new File([blob], this.fileName + '.doc', { type: 'application/msword' });
+            console.log(res);
+          //  saveAs(file);
+        },
+        err => {
+            // notify error
+            console.log('errrrreuuuuuuuuur');
+            console.log(err);
+        }
+    );
 }
 
 }

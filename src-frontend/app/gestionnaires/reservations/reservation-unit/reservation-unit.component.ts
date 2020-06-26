@@ -18,6 +18,7 @@ export class ReservationUnitComponent implements OnInit {
   demandeur: any;
   reservationForm: FormGroup;
   comment: string;
+  obligation: any;
   constructor(private route: Router,
               private reservationServce: ReservationsService,
               private router: ActivatedRoute,
@@ -29,6 +30,7 @@ export class ReservationUnitComponent implements OnInit {
     this.reservationServce.getReservation(this.id).subscribe(
       res => {
         this.reservation = res;
+        this.obligation = 'data:application/pdf;base64,' + this.reservation.demande.obligationScanne;
         this.reservationServce.getDemandeurByDemande(this.reservation.demande.id).subscribe(
           resp => {
             this.demandeur = resp;

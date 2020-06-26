@@ -32,12 +32,13 @@ public class EquipementRestController {
 	public List<Equipement> getEquipements() {
 		return equipementService.getAll();
 	}
-	@PostMapping("/create_Equipement")
-	public void createEquipement(@RequestBody Equipement equipement) {
-		 equipementService.createEquipement(equipement);
+	@PostMapping("/add")
+	public Equipement createEquipement(@RequestBody Equipement equipement) {
+		return equipementService.createEquipement(equipement);
 	}
 	@PutMapping("/update/{id}")
 	public Equipement updateEquipement(@RequestBody Equipement equipement, @PathVariable int id) {
+		System.out.println("secteur : "+equipement.getSecteur());
 		return equipementService.updateEquipement(equipement, id);
 	}
 	@DeleteMapping("/delete_Equipement")

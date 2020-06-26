@@ -17,12 +17,14 @@ import { Reservation } from 'src/app/models/reservation.model';
 export class DemandeFormulaireComponent implements OnInit {
   demandeForm: FormGroup;
   errorMessage: string;
-  message: any;
+  message: any = 'erreur !!! merci de remplir tous les champs';
   user: Demandeur;
   userSubjection: Subscription;
   username: string;
   id: number;
   obligationScanne: any;
+  d: Date;
+  date: string;
   constructor(private formbuilder: FormBuilder,
               private demandeSrevice: DemandeService,
               private authService: AuthService,
@@ -33,12 +35,17 @@ export class DemandeFormulaireComponent implements OnInit {
     this.user = this.authService.getUser();
     console.log(this.user);
     this.initForm();
+    this.d = new Date();
+    this.d.setDate( this.d.getDate() + 10);
+    const m: number = this.d.getMonth() + 1;
+    this.date = this.d.getFullYear() + '-' + m + '-' + this.d.getDate();
+    console.log(this.date);
   }
 
   initForm() {
     this.demandeForm = this.formbuilder.group({
       typeEvent: [ '' , [Validators.required] ],
-      dateReservation: ['', [Validators.required]],
+      dateReservation: [ [Validators.required]],
       objet: ['', [Validators.required]],
       equipement: ['', [Validators.required]],
       nombrePresent: ['', [Validators.required]],
@@ -66,6 +73,7 @@ export class DemandeFormulaireComponent implements OnInit {
         this.demandeSrevice.addfileToDemande(uploadData, demande.id).subscribe(
           res => {
             localStorage.setItem('demande', JSON.stringify(res));
+            this.message = 'votre demande a été enregistrée avec succés !';
           }, err => console.log(err)
         );
       }, err2 => {
@@ -102,4 +110,8 @@ export class DemandeFormulaireComponent implements OnInit {
       }
     );
 }
+/*minDate() {
+  this.d = new Date();
+  return this.d.setDate( this.d.getDate() + 10 );
+}*/
 }

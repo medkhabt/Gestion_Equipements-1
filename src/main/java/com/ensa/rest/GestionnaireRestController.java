@@ -1,5 +1,6 @@
 package com.ensa.rest;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -23,7 +24,7 @@ import com.ensa.metier.GestionnaireService;;
 
 
 @RestController
-@RequestMapping("gestionnaires/")
+@RequestMapping("gestionnaires")
 
 public class GestionnaireRestController {
 	@Autowired
@@ -45,7 +46,7 @@ public class GestionnaireRestController {
 		return gestionnaire;
 
 	}
-	@GetMapping("{username}")
+	@GetMapping("/{username}")
 	public Gestionnaire getByUsername(@PathVariable String username) {
 		return gestionnaireService.findByUsername(username);
 	}
@@ -53,9 +54,9 @@ public class GestionnaireRestController {
 //	public Gestionnaire getById(@PathVariable long id) {
 //		return gestionnaireService.findById(id);
 //	}
-	@PutMapping("/update_gestionnaire")
-	public void updateGestionnaire(@RequestBody Gestionnaire gestionnaire, @PathVariable Long id) {
-		gestionnaireService.updateGestionnaire(gestionnaire, id);
+	@PutMapping("/update/{id}")
+	public Gestionnaire updateGestionnaire(@RequestBody Gestionnaire gestionnaire, @PathVariable Long id) throws IOException {
+		return gestionnaireService.updateGestionnaire(gestionnaire, id);
 	}
 	@DeleteMapping("/delete")
 	public void deleteGestionnaire(@RequestBody Gestionnaire gestionnaire) {

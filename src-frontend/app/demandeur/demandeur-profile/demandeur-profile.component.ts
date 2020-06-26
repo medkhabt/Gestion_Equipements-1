@@ -19,12 +19,21 @@ export class DemandeurProfileComponent implements OnInit {
               private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.demandeur = JSON.parse(localStorage.getItem('demandeur'));
-    this.retreivedRecepisse = 'data:image/jpeg;base64,' + this.demandeur.imageProfile;
-    this.recepisse = 'data:image/jpeg;base64,' + this.demandeur.recepisse;
-    this.statut = 'data:image/jpeg;base64,' + this.demandeur.statut;
-    this.profileImage = 'data:image/jpeg;base64,' + this.demandeur.imageProfile;
-    this.initForm();
+    const d: any = JSON.parse(localStorage.getItem('demandeur'));
+    const id = d.id;
+    this.authService.getDemandeurById(id).subscribe(
+      resp => {
+        this.demandeur = resp;
+        this.retreivedRecepisse = 'data:image/jpeg;base64,' + this.demandeur.imageProfile;
+        this.recepisse = 'data:image/jpeg;base64,' + this.demandeur.recepisse;
+        this.statut = 'data:image/jpeg;base64,' + this.demandeur.statut;
+        this.profileImage = 'data:image/jpeg;base64,' + this.demandeur.imageProfile;
+        this.initForm();
+      },
+      err => console.log(err)
+    );
+
+
   }
   initForm() {
     this.ProfileForm = this.formBuilder.group(

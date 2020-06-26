@@ -25,6 +25,7 @@ import { DemandeViewComponent } from './gestionnaires/demandeurs/list-demandes/d
 import { ViewFileComponent } from './gestionnaires/demandeurs/demandeur-unit/view-file/view-file.component';
 import { DemandeDetailComponent } from './demandeur/demande/demande-detail/demande-detail.component';
 import { EquipementUpdateComponent } from './list-equipements/equipement-update/equipement-update.component';
+import { EquipementCreateComponent } from './list-equipements/equipement-create/equipement-create.component';
 
 
 
@@ -55,6 +56,7 @@ const routes: Routes = [
   {path: 'demandeur/view_file/:id', canActivate: [AuthGuardService], component: ViewFileComponent},
   {path: 'mesDemandes/demande_detail/:id', canActivate: [AuthGuardService], component: DemandeDetailComponent},
   {path: 'equipements/update/:id', canActivate: [AuthGuardService], component: EquipementUpdateComponent},
+  {path: 'equipements/addEquipement', canActivate: [AuthGuardService], component: EquipementCreateComponent},
   {path: '', component: HomeComponent}
 ];
 

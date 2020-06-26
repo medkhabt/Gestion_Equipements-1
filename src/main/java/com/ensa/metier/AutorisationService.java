@@ -1,9 +1,14 @@
 package com.ensa.metier;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.docx4j.openpackaging.exceptions.Docx4JException;
+import org.docx4j.openpackaging.exceptions.InvalidFormatException;
+import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
+import org.docx4j.openpackaging.parts.WordprocessingML.MainDocumentPart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -67,6 +72,18 @@ public class AutorisationService {
 			autorisations.add(reservation.getAutorisation());
 		}
 		return autorisations;
+	}
+	public File getDoc(int id) throws Docx4JException {
+		Autorisation a = autorisationRepo.findById(id);
+		WordprocessingMLPackage wordPackage = WordprocessingMLPackage.createPackage();
+		MainDocumentPart mainDocumentPart = wordPackage.getMainDocumentPart();
+		mainDocumentPart.addStyledParagraphOfText("Title", "Hello World!");
+		mainDocumentPart.addParagraphOfText("Welcome To Baeldung");
+		File exportFile = new File("welcome.docx");
+		a.setFichierWord(exportFile);
+		autorisationRepo.save(a);
+		wordPackage.save(exportFile);
+		return a.getFichierWord();		
 	}
 	
 	

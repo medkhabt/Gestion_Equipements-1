@@ -28,6 +28,9 @@
                 <button class="btn btn-primary btn-sm" *ngIf="reservation.etat==='initial'" type="button" [routerLink]="['/AllReservations', reservation.id]" style="margin-top: 5px;">
                     Traiter la demande
                 </button>
+                <button class="btn btn-primary btn-sm" *ngIf="reservation.etat==='validée' || reservation.etat==='rejetée'" type="button" [routerLink]="['/AllReservations', reservation.id]" style="margin-top: 5px;">
+                    Détail
+                </button>
                 </td>
               </tr>
             </tbody>

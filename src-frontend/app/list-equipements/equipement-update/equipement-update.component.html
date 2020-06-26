@@ -27,6 +27,7 @@
         <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
         
         <ul class="list-group">
+            <input type="text" class="form-control" name="secteur" id="secteur"  formControlName="secteur" hidden>
             <li class="list-group-item">
                 <span class="label"> id:</span> 
                 <span class="form-control">{{equipement.id}}</span>
@@ -44,8 +45,8 @@
                 <input type="text" class="form-control" name="adresse" id="adresse"  formControlName="adresse">
             </li>
             <li class="list-group-item">
-                <span class="label">secteur:</span> 
-                <input type="text" class="form-control" name="secteur" id="secteur"  formControlName="secteur">
+                <span class="label"> Secteur:</span> 
+                <span class="form-control">{{secteur.id}}</span>
             </li>
             <li class="list-group-item">
                 <span class="label">Etat :</span> 
@@ -57,7 +58,7 @@
         </ul>    
         <div  style="margin: 6px; float: right;">
             <button type="submit" class="btn btn-success">Save</button>
-            <button type="button" class="btn btn-primary" [routerLink]="['equipements']">Annuler</button>
+            <button type="button" class="btn btn-primary" [routerLink]="['/equipements']">Annuler</button>
         </div>
         </form>
     </div>
@@ -66,7 +67,7 @@
         </div>
         <div class="card-footer">
         </div>
-    </div>       
+    </div>      
 </div>
 <!-- public id: Number,
 public nom: string,

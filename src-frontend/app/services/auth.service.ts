@@ -92,6 +92,9 @@ export class AuthService {
   updateDemandeur(demandeur: any, id: any) {
     return this.http.put(this.host + '/demandeurs/update/' + id, demandeur);
   }
+  updateGestionnaire(gestionnaire, id) {
+    return this.http.put(this.host + '/gestionnaires/update/' + id, gestionnaire);
+  }
   sendFile(file: any, id: any) {
     return this.http.put(this.host + '/demandeurs/update_files/' + id, file);
   }

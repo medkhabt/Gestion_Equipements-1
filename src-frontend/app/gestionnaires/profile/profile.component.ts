@@ -16,10 +16,18 @@ export class ProfileComponent implements OnInit {
               private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.gestionnaire = JSON.parse(localStorage.getItem('gestionnaire'));
+    const g = JSON.parse(localStorage.getItem('gestionnaire'));
+    this.authService.getGestionnaire(g.username).subscribe(
+      resp => {
+        this.gestionnaire = resp;
+        this.initForm();
+        console.log(this.gestionnaire);
+      },
+      err => console.log(err)
+    );
 
-    console.log(this.gestionnaire);
-    this.initForm();
+
+
   }
 
   initForm() {
@@ -38,6 +46,11 @@ export class ProfileComponent implements OnInit {
   }
 
   onSubmit() {
+    this.authService.updateGestionnaire(this.ProfileForm.value, this.gestionnaire.id).subscribe(
+      resp => {
+        console.log(resp);
+      }, err => console.log(err)
+    );
 
   }
 

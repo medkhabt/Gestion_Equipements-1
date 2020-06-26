@@ -44,7 +44,7 @@ export class EquipementUpdateComponent implements OnInit {
         adresse: [this.equipement.adresse, [Validators.required]],
         largeur: [ this.equipement.largeur , [Validators.required] ],
         longueur: [ this.equipement.longueur , [Validators.required] ],
-        secteur: [ this.secteur.id , [Validators.required] ],
+        secteur: [ this.secteur, [Validators.required] ],
         etat: [this.equipement.etat, [Validators.required]]
       }
     );

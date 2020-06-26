@@ -18,41 +18,53 @@
             </div> -->
         </div>
         <div class="card-block">
-            <h4 class="card-title">{{equipement.nom}}</h4>
+            <h4 class="card-title">Nouvel Equipement</h4>
             <!-- <p class="card-text">
                 description.. 
             </p> -->
         </div>
-    <div>
+    <div *ngIf="authservice.isGestionnaire()">
+        <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+        
         <ul class="list-group">
             <li class="list-group-item">
-                <span class="label"> id:</span> 
-                <span class="col-6">{{equipement.id}}</span>
+                <span class="label"> Nom:</span> 
+                <input type="text" class="form-control" name="nom" id="nom"  formControlName="nom">
             </li>
             <li class="list-group-item">
                 <span class="label">id du Responsable:</span> 
-                <span class="col-6">{{equipement.idResponsable}}</span>
+                <input type="text" class="form-control" name="idResponsable" id="idResponsable"  formControlName="idResponsable">
             </li>
             <li class="list-group-item">
                 <span class="label">adresse:</span> 
-                <span class="col-6">{{equipement.adresse}}</span>
+                <input type="text" class="form-control" name="adresse" id="adresse"  formControlName="adresse">
             </li>
             <li class="list-group-item">
-                <span class="label">coordonnees:</span> 
-                <span class="col-6">({{equipement.largeur}},{{equipement.longueur}})</span>
+                <span class="label"> Secteur:</span> 
+                <select type="text" class="form-control" name="secteur" id="secteur"  formControlName="secteur">
+                    <option *ngFor="let s of secteurs" [value]="s.id">{{s.id}}</option>
+                </select>
             </li>
             <li class="list-group-item">
-                <button type="button" class="btn btn-primary btn-sm" style="float: right;" *ngIf="authService.isGestionnaire()" [routerLink]="['update/', equipement.id]">Modifier</button>
+                <span class="label">Etat :</span> 
+                <select type="text" class="form-control" name="etat" id="etat"  formControlName="etat">
+                    <option value="maintenu" selected>maintenu</option>
+                    <option value="suspendu">suspendu</option>
+                </select>
             </li>
-        </ul>
+        </ul>    
+        <div  style="margin: 6px; float: right;">
+            <button type="submit" class="btn btn-success" >Save</button>
+            <button type="button" class="btn btn-primary" [routerLink]="['/equipements']">Annuler</button>
+        </div>
+        </form>
     </div>
         <div>
             <!-- google maps.  -->
-            <google-map></google-map>
         </div>
         <div class="card-footer">
         </div>
-    </div>       
+    </div>      
 </div>
 <!-- public id: Number,
 public nom: string,
