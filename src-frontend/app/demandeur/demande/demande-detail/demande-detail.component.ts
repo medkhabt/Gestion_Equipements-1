@@ -54,7 +54,7 @@ export class DemandeDetailComponent implements OnInit {
   downloadFile() {
     console.log('inside function!!!');
     // download file
-    this.autorisationService.getAutorisationWord(94).subscribe(
+    this.autorisationService.getAutorisationWord().subscribe(
         res => {
           //  const blob = new Blob([res.blob()], { type : 'application/msword' });
           //  const file = new File([blob], this.fileName + '.doc', { type: 'application/msword' });

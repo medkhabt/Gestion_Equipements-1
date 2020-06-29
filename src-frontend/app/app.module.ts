@@ -50,6 +50,7 @@ import { DemandeDetailComponent } from './demandeur/demande/demande-detail/deman
 import { EquipementUpdateComponent } from './list-equipements/equipement-update/equipement-update.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { EquipementCreateComponent } from './list-equipements/equipement-create/equipement-create.component';
+import { HttpModule } from '@angular/http';
 
 
 @NgModule({
@@ -100,7 +101,9 @@ import { EquipementCreateComponent } from './list-equipements/equipement-create/
     PdfViewerModule,
     ClarityModule,
     BrowserAnimationsModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    // tslint:disable-next-line: deprecation
+    HttpModule,
   ],
   providers: [AuthService, EquipementsService, AuthGuardService],
   bootstrap: [AppComponent]

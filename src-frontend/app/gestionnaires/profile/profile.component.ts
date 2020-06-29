@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -13,7 +14,8 @@ export class ProfileComponent implements OnInit {
   gestionnaire: any;
   g: any;
   constructor(private formBuilder: FormBuilder,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit(): void {
     const g = JSON.parse(localStorage.getItem('gestionnaire'));
@@ -49,6 +51,7 @@ export class ProfileComponent implements OnInit {
     this.authService.updateGestionnaire(this.ProfileForm.value, this.gestionnaire.id).subscribe(
       resp => {
         console.log(resp);
+       // this.router.navigate(['']);
       }, err => console.log(err)
     );
 

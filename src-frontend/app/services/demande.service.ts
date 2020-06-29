@@ -20,7 +20,7 @@ export class DemandeService {
     return this.http.post(this.host + '/demandes/addFile/' + id, file);
   }
 
-  getDemandeBydemandeur(id: any) {
+  getDemandesBydemandeur(id: any) {
     return this.http.get(this.host + '/demandeurs/demandes/' + id
   //  {headers: new HttpHeaders({authorization: this.jwtToken})}
     );

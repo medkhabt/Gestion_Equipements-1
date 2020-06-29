@@ -10,7 +10,6 @@ import com.ensa.entities.Secteur;
 
 @Repository
 public interface EquipementRepository extends JpaRepository<Equipement, Integer> {
-	public Equipement save(Equipement equipement);
 	public Equipement findById(int id);
 	public List<Equipement> findAll();
 	public Equipement findByIdResponsable(int idrespo);
@@ -19,5 +18,6 @@ public interface EquipementRepository extends JpaRepository<Equipement, Integer>
 	public Equipement findByLargeurAndLongueur(double largeur, double longueur);
 	public void deleteById(int id);
 	public void delete(Equipement equipement);
+	public List<Equipement> findByEtat(String etat);
 
 }

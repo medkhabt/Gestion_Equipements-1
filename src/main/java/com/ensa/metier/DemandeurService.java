@@ -49,7 +49,7 @@ public class DemandeurService implements com.ensa.repo.DemandeurService {
 		Demandeur d = demandeurRepo.findById(id).get();
 		System.out.println(d.getNom());
 		d.setNom(demandeur.getNom());
-		d.setPrenom(demandeur.getNom());
+		d.setPrenom(demandeur.getPrenom());
 		d.setEmail(demandeur.getEmail());
 		d.setType(demandeur.getType());
 		d.setTelephone(demandeur.getTelephone());

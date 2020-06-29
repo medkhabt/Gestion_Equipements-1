@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-demandeur-profile',
@@ -15,18 +16,21 @@ export class DemandeurProfileComponent implements OnInit {
   statut: any;
   profileImage: any;
   retreivedRecepisse: any;
+  d: any;
   constructor(private formBuilder: FormBuilder,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit(): void {
-    const d: any = JSON.parse(localStorage.getItem('demandeur'));
-    const id = d.id;
+    this.d = JSON.parse(localStorage.getItem('demandeur'));
+    const id = this.d.id;
+    console.log(this.d);
     this.authService.getDemandeurById(id).subscribe(
       resp => {
         this.demandeur = resp;
-        this.retreivedRecepisse = 'data:image/jpeg;base64,' + this.demandeur.imageProfile;
-        this.recepisse = 'data:image/jpeg;base64,' + this.demandeur.recepisse;
-        this.statut = 'data:image/jpeg;base64,' + this.demandeur.statut;
+//        this.retreivedRecepisse = 'data:image/jpeg;base64,' + this.demandeur.imageProfile;
+        this.recepisse = 'data:application/pdf;base64,' + this.demandeur.recepisse;
+        this.statut = 'data:application/pdf;base64,' + this.demandeur.statut;
         this.profileImage = 'data:image/jpeg;base64,' + this.demandeur.imageProfile;
         this.initForm();
       },
@@ -75,18 +79,27 @@ export class DemandeurProfileComponent implements OnInit {
     this.authService.updateDemandeur(this.ProfileForm.value, this.demandeur.id).subscribe(
       resp => {
         console.log(resp);
+        const uploadImageData = new FormData();
+        const byteCharacters = atob(this.recepisse);
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        const byteArray = new Uint8Array(byteNumbers);
+        const blob = new Blob([byteArray], {type: 'application/pdf'});
+        uploadImageData.append('recepisse', blob, this.recepisse.name);
+        uploadImageData.append('statut', this.statut, this.statut.name);
+        uploadImageData.append('profileImage', this.profileImage, this.profileImage.name);
+        this.authService.sendFile(uploadImageData, this.demandeur.id).subscribe(
+          res => {
+            console.log(res);
+            this.router.navigate(['/demandeurProfile']);
+          }
+          , err => console.log(err)
+        );
       }, err => console.log(err)
     );
 
-
-    const uploadImageData = new FormData();
-    uploadImageData.append('recepisse', this.recepisse, this.recepisse.name);
-    uploadImageData.append('statut', this.statut, this.statut.name);
-    uploadImageData.append('profileImage', this.profileImage, this.profileImage.name);
-    this.authService.sendFile(uploadImageData, this.demandeur.id).subscribe(
-      res =>  console.log(res)
-      , err => console.log(err)
-    );
   }
   afficher() {
     console.log(this.recepisse);

@@ -1,7 +1,7 @@
 <br><br><br>
 
 <head>
-  <title>Bootstrap Example</title>
+  <title>Mon profile</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -10,7 +10,7 @@
 <hr>
 <div class="container bootstrap snippet">
     <div class="row">
-  		<div class="col-sm-10"><h1>{{demandeur.nom}} </h1></div>
+  		<div class="col-sm-10"><h1>{{demandeur.nom}}  </h1></div>
     	<div class="col-sm-2"><a href="#" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="..\assets\images\28fd20ccec6865e2d5f0e1f4446eb7bf.jpg"></a></div>
     </div>
     <div class="row">
@@ -19,28 +19,28 @@
 
       <div class="text-center">
         <!--<img src="..\assets\images\avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">-->
-        <img [src]="retreivedRecepisse" class="avatar img-circle img-thumbnail" alt="avatar">
+        <img [src]="profileImage" class="avatar img-circle img-thumbnail" alt="avatar">
         <h6>Upload a different photo...</h6>
         <input type="file" class="text-right center-block file-upload" (change)="saveProfileImage($event)" style="width: 90%;">
       </div><br>
 
                
           <div class="panel panel-default">
-            <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
-            <div class="panel-body"><a href="#">bootnipets.com</a></div>
+            <div class="panel-heading"> <i class="fa fa-link fa-1x"></i></div>
+            <div class="panel-body"><a href=""></a></div>
           </div>
           
           
           <ul class="list-group">
             <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-            <li class="list-group-item "><strong>Shares</strong><span> 125</span></li>
+            <li class="list-group-item "><strong></strong><span> </span></li>
            <!-- <li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span> 13</li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Posts</strong></span> 37</li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span> 78</li>-->
           </ul> 
                
           <div class="panel panel-default">
-            <div class="panel-heading">Social Media</div>
+            <div class="panel-heading"></div>
             <div class="panel-body">
             	<i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i>
             </div>
@@ -73,7 +73,7 @@
                       <div class="form-group">
                           
                           <div class="col-xs-6">
-                              <label for="username"><h4>Usernam</h4></label>
+                              <label for="username"><h4>Username</h4></label>
                               <input type="text" class="form-control" name="username" id="username" formControlName="username" placeholder="Username">
                           </div>
                       </div>
@@ -122,20 +122,20 @@
                       <div class="form-group">
                         <div class="col-xs-6">
                           <label for="recepisse"><h4>le récépissé définitif </h4></label>
-                          <input type="file" class="form-control" name="recepisse" id="recepisse" formControlName="recepisse" (change)="saveRecepisse($event)">
+                          <input type="file" class="form-control"  (change)="saveRecepisse($event)">
                         </div>
                     </div>
                     <div class="form-group">
                       <div class="col-xs-6">
                         <label for="statut"><h4>le statut </h4></label>
-                        <input type="file" class="form-control" name="statut" id="statut" formControlName="statut" (change)="saveStatut($event)">
+                        <input type="file" class="form-control" name="statut" id="statut"(change)="saveStatut($event)">
                       </div>
                   </div>
                       <div class="form-group">
                            <div class="col-xs-12">
                                 <br>
-                              	<button class="btn btn-lg btn-success" type="submit" href=""><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                               	<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                              	<button class="btn btn-success" type="submit"  data-toggle="modal" href="#exampleModal"> Save</button>
+                               	<button class="btn btn-secondary" type="reset"> Reset</button>
                                 <!--<button class="btn btn-lg btn-success" (click)="afficher()">afficher</button>-->
                             </div>
                       </div>
@@ -146,5 +146,26 @@
              </div><!--/tab-pane-->
             
         </div><!--/col-9-->
+                    
+    <!-- Modal -->
+<div class="modal " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">demande</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        test
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" href="">Close</button>
+      <!--  <button type="button" class="btn btn-primary">Save changes</button>-->
+      </div>
+    </div>
+  </div>
+</div>
     </div><!--/row-->
                                                       

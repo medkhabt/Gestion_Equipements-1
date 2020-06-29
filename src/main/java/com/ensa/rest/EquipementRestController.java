@@ -69,6 +69,10 @@ public class EquipementRestController {
 	public void delete(@PathVariable int id) {
 		equipementService.delete(id);
 	}
+	@GetMapping("/By_etat/{etat}")
+	public List<Equipement> getEquipementsByEtat(@PathVariable String etat) {
+		return equipementService.getEquipementsByEtat(etat);
+	}
 	
 	
 	

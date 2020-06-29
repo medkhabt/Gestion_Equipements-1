@@ -14,6 +14,10 @@
         <td>{{formatDate(reservation.demande.dateDemande)}}</td>
       </tr>
       <tr>
+        <th scope="row">l'état de demande :</th>
+        <td>{{reservation.etat}}</td>
+      </tr>
+      <tr>
         <th scope="row">la date de réservation :</th>
         <td>{{formatDate(reservation.demande.dateReservation)}}</td>
       </tr>
@@ -53,5 +57,6 @@
       </tr>
     </tbody>
   </table>
-  <button type="button" (click)="downloadFile();">Download</button>
+  <!--<button type="button" (click)="downloadFile();">Download</button>
   <button type="button" class="btn btn-danger" (click)="downloadFile()"  data-toggle="tooltip" data-placement="top" title="rejeter la réservation" >rejeter</button>
+-->

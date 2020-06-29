@@ -25,6 +25,7 @@ export class DemandeFormulaireComponent implements OnInit {
   obligationScanne: any;
   d: Date;
   date: string;
+  equipements: any;
   constructor(private formbuilder: FormBuilder,
               private demandeSrevice: DemandeService,
               private authService: AuthService,
@@ -35,10 +36,21 @@ export class DemandeFormulaireComponent implements OnInit {
     this.user = this.authService.getUser();
     console.log(this.user);
     this.initForm();
+    this.equipementService.getEquipementsByEtat('maintenu').subscribe(
+      response => this.equipements = response,
+      err => console.log(err)
+    );
     this.d = new Date();
     this.d.setDate( this.d.getDate() + 10);
-    const m: number = this.d.getMonth() + 1;
-    this.date = this.d.getFullYear() + '-' + m + '-' + this.d.getDate();
+    let m: any = this.d.getMonth() + 1;
+    let d: any = this.d.getDate();
+    if (m <= 9) {
+      m = '0' + m;
+    }
+    if (d <= 9) {
+      d = '0' + d;
+    }
+    this.date = this.d.getFullYear() + '-' + m + '-' + d;
     console.log(this.date);
   }
 

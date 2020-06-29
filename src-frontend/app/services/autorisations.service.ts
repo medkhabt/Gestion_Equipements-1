@@ -25,8 +25,7 @@ export class AutorisationsService {
   getAutorisationById(id: any) {
     return this.http.get(this.host + '/autorisations/get/' + id);
   }
-  getAutorisationWord(id: number) {
-    // tslint:disable-next-line: deprecation
-    return this.ht.get(this.host + '/autorisations/get_doc/' + id, {responseType: ResponseContentType.Blob});
+  getAutorisationWord() {
+    return this.http.get(this.host + '/autorisations/get_doc/94');
   }
 }

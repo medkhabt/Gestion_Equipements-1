@@ -17,6 +17,10 @@ export class EquipementsService {
     return this.http.get<Equipement>(this.host + '/equipements');
    // {headers: new HttpHeaders({authorization: this.jwtToken})});
   }
+  getEquipementsByEtat(etat: string) {
+    return this.http.get<Equipement>(this.host + '/equipements/By_etat/' + etat);
+   // {headers: new HttpHeaders({authorization: this.jwtToken})});
+  }
   getEquipement(id: number) {
     return this.http.get<Equipement>(this.host + '/equipements/get_id/' + id);
   }

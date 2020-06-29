@@ -27,7 +27,7 @@ export class DemandeComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.authservice.getUser().id;
-    this.demandeService.getDemandeBydemandeur(this.id).subscribe(
+    this.demandeService.getDemandesBydemandeur(this.id).subscribe(
       rep => this.demandes = rep,
       err => console.log(err)
     );

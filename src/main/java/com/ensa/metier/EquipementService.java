@@ -76,6 +76,8 @@ public class EquipementService {
 	public List<Equipement> getEquipements(Bacha bacha){
 		return this.getEquipements(bacha.getDistrict());
 	}
-	
+	public List<Equipement> getEquipementsByEtat(String etat) {
+		return equipementRepo.findByEtat(etat);
+	}
 
 }

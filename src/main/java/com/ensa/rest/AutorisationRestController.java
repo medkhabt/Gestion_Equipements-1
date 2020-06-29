@@ -87,10 +87,11 @@ public class AutorisationRestController {
 		return autorisationService.getDoc(id);
 	}
 	@GetMapping("/get_doc/{id}")
-	public byte[] getDocblob(@PathVariable int id) {
+	public String getDocblob(@PathVariable int id) {
 		Demande demande = demandeService.getDemande(id);
 		System.out.println("fichier word : "+demande.getObligationScanne().length);
-		return demande.getObligationScanne();
+//		return demande.getObligationScanne();
+		return "obligation";
 	}
 	
 	
