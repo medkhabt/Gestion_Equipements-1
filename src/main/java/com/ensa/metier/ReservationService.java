@@ -2,6 +2,7 @@ package com.ensa.metier;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,12 +13,15 @@ import com.ensa.entities.Equipement;
 import com.ensa.entities.Gestionnaire;
 import com.ensa.entities.Reservation;
 import com.ensa.entities.Secteur;
+import com.ensa.repo.GestionnaireRepository;
 import com.ensa.repo.ReservationRepository;
 
 @Service
 public class ReservationService {
 	@Autowired
 	ReservationRepository reservationRepo;
+	@Autowired
+	GestionnaireRepository gestionnaireRepo;
 	public List<Reservation> getAll(){
 		return reservationRepo.findAll();
 	}
@@ -27,8 +31,17 @@ public class ReservationService {
 	public Reservation createReservation(Reservation reservation) {
 		return reservationRepo.save(reservation);
 	}
-	public Reservation updateReservation(Reservation reservation,int id) {
-		reservation.setId(id);
+	public Reservation updateReservation(Reservation reservation,Long id) {
+		Reservation r = reservationRepo.findById(reservation.getId()).get();
+		System.out.println(r.getId()+"---- id :"+id);
+		Optional<Gestionnaire> g = gestionnaireRepo.findById(id);
+		System.out.println(g.get());
+//		r.setCommentaire(reservation.getCommentaire());
+//		r.setDemande(reservation.getDemande());
+//		r.setEquipement(reservation.getEquipement());
+//		r.setEtat(reservation.getEtat());
+		reservation.setGestionnaire(g.get());
+//		r.setAutorisation(reservation.getAutorisation());
 		return reservationRepo.save(reservation);
 	}
 	public List<Reservation> getReservations(Equipement equipement){

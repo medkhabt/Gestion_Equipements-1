@@ -25,7 +25,9 @@ public class Equipement {
 	private String adresse;
 	@ColumnDefault("maintenu")
 	private String etat;
+	@Column
 	private double largeur;
+	@Column
 	private double longueur;
 	@OneToMany(mappedBy = "equipement")
 	private List<Reservation> reservations;

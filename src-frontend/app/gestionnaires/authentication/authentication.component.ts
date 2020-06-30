@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { auth } from 'firebase';
 
 @Component({
   selector: 'app-authentication',
@@ -44,6 +45,8 @@ export class AuthenticationComponent implements OnInit {
       this.router.navigate(['/equipements']);
       this.authservice.getGestionnaire(username).subscribe(res => {
          this.gestionnaire = res;
+         this.authservice.setRole(this.gestionnaire.roles[0].role);
+         console.log(this.authservice.getRole());
          localStorage.setItem('gestionnaire', JSON.stringify(res));
          localStorage.setItem('etat', res.roles[0].role);
          console.log(this.gestionnaire);

@@ -16,15 +16,23 @@ export class AuthService {
 
   private host = 'http://localhost:8080' ;
   private jwtToken: string;
-  public role = localStorage.getItem('etat');
+  // public role = localStorage.getItem('etat');
+  private role: any = localStorage.getItem('etat');
   public currentUserSubject = new Subject<Demandeur>();
   public currentUser: Observable<Demandeur>;
   g: any;
-  private user: Demandeur = JSON.parse(localStorage.getItem('demandeur'));
+  // private user: Demandeur = JSON.parse(localStorage.getItem('demandeur'));
+  private user: any = JSON.parse(localStorage.getItem('demandeur'));
 
   constructor(private http: HttpClient,
               private router: Router) {
    }
+
+  getRole() { return this.role; }
+  setRole(role: any) {
+    this.role = role;
+    console.log(role);
+  }
 
   login(username: string, password: string) {
   return this.http.post<any>(this.host + '/login',
@@ -35,6 +43,9 @@ export class AuthService {
   register(demandeur: any) {
   return this.http.post(this.host + '/demandeurs/register', demandeur);
   }
+  registerGestionnaire(gestionnaire: any) {
+    return this.http.post(this.host + '/gestionnaires/register', gestionnaire);
+  }
 
   logout() {
     localStorage.clear();
@@ -42,6 +53,9 @@ export class AuthService {
 
   getUser() {
     return this.user;
+  }
+  setUser(user: any) {
+    this.user = user;
   }
   isDemandeur() {
     if (this.role === 'Demandeur' && this.isloggedIn() === true) {

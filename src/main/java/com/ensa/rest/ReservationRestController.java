@@ -25,6 +25,9 @@ import com.ensa.entities.Gestionnaire;
 import com.ensa.entities.Reservation;
 import com.ensa.entities.Secteur;
 import com.ensa.metier.ReservationService;
+
+import io.jsonwebtoken.ExpiredJwtException;
+
 import com.ensa.metier.DemandeService;
 import com.ensa.metier.DemandeurService;;
 
@@ -41,7 +44,7 @@ public class ReservationRestController {
 	DemandeService demandeService;
 	
 	@GetMapping("")
-	public List<Reservation> getReservations() {
+	public List<Reservation> getReservations() throws ExpiredJwtException{
 		return reservationService.getAll();
 	}
 	@GetMapping("/get/{id}")
@@ -60,8 +63,8 @@ public class ReservationRestController {
 		 return reservationService.createReservation(Reservation);
 	}
 	@PutMapping("/update/{id}")
-	public void updateReservation(@RequestBody Reservation reservation, @PathVariable int id) {
-		reservationService.updateReservation(reservation, id);
+	public Reservation updateReservation(@RequestBody Reservation reservation, @PathVariable Long id) throws Exception {
+		return reservationService.updateReservation(reservation, id);
 	}
 	@GetMapping("/by_demande/{id}")
 	public  Reservation getReservationByDemande(@PathVariable int id) {

@@ -14,7 +14,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let reservation of reservations ">
+              <tr *ngFor="let reservation of reservations " >
                 <th scope="row">{{reservation.id}} </th>
                 <td>{{formatDate(reservation.demande.dateDemande)}}</td>
                 <td>{{reservation.equipement.nom}} </td>
@@ -22,10 +22,11 @@
                   <button type="button" class="btn btn-sm btn-success" *ngIf="reservation.etat==='validée'" >{{reservation.etat}} </button>
                   <button type="button" class="btn btn-sm btn-danger" *ngIf="reservation.etat==='rejetée'" >{{reservation.etat}} </button>
                   <button type="button" class="btn btn-info-outline btn-sm" *ngIf="reservation.etat==='initial'" >{{reservation.etat}} </button>
+                  <button type="button" class="btn btn-light btn-sm" *ngIf="reservation.etat==='en train de traitement'">{{reservation.etat}}</button>
                 </td>
                 {{setData(reservation.id)}}
                 <td>
-                <button class="btn btn-primary btn-sm" *ngIf="reservation.etat==='initial'" type="button" [routerLink]="['/AllReservations', reservation.id]" style="margin-top: 5px;">
+                <button class="btn btn-primary btn-sm" *ngIf="reservation.etat==='initial' || reservation.etat==='en train de traitement'" type="button" [routerLink]="['/AllReservations', reservation.id]" style="margin-top: 5px;">
                     Traiter la demande
                 </button>
                 <button class="btn btn-primary btn-sm" *ngIf="reservation.etat==='validée' || reservation.etat==='rejetée'" type="button" [routerLink]="['/AllReservations', reservation.id]" style="margin-top: 5px;">

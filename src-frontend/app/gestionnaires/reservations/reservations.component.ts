@@ -12,6 +12,7 @@ export class ReservationsComponent implements OnInit {
   demandes: any;
   data: any;
   i: number;
+  gestionnaire: any;
   constructor(private reservationsService: ReservationsService,
               private authservice: AuthService) { }
 
@@ -21,8 +22,8 @@ export class ReservationsComponent implements OnInit {
       err => console.log(err)
     );
   //  this.reservations = JSON.parse(localStorage.getItem('reservations'));
-    console.log(this.reservations);
     this.demandes = this.authservice.getUser().demandes;
+    this.gestionnaire = JSON.parse(localStorage.getItem('gestionnaire'));
   }
   formatDate(date) {
     const d = new Date(date);
@@ -45,6 +46,14 @@ export class ReservationsComponent implements OnInit {
   getData() {
     console.log(this.data);
     return this.data;
+  }
+  changeState(reservation: any) {
+    console.log(reservation);
+    reservation.etat = 'en train de traitement';
+    this.reservationsService.updateReservation(reservation, this.gestionnaire.id).subscribe(
+      res => console.log(res),
+      err => console.log(err)
+    );
   }
 
 }

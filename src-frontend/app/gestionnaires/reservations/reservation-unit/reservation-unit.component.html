@@ -50,7 +50,7 @@
               <pdf-viewer [src]="obligation" [render-text]="true" style="display: block;" ></pdf-viewer>
             </td>
           </tr>
-          <tr *ngIf="reservation.etat==='initial'" >
+          <tr *ngIf="reservation.etat==='initial' || reservation.etat==='en train de traitement'" >
             <th scope="row">Commentaire :</th>
             <td>
                 <textarea name="comment" cols="30" rows="5" id="comment" [(ngModel)]="comment" class="form-control" formControlName="comment" required></textarea>
@@ -60,7 +60,10 @@
 
    <br><br>
 <div style="text-align: center;">
-    <button type="submit" class="btn btn-success"  data-toggle="tooltip" data-placement="top" title="valider la réservation" *ngIf="reservation.etat==='initial'" >Valider</button>&nbsp;
-    <button type="button" class="btn btn-danger" (click)="rejeter(comment)"  data-toggle="tooltip" data-placement="top" title="rejeter la réservation" *ngIf="reservation.etat==='initial'" >rejeter</button>
+  <div class="btn-group btn-primary" style="margin-bottom: 10px;">
+    <button type="submit" class="btn btn-success"  data-toggle="tooltip" data-placement="top" title="valider la réservation" *ngIf="reservation.etat==='initial' || reservation.etat==='en train de traitement'" >Valider</button>
+    <button type="button" class="btn" (click)="mettreEnAttente()" *ngIf="reservation.etat==='initial'">mettre en attente</button>
+    <button type="button" class="btn btn-danger" (click)="rejeter(comment)"  data-toggle="tooltip" data-placement="top" title="rejeter la réservation" *ngIf="reservation.etat==='initial' || reservation.etat==='en train de traitement'" >rejeter</button>
+  </div>
 </div>
 </form>

@@ -16,7 +16,8 @@ export class DemandeUnitComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.demande);
     this.reservationService.getReservationByDemande(this.demande.id).subscribe(
-      res => this.reservation = res
+      res => this.reservation = res,
+      err => console.log(err)
     );
   }
 

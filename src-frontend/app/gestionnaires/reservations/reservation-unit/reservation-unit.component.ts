@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ReservationsService } from 'src/app/services/reservations.service';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AutorisationsService } from 'src/app/services/autorisations.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-reservation-unit',
@@ -23,7 +24,8 @@ export class ReservationUnitComponent implements OnInit {
               private reservationServce: ReservationsService,
               private router: ActivatedRoute,
               private formbuilder: FormBuilder,
-              private autorisationService: AutorisationsService) { }
+              private autorisationService: AutorisationsService,
+              private authservice: AuthService) { }
 
   ngOnInit(): void {
     this.id = this.router.snapshot.params.id;
@@ -45,6 +47,12 @@ export class ReservationUnitComponent implements OnInit {
 
     // this.reservation = JSON.parse(localStorage.getItem('reservation'));
     this.gestionnaire = JSON.parse(localStorage.getItem('gestionnaire'));
+    this.authservice.getGestionnaire(this.gestionnaire.username).subscribe(
+      resp => {
+        this.gestionnaire = resp;
+        console.log(resp);
+      }, err => console.log(err)
+    );
     this.initForm();
   }
   initForm() {
@@ -65,15 +73,22 @@ export class ReservationUnitComponent implements OnInit {
       reservation,
       objectif
     };
+    // pour en ajouter dans reserv
+    let auto: any;
     this.autorisationService.addAutorisation(autorisation).subscribe(
-      res => console.log(res),
+      res => {
+        console.log(res);
+        auto = res;
+      },
       err => console.log(err)
     );
     this.reservation.etat = 'validée';
     this.reservation.commentaire = this.reservationForm.get('comment').value;
+    this.reservation.autorisation = auto;
     console.log(this.reservation.commentaire);
     this.reservation.gestionnaire = this.gestionnaire;
-    this.reservationServce.updateReservation(this.reservation, this.reservation.id).subscribe(
+    console.log(this.reservation.gestionnaire);
+    this.reservationServce.updateReservation(this.reservation, this.gestionnaire.id).subscribe(
       res => console.log(res),
       err => console.log(err)
     );
@@ -99,11 +114,18 @@ export class ReservationUnitComponent implements OnInit {
     this.reservation.etat = 'rejetée';
     this.reservation.gestionnaire = this.gestionnaire;
     this.reservation.commentaire = comment;
-    this.reservationServce.updateReservation(this.reservation, this.reservation.id).subscribe(
+    this.reservationServce.updateReservation(this.reservation, this.gestionnaire.id).subscribe(
       res => console.log(res),
       err => console.log(err)
     );
   }
 
+  mettreEnAttente() {
+    this.reservation.etat = 'en train de traitement';
+    this.reservationServce.updateReservation(this.reservation, this.gestionnaire.id).subscribe(
+      res => console.log(res),
+      err => console.log(err)
+    );
+  }
 
 }

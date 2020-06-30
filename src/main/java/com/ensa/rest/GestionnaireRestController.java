@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.bouncycastle.crypto.RuntimeCryptoException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,7 @@ import com.ensa.metier.GestionnaireService;;
 
 @RestController
 @RequestMapping("gestionnaires")
-
+@Transactional
 public class GestionnaireRestController {
 	@Autowired
 	GestionnaireService gestionnaireService;
@@ -36,11 +37,11 @@ public class GestionnaireRestController {
 		return gestionnaireService.getAll();
 	}
 	@PostMapping("/register")
-	public Gestionnaire createGestionnaire(@RequestBody Gestionnaire gestionnaire) {
+	public Gestionnaire createGestionnaire(@RequestBody Gestionnaire gestionnaire) throws Exception{
 //		if(!gestionnaireForm.getPassword().equals(gestionnaireForm.getRepassword())) throw
 //		new RuntimeCryptoException("You must confirm your password");
-		Gestionnaire gestTest = gestionnaireService.findByUsername(gestionnaire.getUsername());
-		if(gestTest!=null) throw new RuntimeCryptoException("this user alreeady exists !");
+//		Gestionnaire gestTest = gestionnaireService.findByUsername(gestionnaire.getUsername());
+//		if(gestTest!=null) throw new RuntimeCryptoException("this user alreeady exists !");
 		gestionnaireService.saveGestionnaire(gestionnaire);
 		gestionnaireService.addRoleToGestionnaire(gestionnaire.getUsername(), "Admin");
 		return gestionnaire;

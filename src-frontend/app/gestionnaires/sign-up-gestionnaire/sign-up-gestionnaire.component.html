@@ -1,0 +1,96 @@
+<br><br><br><br>
+<div class="card m-3">
+  <h5 class="card-header">Create a new account </h5>
+  <div class="card-body">
+          <form [formGroup]="signUpform" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+            <div class="form-group col">
+              <label for="username">
+                <b>Username:</b>
+              </label>
+              <input type="text" id="username" class="form-control" formControlName="username" required [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+              <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                <div *ngIf="f.username.errors.required">Username is required</div>
+            </div>
+            </div>
+            <div class="form-group col">
+              <label for="password">
+                <b>Password :</b>
+             </label>
+                <input type="password" id="password" class="form-control" formControlName="password" required [ngClass]="{ 'is-invalid': submitted && f.password.errors }"> 
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                  <div *ngIf="f.password.errors.required">Password is required</div>
+                  <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+              </div>
+            </div>
+            <div class="form-group col"> 
+                <label for="repassword">
+                  <b>Confirm Password :</b>
+                </label>
+                <input type="password" id="repassword" class="form-control" formControlName="repassword" required [ngClass]="{ 'is-invalid': submitted && f.repassword.errors }">  
+                <div *ngIf="submitted && f.repassword.errors" class="invalid-feedback">
+                  <div *ngIf="f.repassword.errors.required">confirmer votre mot de passe</div>
+                  <div *ngIf="f.repassword.errors.mustMatch">les deux doivent etre identiques </div>
+              </div>
+              </div> 
+            </div>
+            <div class="form-row">
+              <div class="form-group col"> 
+                  <label for="nom">
+                  <b>nom :</b>
+                </label>
+                <input type="text" id="nom" class="form-control" formControlName="nom" required [ngClass]="{ 'is-invalid': submitted && f.nom.errors }">
+                <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
+                  <div *ngIf="f.nom.errors.required">Nom est obligatoire</div>
+              </div>
+              </div>
+              <div class="form-group col"> 
+                <label for="prenom">
+                  <b>prenom :</b>
+                </label>
+                <input type="text" id="prenom" class="form-control" formControlName="prenom" [ngClass]="{ 'is-invalid': submitted && f.prenom.errors }">
+                <div *ngIf="submitted && f.prenom.errors" class="invalid-feedback">
+                  <div *ngIf="f.prenom.errors.required">Prénom est obligatoire</div>
+              </div>
+              </div>
+              <div class="form-group col"> 
+                <label for="telephone">
+                  <b>telephone :</b>
+                </label>
+                <input type="text" id="telephone" class="form-control" formControlName="telephone" required [ngClass]="{ 'is-invalid': submitted && f.telephone.errors }">
+                <div *ngIf="submitted && f.telephone.errors" class="invalid-feedback">
+                  <div *ngIf="f.telephone.errors.required">Telephone est obligatoire</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-row"> 
+                <label for="email">
+                  <b>Email :</b>
+                </label>
+                <input type="text" id="email" class="form-control" formControlName="email" required [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">Email est obligatoire</div>
+                  <div *ngIf="f.email.errors.email">Email doit etre un email valid</div>
+              </div>
+            </div>
+            <div class="form-row"> 
+              <div class="form-group col">
+                <label for="type">
+                  <b>type :</b>
+                </label>
+                <select id="type" class="form-control" formControlName="type" required [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
+                    <optgroup label="votre type">
+                      <option value="Gestionnaire">Gestionnaire</option>
+                      <option value="Decideur">Décideur</option>
+                    </optgroup>
+                </select>
+                <div *ngIf="submitted && f.type.errors" class="invalid-feedback">
+                  <div *ngIf="f.type.errors.required">le type est obligatoire</div>
+              </div>
+              </div>
+            </div>
+              <button class="btn btn-primary" type="submit" >S'inscrire </button>
+          </form>
+
+    </div>
+</div>

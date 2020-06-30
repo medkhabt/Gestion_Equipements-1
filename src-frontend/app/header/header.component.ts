@@ -16,7 +16,6 @@ export class HeaderComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-    this.authservice.role = localStorage.getItem('etat');
   }
 
   onLogout() {

@@ -46,6 +46,9 @@ export class LoginUserComponent implements OnInit {
       this.authservice.getDemandeur(username).subscribe(res => {
          this.demandeur = res;
          console.log(this.demandeur);
+         this.authservice.setRole(res.roles[0].role);
+         console.log(this.authservice.getRole());
+         this.authservice.setUser(res);
          localStorage.setItem('demandeur', JSON.stringify(res));
          localStorage.setItem('etat', res.roles[0].role);
 

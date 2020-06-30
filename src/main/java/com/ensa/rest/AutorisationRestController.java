@@ -50,8 +50,8 @@ public class AutorisationRestController {
 		 return autorisationService.getAutosiation(id);
 	}
 	@PostMapping("/add")
-	public void creatAutorisation(@RequestBody Autorisation autorisation) {
-		 autorisationService.createAutorisation(autorisation);
+	public Autorisation creatAutorisation(@RequestBody Autorisation autorisation) {
+		 return autorisationService.createAutorisation(autorisation);
 	}
 	@PutMapping("/update_autorisation/{id}")
 	public void updateAutorisation(@RequestBody Autorisation autorisation, @PathVariable int id) {

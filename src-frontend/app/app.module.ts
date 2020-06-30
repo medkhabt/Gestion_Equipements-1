@@ -51,6 +51,7 @@ import { EquipementUpdateComponent } from './list-equipements/equipement-update/
 import { GoogleMapsModule } from '@angular/google-maps';
 import { EquipementCreateComponent } from './list-equipements/equipement-create/equipement-create.component';
 import { HttpModule } from '@angular/http';
+import { SignUpGestionnaireComponent } from './gestionnaires/sign-up-gestionnaire/sign-up-gestionnaire.component';
 
 
 @NgModule({
@@ -85,7 +86,8 @@ import { HttpModule } from '@angular/http';
     ViewFileComponent,
     DemandeDetailComponent,
     EquipementUpdateComponent,
-    EquipementCreateComponent
+    EquipementCreateComponent,
+    SignUpGestionnaireComponent
   ],
   imports: [
     BrowserModule,

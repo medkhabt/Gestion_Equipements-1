@@ -75,12 +75,12 @@ onReset() {
   this.submitted = false;
   this.signUpform.reset();
 }
-checkPasswords(signUpform: FormGroup) { // here we have the 'passwords' group
-  const pass = signUpform.get('password').value;
-  const confirmPass = signUpform.get('confirmPass').value;
+// checkPasswords(signUpform: FormGroup) { // here we have the 'passwords' group
+//   const pass = signUpform.get('password').value;
+//   const confirmPass = signUpform.get('confirmPass').value;
 
-  return pass === confirmPass ? null : { notSame: true } ;
-}
+//   return pass === confirmPass ? null : { notSame: true } ;
+// }
   // custom validator to check that two fields match
   MustMatch(controlName: string, matchingControlName: string) {
     return (formGroup: FormGroup) => {
