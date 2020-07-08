@@ -1,0 +1,24 @@
+<br><br><br>
+<form  [formGroup]="checkGestionnaire" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+        <div class="form-group col-md-6" style="padding-left: 2%;">
+            <select id="gestionnaire" class="form-control" formControlName="gestionnaire">
+                <option *ngFor="let g of gestionnaires" [value]="g.id" selected> {{g.nom}} {{g.prenom}} </option>
+            </select>
+        </div>
+        <div class="form-group col-md-6" style="padding-left: 2%;">
+            <input type="submit" class="form-control">
+        </div>
+    </div>
+    
+</form>
+<div class="chart-wrapper">
+    <canvas baseChart 
+    [datasets]="barChartData"
+    [labels]="barChartLabels"
+    [options]="barChartOptions"
+    [plugins]="barChartPlugins"
+    [legend]="barChartLegend"
+    [chartType]="barChartType">
+  </canvas>
+</div>

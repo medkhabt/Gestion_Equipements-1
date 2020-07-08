@@ -12,6 +12,7 @@ export class ProfileComponent implements OnInit {
 
   ProfileForm: FormGroup;
   gestionnaire: any;
+  message = 'erreur ! réessayez à nouveau !';
   g: any;
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
@@ -22,8 +23,8 @@ export class ProfileComponent implements OnInit {
     this.authService.getGestionnaire(g.username).subscribe(
       resp => {
         this.gestionnaire = resp;
-        this.initForm();
         console.log(this.gestionnaire);
+        this.initForm();
       },
       err => console.log(err)
     );
@@ -51,6 +52,7 @@ export class ProfileComponent implements OnInit {
     this.authService.updateGestionnaire(this.ProfileForm.value, this.gestionnaire.id).subscribe(
       resp => {
         console.log(resp);
+        this.message = 'vous avez modifié les données de votre profile avec succées !';
        // this.router.navigate(['']);
       }, err => console.log(err)
     );

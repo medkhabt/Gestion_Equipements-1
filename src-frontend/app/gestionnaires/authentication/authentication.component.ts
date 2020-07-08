@@ -30,7 +30,8 @@ export class AuthenticationComponent implements OnInit {
     this.signInform = this.formbuilder.group(
       {
         username: [ '' , [ Validators.required]],
-        password: [ '' , [Validators.required] ]
+        password: [ '' , [Validators.required] ],
+        // type: ['', [Validators.required]]
       }
     );
   }
@@ -42,7 +43,7 @@ export class AuthenticationComponent implements OnInit {
     resp.subscribe( resp => {
       const jwtToken = resp.headers.get('authorization');
       this.authservice.saveToken(jwtToken);
-      this.router.navigate(['/equipements']);
+      this.router.navigate(['/decideurs/autorisations']);
       this.authservice.getGestionnaire(username).subscribe(res => {
          this.gestionnaire = res;
          this.authservice.setRole(this.gestionnaire.roles[0].role);
@@ -54,6 +55,15 @@ export class AuthenticationComponent implements OnInit {
           console.log(err);
         }
         );
+      this.authservice.getDecideur(username).subscribe(
+        re => {
+          this.gestionnaire = re;
+          this.authservice.setRole(this.gestionnaire.roles[0].role);
+          console.log(this.authservice.getRole());
+          localStorage.setItem('decideur', JSON.stringify(re));
+          localStorage.setItem('etat', this.gestionnaire.roles[0].role);
+        }
+      );
     }, err => {
       this.errorMessage = 'uncorrect! try again';
        }

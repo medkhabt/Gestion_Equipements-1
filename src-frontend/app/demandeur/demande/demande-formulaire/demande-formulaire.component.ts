@@ -26,6 +26,7 @@ export class DemandeFormulaireComponent implements OnInit {
   d: Date;
   date: string;
   equipements: any;
+  minDateFinResrvation: any;
   constructor(private formbuilder: FormBuilder,
               private demandeSrevice: DemandeService,
               private authService: AuthService,
@@ -57,7 +58,8 @@ export class DemandeFormulaireComponent implements OnInit {
   initForm() {
     this.demandeForm = this.formbuilder.group({
       typeEvent: [ '' , [Validators.required] ],
-      dateReservation: [ [Validators.required]],
+      dateDebutReservation: [ [Validators.required]],
+      dateFinReservation: [ [Validators.required]],
       objet: ['', [Validators.required]],
       equipement: ['', [Validators.required]],
       nombrePresent: ['', [Validators.required]],
@@ -72,6 +74,9 @@ export class DemandeFormulaireComponent implements OnInit {
   }
   onSubmit() {
     //  const form = this.demandeForm.value;
+    if (this.demandeForm.invalid) {
+      return;
+      }
     const uploadData = new FormData();
     uploadData.append('obligationScanne', this.obligationScanne, this.obligationScanne.name);
     console.log(this.obligationScanne);
@@ -126,4 +131,8 @@ export class DemandeFormulaireComponent implements OnInit {
   this.d = new Date();
   return this.d.setDate( this.d.getDate() + 10 );
 }*/
+minDate(event) {
+  this.minDateFinResrvation = event;
+  console.log(event);
+}
 }

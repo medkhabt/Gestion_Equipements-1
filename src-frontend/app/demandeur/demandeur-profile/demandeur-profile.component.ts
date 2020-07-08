@@ -17,6 +17,7 @@ export class DemandeurProfileComponent implements OnInit {
   profileImage: any;
   retreivedRecepisse: any;
   d: any;
+  message: any = 'erreur !! ';
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
               private router: Router) { }
@@ -79,6 +80,7 @@ export class DemandeurProfileComponent implements OnInit {
     this.authService.updateDemandeur(this.ProfileForm.value, this.demandeur.id).subscribe(
       resp => {
         console.log(resp);
+        this.message = 'vous avez modifié votre profile avec succées !';
         const uploadImageData = new FormData();
         const byteCharacters = atob(this.recepisse);
         const byteNumbers = new Array(byteCharacters.length);
@@ -94,6 +96,7 @@ export class DemandeurProfileComponent implements OnInit {
           res => {
             console.log(res);
             this.router.navigate(['/demandeurProfile']);
+            this.message = 'vous avez modifié les données de votre profile avec succées !';
           }
           , err => console.log(err)
         );

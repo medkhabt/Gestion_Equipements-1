@@ -52,7 +52,18 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { EquipementCreateComponent } from './list-equipements/equipement-create/equipement-create.component';
 import { HttpModule } from '@angular/http';
 import { SignUpGestionnaireComponent } from './gestionnaires/sign-up-gestionnaire/sign-up-gestionnaire.component';
-
+import { DecideurComponent } from './decideur/decideur.component';
+import { AutorisationChartComponent } from './decideur/autorisation-chart/autorisation-chart.component';
+import { ChartsModule } from 'ng2-charts';
+import { AutorisationEquipementComponent } from './decideur/autorisation-chart/autorisation-equipement/autorisation-equipement.component';
+// tslint:disable-next-line: max-line-length
+import { AutorisationGestionnaireComponent } from './decideur/autorisation-chart/autorisation-gestionnaire/autorisation-gestionnaire.component';
+import { DemandesChartComponent } from './decideur/demandes-chart/demandes-chart.component';
+import { DemandesDemandeurComponent } from './decideur/demandes-chart/demandes-demandeur/demandes-demandeur.component';
+import { DemandesViewComponent } from './decideur/demandes-chart/demandes-view/demandes-view.component';
+import { AutorisationsViewComponent } from './decideur/autorisation-chart/autorisations-view/autorisations-view.component';
+import { ProfilViewComponent } from './gestionnaires/profile/profil-view/profil-view.component';
+import { ProfileViewComponent } from './demandeur/demandeur-profile/profile-view/profile-view.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +98,17 @@ import { SignUpGestionnaireComponent } from './gestionnaires/sign-up-gestionnair
     DemandeDetailComponent,
     EquipementUpdateComponent,
     EquipementCreateComponent,
-    SignUpGestionnaireComponent
+    SignUpGestionnaireComponent,
+    DecideurComponent,
+    AutorisationChartComponent,
+    AutorisationEquipementComponent,
+    AutorisationGestionnaireComponent,
+    ProfileViewComponent,
+    DemandesChartComponent,
+    DemandesDemandeurComponent,
+    DemandesViewComponent,
+    AutorisationsViewComponent,
+    ProfilViewComponent
   ],
   imports: [
     BrowserModule,
@@ -106,6 +127,7 @@ import { SignUpGestionnaireComponent } from './gestionnaires/sign-up-gestionnair
     GoogleMapsModule,
     // tslint:disable-next-line: deprecation
     HttpModule,
+    ChartsModule,
   ],
   providers: [AuthService, EquipementsService, AuthGuardService],
   bootstrap: [AppComponent]

@@ -69,9 +69,11 @@ export class ReservationUnitComponent implements OnInit {
   valider() {
     const reservation = this.reservation;
     const objectif = this.autorisationForm.get('objectif').value;
+    const dateAutorisation = new Date();
     const autorisation = {
       reservation,
-      objectif
+      objectif,
+      dateAutorisation
     };
     // pour en ajouter dans reserv
     let auto: any;

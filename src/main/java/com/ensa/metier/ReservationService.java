@@ -1,12 +1,16 @@
 package com.ensa.metier;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ensa.entities.Autorisation;
 import com.ensa.entities.Demande;
 import com.ensa.entities.Demandeur;
 import com.ensa.entities.Equipement;
@@ -80,6 +84,12 @@ public class ReservationService {
 		}
 		return reservations;
 	}
-	
+//	public List<Reservation> getReservationsByMonth(int m) throws ParseException {
+//		String sdate1 = "01/"+m+"/2020";
+//		String sdate2 = "30/"+m+"/2020";
+//		Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(sdate1);
+//		Date date2=new SimpleDateFormat("dd/MM/yyyy").parse(sdate2);
+//		return reservationRepo.(date1, date2);
+//	}
 	
 }

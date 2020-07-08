@@ -11,8 +11,12 @@
 
     <!-- Login Form -->
     <form [formGroup]="signInform" (ngSubmit)="onSubmit()">
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Username" formControlName="username" required>
-      <input type="password" id="password" class="fadeIn third" name="login" placeholder="Password" formControlName="password" required>
+      <input type="text" id="login" class="fadeIn first" name="login" placeholder="Username" formControlName="username" required>
+      <input type="password" id="password" class="fadeIn second" name="login" placeholder="Password" formControlName="password" required>
+      <!-- <select formControlName="type" id="type" class="fadeIn fourth" class="form-control">
+        <option value="Gestionnaire" selected>Gestionnaire</option>
+        <option value="Decideur">Décideur</option>
+      </select> -->
       <br><br>
       <input type="submit" class="fadeIn fourth" value="Connexion">
     </form>

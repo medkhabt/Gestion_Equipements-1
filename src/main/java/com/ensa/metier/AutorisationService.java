@@ -1,6 +1,8 @@
 package com.ensa.metier;
 
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -43,18 +45,25 @@ public class AutorisationService {
 		return autorisationRepo.findById(id);
 	}
 	public List<Autorisation> getAutorisation(Date dateReservation){
-		return autorisationRepo.findByDateReservation(dateReservation);
+		return autorisationRepo.findByDateAutorisation(dateReservation);
+	}
+	public List<Autorisation> getAutorisationsByMonth(int m) throws ParseException {
+		String sdate1 = "01/"+m+"/2020";
+		String sdate2 = "30/"+m+"/2020";
+		Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(sdate1);
+		Date date2=new SimpleDateFormat("dd/MM/yyyy").parse(sdate2);
+		return autorisationRepo.findByDateAutorisationBetween(date1, date2);
 	}
 	public List<Autorisation> getAutorisation(String type){
 		return autorisationRepo.findByType(type);
 	}
 	
 	public List<Autorisation> getAutorisations(Equipement equipement){
-		List<Reservation> reservations= equipement.getReservations();
-		List<Autorisation> autorisations= new ArrayList<Autorisation>();
-		for( Reservation reservation : reservations) {
-			autorisations.add(reservation.getAutorisation());
-		}
+//		List<Reservation> reservations= equipement.getReservations();
+		List<Autorisation> autorisations= autorisationRepo.getAutorisationsByEquipement(equipement.getId());
+//		for( Reservation reservation : reservations) {
+//			autorisations.add(reservation.getAutorisation());
+//		}
 		return autorisations;
 	}
 	public List<Autorisation> getAutorisations(Demandeur demandeur){
@@ -66,11 +75,7 @@ public class AutorisationService {
 		return autorisations;
 	}
 	public List<Autorisation> getAutorisations(Gestionnaire gestionnaire){
-		List<Reservation> reservations = gestionnaire.getReservations();
-		List<Autorisation> autorisations= new ArrayList<Autorisation>();
-		for( Reservation reservation : reservations) {
-			autorisations.add(reservation.getAutorisation());
-		}
+		List<Autorisation> autorisations= autorisationRepo.getAutorisationsByGestionnaire(gestionnaire.getId());
 		return autorisations;
 	}
 	public File getDoc(int id) throws Docx4JException {

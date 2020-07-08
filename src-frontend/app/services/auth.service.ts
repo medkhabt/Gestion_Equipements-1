@@ -46,7 +46,9 @@ export class AuthService {
   registerGestionnaire(gestionnaire: any) {
     return this.http.post(this.host + '/gestionnaires/register', gestionnaire);
   }
-
+  registerDecideur(decideur: any) {
+    return this.http.post(this.host + '/decideur/register', decideur);
+  }
   logout() {
     localStorage.clear();
   }
@@ -66,6 +68,11 @@ export class AuthService {
     return true;
     }
   }
+  isDecideur() {
+    if (this.role === 'Décideur' && this.isloggedIn() === true) {
+      return true;
+      }
+  }
 
   getDemandeurs() {
     if (this.jwtToken === null) {this.loadToken(); }
@@ -73,7 +80,9 @@ export class AuthService {
   //  ,{headers: new HttpHeaders({authorization: this.jwtToken})}
   );
     }
-
+  getDecideur(username: any) {
+    return this.http.get(this.host + '/decideur/' + username);
+  }
 
   saveToken(jwtToken) {
   this.jwtToken = jwtToken;

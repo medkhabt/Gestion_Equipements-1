@@ -1,0 +1,24 @@
+<br><br><br>
+<form  [formGroup]="checkDemandeur" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+        <div class="form-group col-md-6" style="padding-left: 2%;">
+            <select id="demandeur" class="form-control" formControlName="demandeur">
+                <option *ngFor="let d of demandeurs" [value]="d.id" selected> {{d.nom}} {{d.prenom}} </option>
+            </select>
+        </div>
+        <div class="form-group col-md-6" style="padding-left: 2%;">
+            <input type="submit" class="form-control">
+        </div>
+    </div>
+    
+</form>
+<div class="chart-wrapper">
+    <canvas baseChart 
+    [datasets]="barChartData"
+    [labels]="barChartLabels"
+    [options]="barChartOptions"
+    [plugins]="barChartPlugins"
+    [legend]="barChartLegend"
+    [chartType]="barChartType">
+  </canvas>
+</div>

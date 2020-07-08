@@ -7,20 +7,20 @@
             <thead class="thead-light">
               <tr>
                 <th scope="col">Identifiant</th>
-                <th scope="col">ideantifiant de la réservation</th>
+                <th scope="col">Date de début de réservation</th>
+                <th scope="col">Date de fin de réservation</th>
                 <th scope="col">equipement</th>
-                <th scope="col">date de réservation</th>
-                <th scope="col">date fin</th>
+                <th scope="col">date d'autorisation</th>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let autorisation of autorisations ">
                 <th scope="row">{{autorisation.id}} </th>
-                <td>{{autorisation.reservation.id}}</td>
+                <td>{{formatDate(autorisation.reservation.demande.dateDebutReservation)}}</td>
+                <td>{{formatDate(autorisation.reservation.demande.dateFinReservation)}}</td>
                 <td>{{autorisation.reservation.equipement.nom}}</td>
-                <td>{{formatDate(autorisation.reservation.demande.dateReservation)}} </td>
-                <td>{{formatDate(autorisation.dateFin)}} </td>
+                <td>{{formatDate(autorisation.dateAutorisation)}} </td>
                 
                 <td>
                 <button class="btn btn-primary btn-sm" type="button" [routerLink]="['/AllAutorisations', autorisation.id]" style="margin-top: 5px;">

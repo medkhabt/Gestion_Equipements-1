@@ -17,8 +17,7 @@ public class Autorisation {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	private Date dateReservation;
-	private Date dateFin;
+	private Date dateAutorisation;
 	private String type;
 	private String objectif;
 	private File fichierWord;
@@ -30,12 +29,11 @@ public class Autorisation {
 	@JoinColumn(name = "idTaxe")
 	private Taxe taxe;
 	
-	public Autorisation(int id, Date dateReservation, Date dateFin, String type, String objectif, File fichierWord,
+	public Autorisation(int id, Date dateAutorisation, Date dateFin, String type, String objectif, File fichierWord,
 			Reservation reservation, Taxe taxe) {
 		super();
 		this.id = id;
-		this.dateReservation = dateReservation;
-		this.dateFin = dateFin;
+		this.dateAutorisation = dateAutorisation;
 		this.type = type;
 		this.objectif = objectif;
 		this.fichierWord = fichierWord;
@@ -58,18 +56,6 @@ public class Autorisation {
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	public Date getDateReservation() {
-		return dateReservation;
-	}
-	public void setDateReservation(Date dateReservation) {
-		this.dateReservation = dateReservation;
-	}
-	public Date getDateFin() {
-		return dateFin;
-	}
-	public void setDateFin(Date dateFin) {
-		this.dateFin = dateFin;
 	}
 	public String getType() {
 		return type;
@@ -96,6 +82,15 @@ public class Autorisation {
 	public void setFichierWord(File fichierWord) {
 		this.fichierWord = fichierWord;
 	}
+
+	public Date getDateAutorisation() {
+		return dateAutorisation;
+	}
+
+	public void setDateAutorisation(Date dateAutorisation) {
+		this.dateAutorisation = dateAutorisation;
+	}
+	
 	
 	
 	

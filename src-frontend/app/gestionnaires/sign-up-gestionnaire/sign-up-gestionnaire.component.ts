@@ -61,6 +61,7 @@ const gestionnaire = {
 username, password, nom, telephone, email, actived, prenom
 };
 
+
 if (this.signUpform.get('type').value === 'Gestionnaire') {
 
   const resp = this.authservice.registerGestionnaire(gestionnaire);
@@ -73,6 +74,15 @@ if (this.signUpform.get('type').value === 'Gestionnaire') {
   this.errorMessage = 'uncorrect! try again';
     }
    );
+  }
+if (this.signUpform.get('type').value === 'Decideur') {
+  this.authservice.registerDecideur(gestionnaire).subscribe(
+    resp => {
+      console.log(resp);
+      this.router.navigate(['']);
+      this.tosignin = 'your account was created !';
+    }
+  );
   }
 }
 onReset() {

@@ -1,0 +1,136 @@
+<br><br><br>
+
+<head>
+  <title>Mon profile</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+
+<hr>
+<div class="container bootstrap snippet">
+    <div class="row">
+  		<div class="col-sm-10"><h1>{{demandeur.nom}}  </h1></div>
+    	<div class="col-sm-2"><a href="#" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="..\assets\images\28fd20ccec6865e2d5f0e1f4446eb7bf.jpg"></a></div>
+    </div>
+    <div class="row">
+  		<div class="col-sm-3"><!--left col-->
+              
+
+      <div class="text-center">
+        <!--<img src="..\assets\images\avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">-->
+        <img [src]="profileImage" class="avatar img-circle img-thumbnail" alt="avatar">
+        </div><br>
+
+               
+          <div class="panel panel-default">
+            <div class="panel-heading"> <i class="fa fa-link fa-1x"></i></div>
+            <div class="panel-body"><a href=""></a></div>
+          </div>
+          
+          
+          <ul class="list-group">
+            <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
+            <li class="list-group-item "><strong></strong><span> </span></li>
+           <!-- <li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span> 13</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Posts</strong></span> 37</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span> 78</li>-->
+          </ul> 
+               
+          <div class="panel panel-default">
+            <div class="panel-heading"></div>
+            <div class="panel-body">
+            	<i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i>
+            </div>
+          </div>
+          
+        </div><!--/col-3-->
+    	<div class="col-sm-9">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+              </ul>
+
+              
+          <div class="tab-content">
+            <div class="tab-pane active" id="home">
+                <hr>
+                      <div class="form-group">
+                          <div class="col-xs-6">
+                              <label for="id"><h4>Id </h4></label>
+                              <span class="form-control" name="id" id="id">{{demandeur.id}} </span>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                              <label for="username"><h4>Username</h4></label>
+                              <span  class="form-control" name="username" id="username" >{{demandeur.username}} </span>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          
+                        <div class="col-xs-6">
+                            <label for="prenom"><h4>Prénom</h4></label>
+                            <span  class="form-control" name="prenom"  >{{demandeur.prenom}} </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                          
+                        <div class="col-xs-6">
+                            <label for="nom"><h4>Nom</h4></label>
+                            <span  class="form-control" name="nom"  >{{demandeur.nom}} </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                          
+                        <div class="col-xs-6">
+                            <label for="email"><h4>Email</h4></label>
+                            <span  class="form-control" name="email"  >{{demandeur.email}} </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                          
+                        <div class="col-xs-6">
+                            <label for="telephone"><h4>Télephone</h4></label>
+                            <span  class="form-control" name="telephone"  >{{demandeur.telephone}} </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                          
+                        <div class="col-xs-6">
+                            <label for="adresse"><h4>Adresse</h4></label>
+                            <span  class="form-control" name="adresse"  >{{demandeur.adresse}} </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                          
+                        <div class="col-xs-6">
+                            <label for="type"><h4>type</h4></label>
+                            <span  class="form-control" name="type"  >{{demandeur.type}} </span>
+                        </div>
+                    </div><br>
+                    <div class="form-groupp">
+                        <div class="col-xs-6">
+                            <label for="recepisse"><h4>Le recepisse</h4></label>
+                            <pdf-viewer [src]="recepisse" [render-text]="true" style="display: block;" ></pdf-viewer>                        </div>
+                    </div><br>
+                    <div class="form-groupp">
+                        <div class="col-xs-6">
+                            <label for="statut"><h4>Le statut</h4></label>
+                            <pdf-viewer [src]="statut" [render-text]="true" style="display: block;" ></pdf-viewer>                        </div>
+                    </div><br><br>
+                    <a href="/demandeurProfile"> 
+                        <button type="button" class="btn btn-secondary" style="float: right;" >Modifier mes informations</button>
+                    </a>
+              <br><br>
+              <hr>
+              
+             </div><!--/tab-pane-->
+            
+        </div><!--/col-9-->
+                    
+    <!-- Modal -->
+    </div><!--/row-->
+    </div>
+    </div>
+                                                      

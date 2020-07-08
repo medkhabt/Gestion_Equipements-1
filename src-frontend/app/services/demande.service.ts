@@ -34,5 +34,14 @@ export class DemandeService {
   getDemandes() {
     return this.demandes;
   }
+  getDemandesByMonth() {
+    return this.http.get(this.host + '/demandes/par_mois');
+  }
+  getDemandesByDemandeur(id: number) {
+    return this.http.get(this.host + '/demandes/par_demandeur/' + id);
+  }
+  getAllDemandeurs() {
+    return this.http.get(this.host + '/demandeurs');
+  }
 
 }

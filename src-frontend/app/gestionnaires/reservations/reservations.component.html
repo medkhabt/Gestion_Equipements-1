@@ -9,6 +9,8 @@
                 <th scope="col">Identifiant</th>
                 <th scope="col">date de demande</th>
                 <th scope="col">equipement</th>
+                <th scope="col">Date de début de réservation</th>
+                <th scope="col">Date de fin de réservation</th>
                 <th scope="col">status</th>
                 <th scope="col"></th>
               </tr>
@@ -18,6 +20,8 @@
                 <th scope="row">{{reservation.id}} </th>
                 <td>{{formatDate(reservation.demande.dateDemande)}}</td>
                 <td>{{reservation.equipement.nom}} </td>
+                <td>{{formatDate(autorisation.reservation.demande.dateDebutReservation)}}</td>
+                <td>{{formatDate(autorisation.reservation.demande.dateFinReservation)}}</td>
                 <td>
                   <button type="button" class="btn btn-sm btn-success" *ngIf="reservation.etat==='validée'" >{{reservation.etat}} </button>
                   <button type="button" class="btn btn-sm btn-danger" *ngIf="reservation.etat==='rejetée'" >{{reservation.etat}} </button>

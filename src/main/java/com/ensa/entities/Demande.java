@@ -24,7 +24,8 @@ public class Demande {
 	private String reference;
 	private String typeEvent;
 	private Date dateDemande;
-	private Date dateReservation;
+	private Date dateDebutReservation;
+	private Date dateFinReservation;
 	private String objet;
 	private String description;
 	private String nombrePresent;
@@ -43,7 +44,8 @@ public class Demande {
 		this.reference = demande.getReference();
 		this.typeEvent = demande.getTypeEvent();
 		this.dateDemande = demande.getDateDemande();
-		this.dateReservation = demande.getDateReservation();
+		this.dateDebutReservation = demande.getDateDebutReservation();
+		this.dateFinReservation = demande.getDateFinReservation();
 		this.obligationScanne = demande.getObligationScanne();
 		this.demandeur = demande.getDemandeur();
 		this.objet = demande.getObjet();
@@ -51,15 +53,16 @@ public class Demande {
 		this.nombrePresent = demande.getNombrePresent();
 	}
 	
-	public Demande(int id, String reference, String typeEvent, Date dateDemande, Date dateReservation, String objet,
+	public Demande(int id, String reference, String typeEvent, Date dateDemande, Date dateDebutReservation, String objet,
 			String description, String nombrePresent, byte[] obligationScanne, Demandeur demandeur,
-			List<Reservation> reservations) {
+			List<Reservation> reservations, Date dateFinReservation) {
 		super();
 		this.id = id;
 		this.reference = reference;
 		this.typeEvent = typeEvent;
 		this.dateDemande = dateDemande;
-		this.dateReservation = dateReservation;
+		this.dateDebutReservation = dateDebutReservation;
+		this.dateFinReservation = dateFinReservation;
 		this.objet = objet;
 		this.description = description;
 		this.nombrePresent = nombrePresent;
@@ -107,12 +110,6 @@ public class Demande {
 	public void setDateDemande(Date dateDemande) {
 		this.dateDemande = dateDemande;
 	}
-	public Date getDateReservation() {
-		return dateReservation;
-	}
-	public void setDateReservation(Date dateReservation) {
-		this.dateReservation = dateReservation;
-	}
 	public String getObjet() {
 		return objet;
 	}
@@ -139,6 +136,19 @@ public class Demande {
 	public void setObligationScanne(byte[] obligationScanne) {
 		this.obligationScanne = obligationScanne;
 	}
+	public Date getDateDebutReservation() {
+		return dateDebutReservation;
+	}
+	public void setDateDebutReservation(Date dateDebutReservation) {
+		this.dateDebutReservation = dateDebutReservation;
+	}
+	public Date getDateFinReservation() {
+		return dateFinReservation;
+	}
+	public void setDateFinReservation(Date dateFinReservation) {
+		this.dateFinReservation = dateFinReservation;
+	}
+	
 	
 	
 	

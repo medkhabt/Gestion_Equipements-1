@@ -27,6 +27,16 @@ import { DemandeDetailComponent } from './demandeur/demande/demande-detail/deman
 import { EquipementUpdateComponent } from './list-equipements/equipement-update/equipement-update.component';
 import { EquipementCreateComponent } from './list-equipements/equipement-create/equipement-create.component';
 import { SignUpGestionnaireComponent } from './gestionnaires/sign-up-gestionnaire/sign-up-gestionnaire.component';
+import { AutorisationChartComponent } from './decideur/autorisation-chart/autorisation-chart.component';
+import { AutorisationEquipementComponent } from './decideur/autorisation-chart/autorisation-equipement/autorisation-equipement.component';
+// tslint:disable-next-line: max-line-length
+import { AutorisationGestionnaireComponent } from './decideur/autorisation-chart/autorisation-gestionnaire/autorisation-gestionnaire.component';
+import { DemandesChartComponent } from './decideur/demandes-chart/demandes-chart.component';
+import { DemandesDemandeurComponent } from './decideur/demandes-chart/demandes-demandeur/demandes-demandeur.component';
+import { DemandesViewComponent } from './decideur/demandes-chart/demandes-view/demandes-view.component';
+import { AutorisationsViewComponent } from './decideur/autorisation-chart/autorisations-view/autorisations-view.component';
+import { ProfilViewComponent } from './gestionnaires/profile/profil-view/profil-view.component';
+import { ProfileViewComponent } from './demandeur/demandeur-profile/profile-view/profile-view.component';
 
 
 
@@ -47,7 +57,7 @@ const routes: Routes = [
   {path: 'AllAutorisations', canActivate: [AuthGuardService], component: AutorisationsComponent},
   {path: 'AllReservations/:id', canActivate: [AuthGuardService], component: ReservationUnitComponent},
   {path: 'AllAutorisations/:id', canActivate: [AuthGuardService], component: AutorisationUnitComponent},
-  {path: 'gestionnaireProfile', canActivate: [AuthGuardService], component: ProfileComponent},
+  {path: 'gestionnaire/profile', canActivate: [AuthGuardService], component: ProfileComponent},
   {path: 'demandeurProfile', canActivate: [AuthGuardService], component: DemandeurProfileComponent},
   {path: 'admin/auth', component: AuthenticationComponent},
   {path: 'demandeurs', component: DemandeursComponent, canActivate: [AuthGuardService]},
@@ -59,6 +69,15 @@ const routes: Routes = [
   {path: 'equipements/update/:id', canActivate: [AuthGuardService], component: EquipementUpdateComponent},
   {path: 'equipements/addEquipement', canActivate: [AuthGuardService], component: EquipementCreateComponent},
   {path: 'auth/division/signup', component: SignUpGestionnaireComponent},
+  {path: 'decideurs/autorisations-totales', canActivate: [AuthGuardService], component: AutorisationChartComponent},
+  {path: 'decideurs/autorisations/equipement', canActivate: [AuthGuardService], component: AutorisationEquipementComponent},
+  {path: 'decideurs/autorisations/gestionnaire', canActivate: [AuthGuardService], component: AutorisationGestionnaireComponent},
+  {path: 'decideurs/autorisations', canActivate: [AuthGuardService], component: AutorisationsViewComponent},
+  {path: 'demandeur/profile/view', canActivate: [AuthGuardService], component: ProfileViewComponent},
+  {path: 'decideurs/demandes-totales', canActivate: [AuthGuardService], component: DemandesChartComponent},
+  {path: 'decideurs/demandes', canActivate: [AuthGuardService], component: DemandesViewComponent},
+  {path: 'decideurs/demandes/demandeur', canActivate: [AuthGuardService], component: DemandesDemandeurComponent},
+  {path: 'gestionnaire/profile-view', canActivate: [AuthGuardService], component: ProfilViewComponent},
   {path: '', component: HomeComponent}
 ];
 

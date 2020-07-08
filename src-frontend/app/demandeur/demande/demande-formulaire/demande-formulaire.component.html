@@ -61,11 +61,17 @@
                                   </select>
                         </div>
                             <div class="form-group col-md-5" style="padding-top: 1%;padding-left: 2%;">
-                               <b> choisir la date de réservation : </b>
+                               <b> choisir la date de debut de réservation : </b>
                             </div>
                             <div class="form-group col-md-7">
-                                <input type="date" name="dateReservation" [min]="date" max="2025-12-31" class="form-control" formControlName="dateReservation" required>
+                                <input type="date" name="dateDebutReservation" [min]="date" max="2025-12-31" class="form-control" formControlName="dateDebutReservation" required >
                             </div>
+                            <div class="form-group col-md-5" style="padding-top: 1%;padding-left: 2%;">
+                              <b> choisir la date de fin de réservation : </b>
+                           </div>
+                           <div class="form-group col-md-7">
+                               <input type="date" name="dateFinReservation" [min]="date" max="2025-12-31" class="form-control" formControlName="dateFinReservation" required>
+                           </div>
                             <div class="form-group col-md-5" style="padding-top: 1%;padding-left: 2%;">
                                 <b> Description : </b>
                              </div>

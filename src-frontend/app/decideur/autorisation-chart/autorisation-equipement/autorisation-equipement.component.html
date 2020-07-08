@@ -1,0 +1,24 @@
+<br><br><br>
+<form  [formGroup]="checkEquipement" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+        <div class="form-group col-md-6" style="padding-left: 2%;">
+            <select id="equipement" class="form-control" formControlName="equipement">
+                <option *ngFor="let e of equipements" [value]="e.nom" selected> {{e.nom}} </option>
+            </select>
+        </div>
+        <div class="form-group col-md-6" style="padding-left: 2%;">
+            <input type="submit" class="form-control">
+        </div>
+    </div>
+    
+</form>
+<div class="chart-wrapper">
+    <canvas baseChart 
+    [datasets]="barChartData"
+    [labels]="barChartLabels"
+    [options]="barChartOptions"
+    [plugins]="barChartPlugins"
+    [legend]="barChartLegend"
+    [chartType]="barChartType">
+  </canvas>
+</div>

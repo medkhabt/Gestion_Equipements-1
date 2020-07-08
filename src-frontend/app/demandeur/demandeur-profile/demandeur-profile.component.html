@@ -119,13 +119,13 @@
                               <input type="text" class="form-control" name="type" id="type" disabled formControlName="type" placeholder="Type">
                           </div>
                       </div>              
-                      <div class="form-group">
+                      <div class="form-group" *ngIf='demandeur.recepisse==null'>
                         <div class="col-xs-6">
                           <label for="recepisse"><h4>le récépissé définitif </h4></label>
                           <input type="file" class="form-control"  (change)="saveRecepisse($event)">
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" *ngIf='demandeur.statut==null'>
                       <div class="col-xs-6">
                         <label for="statut"><h4>le statut </h4></label>
                         <input type="file" class="form-control" name="statut" id="statut"(change)="saveStatut($event)">
@@ -158,7 +158,7 @@
         </button>
       </div>
       <div class="modal-body">
-        test
+        {{message}}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" href="">Close</button>

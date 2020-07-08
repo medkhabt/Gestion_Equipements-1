@@ -136,13 +136,31 @@ html {
     border-radius: 5px 5px 5px 5px;
   }
   
-  input[type=text]:focus {
+  input[type=text]:focus{
     background-color: #fff;
     border-bottom: 2px solid #5fbae9;
   }
   
   input[type=text]:placeholder {
     color: #cccccc;
+  }
+  option {
+    background-color: #f6f6f6;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px;
+    width: 85%;
+    border: 2px solid #f6f6f6;
+  }
+  select {
+    width: 85%;
+    text-align: center;
+    margin-top: 15px;
+    margin-left: 33px;
   }
   
   
