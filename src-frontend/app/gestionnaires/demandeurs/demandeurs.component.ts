@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class DemandeursComponent implements OnInit {
   demandeurs: any;
+  searchSubject: any;
 
   constructor(private authService: AuthService) { }
 

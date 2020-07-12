@@ -71,9 +71,9 @@ public class ReservationRestController {
 		Demande demande = demandeService.getDemande(id);
 		return reservationService.getReservation(demande);
 	}
-	@GetMapping("/reservations_par_equipement")
-	public  List<Reservation> getReservations(@RequestBody Equipement equipement) {
-		return reservationService.getReservations(equipement);
+	@GetMapping("/par_equipement_etat/{etat}+{equipement}")
+	public  List<Reservation> getReservations(@PathVariable String etat, @PathVariable int equipement) {
+		return reservationService.getByEquipementAndEtat(etat, equipement);
 	}
 	@GetMapping("/reservations_traite_par_gestionnaire")
 	public  Reservation getReservation(@RequestBody Gestionnaire gestionnaire) {

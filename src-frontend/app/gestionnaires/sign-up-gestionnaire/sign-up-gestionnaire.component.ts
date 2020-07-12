@@ -68,8 +68,8 @@ if (this.signUpform.get('type').value === 'Gestionnaire') {
   // tslint:disable-next-line: no-shadowed-variable
   resp.subscribe( resp => {
   console.log(resp);
-  this.router.navigate(['/admin/auth']);
-  this.tosignin = 'your account was created !';
+  // this.router.navigate(['/admin/auth']);
+  this.tosignin = 'votre compte a été crée avec succés !';
     }, err => {
   this.errorMessage = 'uncorrect! try again';
     }
@@ -79,8 +79,8 @@ if (this.signUpform.get('type').value === 'Decideur') {
   this.authservice.registerDecideur(gestionnaire).subscribe(
     resp => {
       console.log(resp);
-      this.router.navigate(['']);
-      this.tosignin = 'your account was created !';
+      // this.router.navigate(['']);
+      this.tosignin = 'votre compte a été crée avec succés !';
     }
   );
   }

@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.bouncycastle.crypto.RuntimeCryptoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ import com.ensa.entities.Equipement;
 import com.ensa.entities.Gestionnaire;
 import com.ensa.entities.Reservation;
 import com.ensa.entities.Secteur;
+import com.ensa.repo.EquipementRepository;
 import com.ensa.repo.GestionnaireRepository;
 import com.ensa.repo.ReservationRepository;
 
@@ -26,6 +28,8 @@ public class ReservationService {
 	ReservationRepository reservationRepo;
 	@Autowired
 	GestionnaireRepository gestionnaireRepo;
+	@Autowired
+	EquipementRepository equipementRepo;
 	public List<Reservation> getAll(){
 		return reservationRepo.findAll();
 	}
@@ -91,5 +95,21 @@ public class ReservationService {
 //		Date date2=new SimpleDateFormat("dd/MM/yyyy").parse(sdate2);
 //		return reservationRepo.(date1, date2);
 //	}
-	
+	public List<Reservation> getByEquipementAndEtat(String etat, int id) {
+		
+		if(etat!="none" && id!=0) {
+			return reservationRepo.finByEquipementAndEtat(etat, id);
+		}
+		else if(etat=="none" && id ==0) {
+			throw new RuntimeCryptoException("exception !!!");
+		}
+		else if(etat=="none") {
+			Equipement equipement = equipementRepo.findById(id);
+			return reservationRepo.findByEquipement(equipement);
+		}
+		else {
+			return reservationRepo.findByEtat(etat);
+		}
+
+	}
 }

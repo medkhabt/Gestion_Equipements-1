@@ -123,7 +123,7 @@ export class ReservationUnitComponent implements OnInit {
   }
 
   mettreEnAttente() {
-    this.reservation.etat = 'en train de traitement';
+    this.reservation.etat = 'en cours de traitement';
     this.reservationServce.updateReservation(this.reservation, this.gestionnaire.id).subscribe(
       res => console.log(res),
       err => console.log(err)

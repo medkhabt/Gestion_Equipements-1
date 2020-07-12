@@ -21,7 +21,7 @@
                 <td>
                   <button type="button" class="btn btn-sm btn-success" *ngIf="reservation.etat==='validée'" >{{reservation.etat}} </button>
                   <button type="button" class="btn btn-sm btn-danger" *ngIf="reservation.etat==='rejetée'" >{{reservation.etat}} </button>
-                  <button type="button" class="btn btn-sm btn-info" *ngIf="reservation.etat==='initial' || reservation.etat==='en train de traitement'" >{{reservation.etat}} </button>
+                  <button type="button" class="btn btn-sm btn-info" *ngIf="reservation.etat==='initial' || reservation.etat==='en cours de traitement'" >{{reservation.etat}} </button>
                 </td>
                 <td>
                 <button class="btn btn-primary btn-sm" type="button" [routerLink]="['/demandeur/demande/', reservation.id]" style="margin-top: 5px;">

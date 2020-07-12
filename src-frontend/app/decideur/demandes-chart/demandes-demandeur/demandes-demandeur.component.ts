@@ -40,17 +40,18 @@ export class DemandesDemandeurComponent implements OnInit {
         this.barChartPlugins = [];
 
         this.barChartData = [
-          { data: [this.demandes[0],
-                  this.demandes[1],
-                  this.demandes[2],
-                  this.demandes[3],
-                  this.demandes[4],
-                  this.demandes[5],
-                  this.demandes[6],
-                  this.demandes[7],
-                  this.demandes[8],
-                  this.demandes[9],
-                  this.demandes[10],
+          // { data: [this.demandes[0],
+          //         this.demandes[1],
+          //         this.demandes[2],
+          //         this.demandes[3],
+          //         this.demandes[4],
+          //         this.demandes[5],
+          //         this.demandes[6],
+          //         this.demandes[7],
+          //         this.demandes[8],
+          //         this.demandes[9],
+          //         this.demandes[10],
+          { data: [3, 0, 2, 1, 0, 0, 3, 1, 2, 0, 0, 1,
                   this.demandes[11]], label: 'demandes déposées par : Amar' }
         ];
       }

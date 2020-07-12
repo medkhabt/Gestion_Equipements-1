@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
-import { Label } from 'ng2-charts';
+import { Label, Color } from 'ng2-charts';
 import { AutorisationsService } from 'src/app/services/autorisations.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EquipementsService } from 'src/app/services/equipements.service';
@@ -17,6 +17,9 @@ export class AutorisationEquipementComponent implements OnInit {
   barChartType: ChartType;
   barChartLegend;
   barChartPlugins;
+  barCharColor: Color[] = [
+    { backgroundColor: '#8FBDD9'}
+  ];
   barChartData: ChartDataSets[];
   autorisations: any;
   equipements: any;
@@ -41,18 +44,19 @@ export class AutorisationEquipementComponent implements OnInit {
         this.barChartPlugins = [];
 
         this.barChartData = [
-          { data: [this.autorisations[0],
-                  this.autorisations[1],
-                  this.autorisations[2],
-                  this.autorisations[3],
-                  this.autorisations[4],
-                  this.autorisations[5],
-                  this.autorisations[6],
-                  this.autorisations[7],
-                  this.autorisations[8],
-                  this.autorisations[9],
-                  this.autorisations[10],
-                  this.autorisations[11]],
+          // { data: [this.autorisations[0],
+          //         this.autorisations[1],
+          //         this.autorisations[2],
+          //         this.autorisations[3],
+          //         this.autorisations[4],
+          //         this.autorisations[5],
+          //         this.autorisations[6],
+          //         this.autorisations[7],
+          //         this.autorisations[8],
+          //         this.autorisations[9],
+          //         this.autorisations[10],
+          //         this.autorisations[11]],
+          { data: [10, 15, 16, 7, 25, 18, 17, 32, 9, 14, 20, 15],
             label: 'Autorisations en equipement : Agadir',
              }
         ];

@@ -64,6 +64,10 @@ import { DemandesViewComponent } from './decideur/demandes-chart/demandes-view/d
 import { AutorisationsViewComponent } from './decideur/autorisation-chart/autorisations-view/autorisations-view.component';
 import { ProfilViewComponent } from './gestionnaires/profile/profil-view/profil-view.component';
 import { ProfileViewComponent } from './demandeur/demandeur-profile/profile-view/profile-view.component';
+import { AutorisationPieChartComponent } from './decideur/autorisation-chart/autorisation-pie-chart/autorisation-pie-chart.component';
+import { SearchFilter } from './pipes/searchFilter.pipe';
+import { SearchEquipementFilter } from './pipes/searchEquipementFilter.pipe';
+import { SearchObjetFilter } from './pipes/searchObjetFilter.pipe';
 
 @NgModule({
   declarations: [
@@ -108,7 +112,11 @@ import { ProfileViewComponent } from './demandeur/demandeur-profile/profile-view
     DemandesDemandeurComponent,
     DemandesViewComponent,
     AutorisationsViewComponent,
-    ProfilViewComponent
+    ProfilViewComponent,
+    AutorisationPieChartComponent,
+    SearchFilter,
+    SearchEquipementFilter,
+    SearchObjetFilter
   ],
   imports: [
     BrowserModule,

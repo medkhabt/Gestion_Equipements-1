@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ReservationsService } from 'src/app/services/reservations.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { EquipementsService } from 'src/app/services/equipements.service';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { Equipement } from 'src/app/models/equipement.model';
 
 @Component({
   selector: 'app-reservations',
@@ -13,17 +16,49 @@ export class ReservationsComponent implements OnInit {
   data: any;
   i: number;
   gestionnaire: any;
+  equipements: any;
+  FilterForm: FormGroup;
+  searchEquipementSubject: any;
+  searchEtatSubject: any;
+  searchObjetSubject: any;
   constructor(private reservationsService: ReservationsService,
-              private authservice: AuthService) { }
+              private authservice: AuthService,
+              private equipementService: EquipementsService,
+              private formbuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.reservationsService.getAllReservations().subscribe(
       resp => this.reservations = resp,
       err => console.log(err)
     );
+    this.equipementService.getEquipements().subscribe(
+      resp => {
+        this.equipements = resp;
+        console.log(this.equipements);
+      }
+    );
   //  this.reservations = JSON.parse(localStorage.getItem('reservations'));
     this.demandes = this.authservice.getUser().demandes;
     this.gestionnaire = JSON.parse(localStorage.getItem('gestionnaire'));
+    this.initForm();
+  }
+  initForm() {
+    this.FilterForm = this.formbuilder.group({
+      equipement: [ 0 , [Validators.required] ],
+      etat: [ 'none' , [Validators.required] ]
+    });
+  }
+  onSubmit() {
+    if (this.FilterForm.invalid ) {
+     return;
+    }
+    const etat = this.FilterForm.get('etat').value;
+    const equipement = this.FilterForm.get('equipement').value;
+    this.reservationsService.getReservationsByEtatAndEquipement(etat, equipement).subscribe(
+      resp => {
+        this.reservations = resp;
+      }, err => console.log(err)
+    );
   }
   formatDate(date) {
     const d = new Date(date);

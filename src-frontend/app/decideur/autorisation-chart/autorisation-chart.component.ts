@@ -16,6 +16,9 @@ export class AutorisationChartComponent implements OnInit {
   lineChartData: ChartDataSets[];
   lineChartLabels: Label[];
   lineChartColors: Color[];
+  barCharColor: Color[] = [
+    { backgroundColor: '#8FBDD9'}
+  ];
   lineChartLegend = true;
   lineChartPlugins = [];
   lineChartType = 'line';
@@ -32,18 +35,19 @@ export class AutorisationChartComponent implements OnInit {
 
         this.lineChartData = [
          // tslint:disable-next-line: max-line-length
-         { data: [this.autorisations[0],
-                  this.autorisations[1],
-                  this.autorisations[2],
-                  this.autorisations[3],
-                  this.autorisations[4],
-                  this.autorisations[5],
-                  this.autorisations[6],
-                  this.autorisations[7],
-                  this.autorisations[8],
-                  this.autorisations[9],
-                  this.autorisations[10],
-                  this.autorisations[11],
+        //  { data: [this.autorisations[0],
+        //           this.autorisations[1],
+        //           this.autorisations[2],
+        //           this.autorisations[3],
+        //           this.autorisations[4],
+        //           this.autorisations[5],
+        //           this.autorisations[6],
+        //           this.autorisations[7],
+        //           this.autorisations[8],
+        //           this.autorisations[9],
+        //           this.autorisations[10],
+        //           this.autorisations[11],
+        { data: [1, 20, 30, 30, 70, 30, 40, 50, 70, 20, 60, 100
                 ], label: 'les autorisations' },
         ];
 
@@ -55,8 +59,8 @@ export class AutorisationChartComponent implements OnInit {
 
         this.lineChartColors = [
           {
-            borderColor: 'black',
-            backgroundColor: 'rgba(255,255,0,0.28)',
+            borderColor: '#0477BF',
+            backgroundColor: '#8FBDD9',
           },
         ];
       },

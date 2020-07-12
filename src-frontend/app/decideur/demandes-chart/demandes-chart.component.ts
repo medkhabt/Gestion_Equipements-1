@@ -31,18 +31,19 @@ export class DemandesChartComponent implements OnInit {
 
         this.lineChartData = [
          // tslint:disable-next-line: max-line-length
-         { data: [this.demandes[0],
-                  this.demandes[1],
-                  this.demandes[2],
-                  this.demandes[3],
-                  this.demandes[4],
-                  this.demandes[5],
-                  this.demandes[6],
-                  this.demandes[7],
-                  this.demandes[8],
-                  this.demandes[9],
-                  this.demandes[10],
-                  this.demandes[11],
+        //  { data: [this.demandes[0],
+        //           this.demandes[1],
+        //           this.demandes[2],
+        //           this.demandes[3],
+        //           this.demandes[4],
+        //           this.demandes[5],
+        //           this.demandes[6],
+        //           this.demandes[7],
+        //           this.demandes[8],
+        //           this.demandes[9],
+        //           this.demandes[10],
+        //           this.demandes[11],
+        { data: [11, 30, 40, 40, 80, 40, 50, 60, 80, 30, 70, 110
                 ], label: 'les demandes' },
         ];
 
@@ -53,11 +54,11 @@ export class DemandesChartComponent implements OnInit {
           };
 
         this.lineChartColors = [
-          {
-            borderColor: 'black',
-            backgroundColor: 'rgba(255,255,0,0.28)',
-          },
-        ];
+            {
+              borderColor: '#0477BF',
+              backgroundColor: '#8FBDD9',
+            },
+          ];
       },
       err => console.log(err)
     );

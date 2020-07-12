@@ -43,4 +43,7 @@ export class ReservationsService {
     return this.http.get(this.host + '/reservations/by_demande/' + Iddemande,
     {headers: new HttpHeaders({authorization: this.jwtToken})});
   }
+  getReservationsByEtatAndEquipement(etat: any, equipement: any) {
+    return this.http.get(this.host + '/reservations/par_equipement_etat/' + etat + '/' + equipement);
+  }
 }

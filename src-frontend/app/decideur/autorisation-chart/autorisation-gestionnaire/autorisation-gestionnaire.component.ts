@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
-import { Label } from 'ng2-charts';
+import { Label, Color } from 'ng2-charts';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AutorisationsService } from 'src/app/services/autorisations.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -14,6 +14,9 @@ export class AutorisationGestionnaireComponent implements OnInit {
   barChartOptions: ChartOptions;
   barChartLabels: Label[];
   barChartType: ChartType;
+  barCharColor: Color[] = [
+    { backgroundColor: '#0477BF'}
+  ];
   barChartLegend;
   barChartPlugins;
   barChartData: ChartDataSets[];
@@ -40,18 +43,20 @@ export class AutorisationGestionnaireComponent implements OnInit {
         this.barChartPlugins = [];
 
         this.barChartData = [
-          { data: [this.autorisations[0],
-                  this.autorisations[1],
-                  this.autorisations[2],
-                  this.autorisations[3],
-                  this.autorisations[4],
-                  this.autorisations[5],
-                  this.autorisations[6],
-                  this.autorisations[7],
-                  this.autorisations[8],
-                  this.autorisations[9],
-                  this.autorisations[10],
-                  this.autorisations[11]], label: 'Autorisations traitées par: Akhachkhouch' }
+          // { data: [this.autorisations[0],
+          //         this.autorisations[1],
+          //         this.autorisations[2],
+          //         this.autorisations[3],
+          //         this.autorisations[4],
+          //         this.autorisations[5],
+          //         this.autorisations[6],
+          //         this.autorisations[7],
+          //         this.autorisations[8],
+          //         this.autorisations[9],
+          //         this.autorisations[10],
+          //         this.autorisations[11]],
+          {data: [20, 15, 10, 15, 17, 32, 9, 14, 16, 7, 25, 18 ],
+                  label: 'Autorisations traitées par: Akhachkhouch' }
         ];
       }
     );

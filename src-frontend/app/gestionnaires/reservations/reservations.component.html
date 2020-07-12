@@ -3,10 +3,49 @@
     <head>
     </head>
     <body>
+      <!-- ********* -->
+      <!-- <form [formGroup]="FilterForm" (ngSubmit)="onSubmit()">
+      <select id="equipement" class="form-control" formControlName="equipement" required>
+        <option *ngFor="let e of equipements" [value]="e.id" selected> {{e.nom}} </option>
+      </select>
+      <select id="etat" class="form-control" formControlName="etat" required>
+        <option value="validée" selected> validée </option>
+        <option value="rejetée" selected> rejetée </option>
+        <option value="initial" selected> initial </option>
+      </select>
+      <button type="submit">rechecher</button>
+    </form> --><br><br>
+    <div class="container-fluid" style="width: 90%;">
+    <div class="form-row" >
+      <div class="col-3"></div>
+      <div class="form-group col">
+        <label for="objet">rechercher par Objet :</label>
+        <input type="text" class="form-control" name="objet" id="objet" [(ngModel)]="searchObjetSubject">
+      </div>
+    <div class="form-group col">
+      <label for="etat"> chercher par état :</label>
+      <select name="etat" id="etat" [(ngModel)]="searchEtatSubject"  class="form-control">
+        <option value="">Rien</option>
+        <option value="validée" selected>Validée</option>
+        <option value="rejetée" >Rejetée</option>
+        <option value="en cours de traitement" >En cours de traitement </option>
+      </select>
+    </div>
+    <div class="form-group col">
+      <label for="equipement"> chercher par équipement</label>
+      <select name="equipement" id="equipement" [(ngModel)]="searchEquipementSubject"  class="form-control">
+        <option value="" selected="selected">tous les équipements</option>
+        <option *ngFor="let e of equipements" [value]="e.nom" > {{e.nom}} </option>
+      </select>
+    </div>
+    <div class="col-3"></div>
+
+    </div>
+      <!-- ********* -->
         <table class="table">
             <thead class="thead-light">
               <tr>
-                <th scope="col">Identifiant</th>
+                <th scope="col" class="id">#Id</th>
                 <th scope="col">date de demande</th>
                 <th scope="col">equipement</th>
                 <th scope="col">Date de début de réservation</th>
@@ -16,21 +55,21 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let reservation of reservations " >
+              <tr *ngFor="let reservation of reservations | SearchEtatFilter:searchEtatSubject |SearchObjetFilter:searchObjetSubject | SearchEquipementFilter:searchEquipementSubject" >
                 <th scope="row">{{reservation.id}} </th>
                 <td>{{formatDate(reservation.demande.dateDemande)}}</td>
                 <td>{{reservation.equipement.nom}} </td>
-                <td>{{formatDate(autorisation.reservation.demande.dateDebutReservation)}}</td>
-                <td>{{formatDate(autorisation.reservation.demande.dateFinReservation)}}</td>
+                <td>{{formatDate(reservation.demande.dateDebutReservation)}}</td>
+                <td>{{formatDate(reservation.demande.dateFinReservation)}}</td>
                 <td>
                   <button type="button" class="btn btn-sm btn-success" *ngIf="reservation.etat==='validée'" >{{reservation.etat}} </button>
                   <button type="button" class="btn btn-sm btn-danger" *ngIf="reservation.etat==='rejetée'" >{{reservation.etat}} </button>
                   <button type="button" class="btn btn-info-outline btn-sm" *ngIf="reservation.etat==='initial'" >{{reservation.etat}} </button>
-                  <button type="button" class="btn btn-light btn-sm" *ngIf="reservation.etat==='en train de traitement'">{{reservation.etat}}</button>
+                  <button type="button" class="btn btn-light btn-sm" *ngIf="reservation.etat==='en cours de traitement'">{{reservation.etat}}</button>
                 </td>
                 {{setData(reservation.id)}}
                 <td>
-                <button class="btn btn-primary btn-sm" *ngIf="reservation.etat==='initial' || reservation.etat==='en train de traitement'" type="button" [routerLink]="['/AllReservations', reservation.id]" style="margin-top: 5px;">
+                <button class="btn btn-primary btn-sm" *ngIf="reservation.etat==='initial' || reservation.etat==='en cours de traitement'" type="button" [routerLink]="['/AllReservations', reservation.id]" style="margin-top: 5px;">
                     Traiter la demande
                 </button>
                 <button class="btn btn-primary btn-sm" *ngIf="reservation.etat==='validée' || reservation.etat==='rejetée'" type="button" [routerLink]="['/AllReservations', reservation.id]" style="margin-top: 5px;">
@@ -40,6 +79,7 @@
               </tr>
             </tbody>
           </table>
+        </div>
 
 
     </body>

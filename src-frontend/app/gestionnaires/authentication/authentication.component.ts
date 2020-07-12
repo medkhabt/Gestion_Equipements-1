@@ -43,7 +43,7 @@ export class AuthenticationComponent implements OnInit {
     resp.subscribe( resp => {
       const jwtToken = resp.headers.get('authorization');
       this.authservice.saveToken(jwtToken);
-      this.router.navigate(['/decideurs/autorisations']);
+      this.router.navigate(['/']);
       this.authservice.getGestionnaire(username).subscribe(res => {
          this.gestionnaire = res;
          this.authservice.setRole(this.gestionnaire.roles[0].role);
