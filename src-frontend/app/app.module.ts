@@ -68,6 +68,11 @@ import { AutorisationPieChartComponent } from './decideur/autorisation-chart/aut
 import { SearchFilter } from './pipes/searchFilter.pipe';
 import { SearchEquipementFilter } from './pipes/searchEquipementFilter.pipe';
 import { SearchObjetFilter } from './pipes/searchObjetFilter.pipe';
+import { MessageAlertComponent } from './message-alert/message-alert.component';
+import { SearchAutoFilter } from './pipes/autorisations/searchAutoFilter.pipe';
+import { SearchEquipementAutoFilter } from './pipes/autorisations/searchEquipementAutoFilter.pipe';
+import { SearchObjetAutoFilter } from './pipes/autorisations/searchObjetAutoFilter.pipe';
+import { SearchUsernameFilter } from './pipes/demandeurs/searchUsernameFilter.pipe';
 
 @NgModule({
   declarations: [
@@ -116,7 +121,12 @@ import { SearchObjetFilter } from './pipes/searchObjetFilter.pipe';
     AutorisationPieChartComponent,
     SearchFilter,
     SearchEquipementFilter,
-    SearchObjetFilter
+    SearchObjetFilter,
+    MessageAlertComponent,
+    SearchAutoFilter,
+    SearchEquipementAutoFilter,
+    SearchObjetAutoFilter,
+    SearchUsernameFilter
   ],
   imports: [
     BrowserModule,

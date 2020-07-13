@@ -3,6 +3,36 @@
     <head>
     </head>
     <body>
+      <!-- ********** -->
+      <br><br>
+    <div class="container-fluid" style="width: 90%;">
+    <div class="form-row" >
+      <div class="col-3"></div>
+      <div class="form-group col">
+        <label for="objet">rechercher par Objet :</label>
+        <input type="text" class="form-control" name="objet" id="objet" [(ngModel)]="searchObjetSubject">
+      </div>
+    <!-- <div class="form-group col">
+      <label for="etat"> chercher par état :</label>
+      <select name="etat" id="etat" [(ngModel)]="searchEtatSubject"  class="form-control">
+        <option value="">Rien</option>
+        <option value="validée" selected>Validée</option>
+        <option value="rejetée" >Rejetée</option>
+        <option value="en cours de traitement" >En cours de traitement </option>
+      </select>
+    </div> -->
+    <div class="form-group col">
+      <label for="equipement"> chercher par équipement :</label>
+      <select name="equipement" id="equipement" [(ngModel)]="searchEquipementSubject"  class="form-control">
+        <option value="" selected="selected">tous les équipements</option>
+        <option *ngFor="let e of equipements" [value]="e.nom" > {{e.nom}} </option>
+      </select>
+    </div>
+    <div class="col-3"></div>
+
+    </div>
+    </div>
+    <!-- ******** -->
       <div class="container-fluid" style="width: 90%;">
         <table class="table">
             <thead class="thead-light">
@@ -16,7 +46,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let autorisation of autorisations ">
+              <tr *ngFor="let autorisation of autorisations |SearchObjetAutorisationFilter:searchObjetSubject | SearchEquipemenAutorisationtFilter:searchEquipementSubject">
                 <th scope="row">{{autorisation.id}} </th>
                 <td>{{formatDate(autorisation.reservation.demande.dateDebutReservation)}}</td>
                 <td>{{formatDate(autorisation.reservation.demande.dateFinReservation)}}</td>

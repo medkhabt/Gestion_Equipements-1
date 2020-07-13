@@ -38,6 +38,7 @@ import { AutorisationsViewComponent } from './decideur/autorisation-chart/autori
 import { ProfilViewComponent } from './gestionnaires/profile/profil-view/profil-view.component';
 import { ProfileViewComponent } from './demandeur/demandeur-profile/profile-view/profile-view.component';
 import { AutorisationPieChartComponent } from './decideur/autorisation-chart/autorisation-pie-chart/autorisation-pie-chart.component';
+import { MessageAlertComponent } from './message-alert/message-alert.component';
 
 
 
@@ -80,6 +81,7 @@ const routes: Routes = [
   {path: 'decideurs/demandes/demandeur', canActivate: [AuthGuardService], component: DemandesDemandeurComponent},
   {path: 'gestionnaire/profile-view', canActivate: [AuthGuardService], component: ProfilViewComponent},
   {path: 'decideurs/autorisations/piechart', canActivate: [AuthGuardService], component: AutorisationPieChartComponent},
+  {path: 'message', component: MessageAlertComponent},
   {path: '', component: HomeComponent}
 ];
 

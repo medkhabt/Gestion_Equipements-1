@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AutorisationsService } from 'src/app/services/autorisations.service';
 import { ReservationsService } from 'src/app/services/reservations.service';
+import { EquipementsService } from 'src/app/services/equipements.service';
 
 @Component({
   selector: 'app-autorisations',
@@ -11,13 +12,24 @@ export class AutorisationsComponent implements OnInit {
 
   autorisations: any;
   demandeur: any;
+  searchObjetSubject: any;
+  searchEtatSubject: any;
+  searchEquipementSubject: any;
+  equipements: any;
   constructor(private autorisationservice: AutorisationsService,
-              private reservationService: ReservationsService) { }
+              private reservationService: ReservationsService,
+              private equipementService: EquipementsService) { }
 
   ngOnInit(): void {
     this.autorisationservice.getAutorisations().subscribe(
       res => this.autorisations = res,
       err => console.log(err)
+    );
+    this.equipementService.getEquipements().subscribe(
+      resp => {
+        this.equipements = resp;
+        console.log(this.equipements);
+      }
     );
   //  this.autorisations = JSON.parse(localStorage.getItem('autorisations'));
     console.log(this.autorisations);

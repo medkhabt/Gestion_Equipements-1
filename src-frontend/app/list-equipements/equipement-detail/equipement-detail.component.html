@@ -6,8 +6,8 @@
 
         <div class="row profil-image">
             <div class="col"></div>
-            <div class="col-6">
-                <img class="img-fluid border" src="..\assets\images\logoAgadir.jpg" alt="">
+            <div class="col-8">
+                <img class="img-fluid border" src="..\assets\images\{{images[equipement.id]}}" alt="">
             </div>
             <div class="col"></div>
 
@@ -24,14 +24,14 @@
             </p> -->
         </div>
     <div>
-        <ul class="list-group">
+        <ul class="list-group"> 
             <li class="list-group-item">
-                <span class="label"> id:</span> 
-                <span class="col-6">{{equipement.id}}</span>
+                <span class="label"> description</span> 
+                <span class="col-6">{{description[equipement.id]}}</span>
             </li>
             <li class="list-group-item">
-                <span class="label">id du Responsable:</span> 
-                <span class="col-6">{{equipement.idResponsable}}</span>
+                <span class="label">nom du Responsable:</span> 
+                <span class="col-6">{{responsables[equipement.idResponsable]}}</span>
             </li>
             <li class="list-group-item">
                 <span class="label">adresse:</span> 

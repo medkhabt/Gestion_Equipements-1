@@ -15,6 +15,7 @@ export class EquipementUpdateComponent implements OnInit {
   id: number;
   updateForm: FormGroup;
   secteur: any;
+  message = 'Erreur !!!';
   constructor(private equipementService: EquipementsService,
               public authservice: AuthService,
               private router: ActivatedRoute,
@@ -53,7 +54,10 @@ export class EquipementUpdateComponent implements OnInit {
   onSubmit() {
     console.log(this.updateForm.value);
     this.equipementService.updateEquipement(this.id, this.updateForm.value).subscribe(
-      resp => console.log(resp),
+      resp => {
+        console.log(resp);
+        this.message = 'Les modifications ont été enregistrées.';
+      },
       err => console.log(err)
     );
   }

@@ -1,4 +1,5 @@
 <br><br><br><br>
+<div class="container-fluid" style="width: 90%;">
 <p-dataView [value]= "demandes" [paginator]="true" [rows]="10" [sortField]="sortField" [sortOrder]="sortOrder">
     <p-header>List Des demandes
         <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By"
@@ -19,3 +20,4 @@
     </ng-template>
 
 </p-dataView>
+</div>

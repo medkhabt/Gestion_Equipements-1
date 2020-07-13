@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { ReservationsService } from 'src/app/services/reservations.service';
+import { EquipementsService } from 'src/app/services/equipements.service';
 
 @Component({
   selector: 'app-list-demandes',
@@ -12,9 +13,14 @@ export class ListDemandesComponent implements OnInit {
   demandeur: any;
   id: number;
   reservations; any;
+  searchEquipementSubject: any;
+  searchEtatSubject: any;
+  searchObjetSubject: any;
+  equipements: any;
   constructor(private authservice: AuthService,
               private router: ActivatedRoute,
-              private reservationsService: ReservationsService) { }
+              private reservationsService: ReservationsService,
+              private equipementService: EquipementsService) { }
 
   ngOnInit(): void {
     this.id = this.router.snapshot.params.id;
@@ -24,7 +30,13 @@ export class ListDemandesComponent implements OnInit {
             this.reservations = res;
             console.log(this.reservations);
           }, err => console.log(err)
-        );
+    );
+    this.equipementService.getEquipements().subscribe(
+      resp => {
+        this.equipements = resp;
+        console.log(this.equipements);
+      }
+    );
   }
 
   formatDate(date) {

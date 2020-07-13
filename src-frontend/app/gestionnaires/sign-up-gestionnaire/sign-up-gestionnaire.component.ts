@@ -68,10 +68,10 @@ if (this.signUpform.get('type').value === 'Gestionnaire') {
   // tslint:disable-next-line: no-shadowed-variable
   resp.subscribe( resp => {
   console.log(resp);
-  // this.router.navigate(['/admin/auth']);
+  this.router.navigate(['/message']);
   this.tosignin = 'votre compte a été crée avec succés !';
     }, err => {
-  this.errorMessage = 'uncorrect! try again';
+  this.errorMessage = 'Erreur !! Reéssayez à nouveau';
     }
    );
   }
